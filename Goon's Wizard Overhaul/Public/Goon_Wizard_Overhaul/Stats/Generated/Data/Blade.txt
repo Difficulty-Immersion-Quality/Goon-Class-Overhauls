@@ -20,7 +20,7 @@ using "BLADESONG_WEAPON"
 // %%% EMPTY
 // data "DisplayName" "h29ffbd63g4dc7g417agbf1dg4d2d51eb84b0;1"
 // data "StackId" "BLADESONG_WEAPON"
-data "OnApplyConditions" "not HasStatus('BLADESONG_WEAPON_MESSAGE',context.Source) or not HasStatus('BLADESONG_UNARMED_MESSAGE',context.Source) or HasPassive('Bladesong_Weapon',context.Source)"
+data "OnApplyConditions" "not HasStatus('BLADESONG_WEAPON_MESSAGE',context.Source) and not HasStatus('BLADESONG_UNARMED_MESSAGE',context.Source) and HasPassive('Bladesong_Weapon',context.Source)"
 // data "RemoveConditions" "HasStatus('BLADESONG_WEAPON_MESSAGE',context.Source) or HasStatus('BLADESONG_UNARMED_MESSAGE',context.Source)"
 data "RemoveConditions" "HasStatus('BLADESONG_WEAPON_MESSAGE',context.Source) or HasStatus('BLADESONG_UNARMED_MESSAGE',context.Source) or not HasPassive('Bladesong_Weapon',context.Source)"
 // data "RemoveEvents" "OnStatusRemoved;OnStatusApplied"

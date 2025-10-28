@@ -1,4 +1,4 @@
-// ==================================== Divine Smite - Spells ====================================
+// ==================================== Divine Smite ====================================
 
 new entry "Target_Smite_Divine"
 type "SpellData"
@@ -6,8 +6,6 @@ data "SpellType" "Target"
 // using "Target_MainHandAttack"
 using "Target_Smite_Divine"
 data "RequirementConditions" "Goon_HasUnbrokenOath()"
-
-// ==================================== Divine Smite - Interrupts ====================================
 
 new entry "Interrupt_Smite_Divine"
 type "InterruptData"

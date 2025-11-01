@@ -1,5 +1,6 @@
 -- ==================================== Vanilla function overwrites ====================================
 -- IsSpellChildOrVariantFromContext('Target_Smite_Divine_Fire') < Could have been doing this shit lmao
+-- Nah turns out the above lowkey cooked
 
 function IsSmiteSpells()
     return IsDivineSmite()
@@ -168,6 +169,16 @@ function Goon_IsDivineSmite()
          | SpellId('Target_Smite_Divine_7') 
          | SpellId('Target_Smite_Divine_8') 
          | SpellId('Target_Smite_Divine_9')
+         | SpellId('Target_PPHB2024_Smite_Divine_Free')
+         | SpellId('Target_RWI_Smite_Divine') 
+         | SpellId('Target_RWI_Smite_Divine_2') 
+         | SpellId('Target_RWI_Smite_Divine_3') 
+         | SpellId('Target_RWI_Smite_Divine_4') 
+         | SpellId('Target_RWI_Smite_Divine_5') 
+         | SpellId('Target_RWI_Smite_Divine_6') 
+         | SpellId('Target_RWI_Smite_Divine_7') 
+         | SpellId('Target_RWI_Smite_Divine_8') 
+         | SpellId('Target_RWI_Smite_Divine_9')
 end
 
 -- ==================================== No idea, pulled from Xarara ====================================
@@ -196,6 +207,17 @@ function Goon_IsUnholySmite_Chizz()
          | SpellId('Target_CHIZ_Unholy_Smite_7') 
          | SpellId('Target_CHIZ_Unholy_Smite_8') 
          | SpellId('Target_CHIZ_Unholy_Smite_9')
+         | SpellId('Target_CHIZ_Unholy_Smite_Free')
+         | SpellId('Target_CHIZ_TEST_SMITE')
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite') 
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite_2') 
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite_3') 
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite_4') 
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite_5') 
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite_6') 
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite_7') 
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite_8') 
+         | SpellId('Target_RWI_CHIZ_Unholy_Smite_9')
 end
 
 -- ==================================== Unholy Smite - Empowering Oathbreakers (And Other Paladin Subclasses) by GraphicFade ====================================

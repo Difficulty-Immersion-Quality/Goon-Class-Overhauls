@@ -1376,7 +1376,7 @@ using "Target_DivineStrike_Tempest_Container"
 // Once per turn, deal [1] in addition to your melee weapon's [2], or your ranged weapon's [3] when you make a &lt;LSTag Tooltip="AttackRoll"&gt;Weapon Attack&lt;/LSTag&gt;.
 data "Description" "h7b53070eg4870g4886gb44dg47d1f8d503cb;1"
 // data "DescriptionParams" "DealDamage(1d8,Thunder);DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType)"
-data "DescriptionParams" "DealDamage(1d8,Radiant);DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);DealDamage(MainRangedWeapon, MainRangedWeaponDamageType)"
+data "DescriptionParams" "DealDamage(1d8,Thunder);DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);DealDamage(MainRangedWeapon, MainRangedWeaponDamageType)"
 // At Cleric level 14, the additional damage increases to [1].
 data "ExtraDescription" "he6408978g1601g4f81ga1ecg61fbaee27845;1"
 data "ExtraDescriptionParams" "DealDamage(2d8,Thunder)"

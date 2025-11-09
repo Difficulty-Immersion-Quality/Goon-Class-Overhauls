@@ -1,6 +1,5 @@
 // ==================================== Life Domain - Blessed Healer ====================================
 // Bug Fix: Blessed Healer now only heals the caster as is specified in the tooltip, when you target others with healing spells, instead of all the Cleric's healing sources.
-// TODO: These descriptions are fucked
 
 new entry "BlessedHealer"
 type "PassiveData"

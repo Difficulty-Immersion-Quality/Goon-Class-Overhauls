@@ -10,6 +10,7 @@ using "Target_DivineStrike_Order_Container"
 // data "ContainerSpells" "Target_DivineStrike_Melee_Order;Projectile_DivineStrike_Ranged_Order"
 data "RequirementConditions" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source)"
 // data "Icon" "Action_DivineStrike_Melee"
+data "Icon" "Action_DivineStrike_Psychic_Melee"
 // Divine Strike: Psychic
 // data "DisplayName" "h93a8171ag12a5g4ab7g954eg2d3dee7345c0;1"
 // Once per turn deal [1] in addition to your weapon's [2] when you make a melee attack.
@@ -47,6 +48,7 @@ data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);Deal
 data "RequirementConditions" "HasActionResource('Interrupt_DivineStrike', 1, 0, false, false, context.Source)"
 // data "TargetConditions" "Character() and not Self()"
 // data "Icon" "Action_DivineStrike_Melee"
+data "Icon" "Action_DivineStrike_Psychic_Melee"
 // Divine Strike: Psychic (Melee)
 // data "DisplayName" "he2fbd70ag2ac2g4c8cg85c6g291edd5706f1;1"
 // Once per turn deal [1] in addition to your weapon's [2] when you make a melee attack.
@@ -97,6 +99,7 @@ data "RequirementConditions" "HasActionResource('Interrupt_DivineStrike', 1, 0, 
 data "TargetConditions" "Character() and not Self()"
 // data "Trajectories" "32f492cc-5c91-48b4-9b8c-b14c30f91f64"
 // data "Icon" "Action_DivineStrike_Ranged"
+// TODO: I don't think there's a purple icon for this unless Sumra makes it
 // Divine Strike: Psychic (Ranged)
 // data "DisplayName" "h89a61027gf1d9g4e64gb925g0efb0bceafc4;1"
 // Deal an additional [1].

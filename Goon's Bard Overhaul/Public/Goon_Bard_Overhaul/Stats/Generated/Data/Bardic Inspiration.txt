@@ -1,8 +1,186 @@
 // ==================================== Bardic Inspiration variants ====================================
+// Bug Fix: Bardic Inspiration and Combat Inspiration can no longer be cast on targets with higher level Bardic Inspiration conditions.
+// Bug Fix: Expansion's D12 conditions will be removed the same as vanilla Bardic Inspiration conditions are removed when using interrupts.
 // Bug Fix: Can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
+// Changes: Interrupts can now be used by Invisible player characters.
 
 // ==================================== Bardic Inspiration ====================================
 // Bug Fix: Bardic Attack properly interacts with the d10 Bardic Inspiration.
+
+// new entry "BardicInspiration"
+// type "PassiveData"
+// Bardic Inspiration
+// data "DisplayName" "h528aa4bcg3012g4adbgb0f0g722f1cc4a697;1"
+// Can use &lt;LSTag Type="Spell" Tooltip="Target_BardicInspiration"&gt;Bardic Inspiration&lt;/LSTag&gt;.
+// data "Description" "h72b05205geb2eg497ag9956g8ad042848258;1"
+// data "Icon" "PassiveFeature_BardicInspiration_Ability"
+// data "Boosts" "UnlockSpell(Target_BardicInspiration)"
+
+// new entry "BardicInspiration_d8"
+// type "PassiveData"
+// Improved Bardic Inspiration
+// data "DisplayName" "hc7c96e5bgcb0bg4c21ga2bbg41e48d1e4fa2;1"
+// The bonus gained from &lt;LSTag Type="Spell" Tooltip="Target_BardicInspiration"&gt;Bardic Inspiration&lt;/LSTag&gt; increases to +[1].
+// data "Description" "h83cf5455g3702g4d14g81d6gf9c5394d3ae4;1"
+// data "DescriptionParams" "1d8"
+// data "Icon" "Action_Bard_GrantBardicInspiration"
+
+// new entry "BardicInspiration_d10"
+// type "PassiveData"
+// using "BardicInspiration_d8"
+// data "DescriptionParams" "1d10"
+
+// Expansion
+// new entry "BardicInspiration_d12"
+// type "PassiveData"
+// using "BardicInspiration_d8"
+// data "DescriptionParams" "1d12"
+
+new entry "Target_BardicInspiration"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_BardicInspiration"
+// data "SpellProperties" "IF(not ClassLevelHigherOrEqualThan(5,'Bard')):ApplyStatus(BARDIC_INSPIRATION,100, -1);IF(ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(BARDIC_INSPIRATION_D8,100, -1);IF(ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(BARDIC_INSPIRATION_D10,100, -1);AI_ONLY:ApplyStatus(AI_HELPER_BARDIC_INSPIRATION,100,3)"
+data "SpellProperties" "IF(not ClassLevelHigherOrEqualThan(5,'Bard')):ApplyStatus(BARDIC_INSPIRATION,100, -1);IF(ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(BARDIC_INSPIRATION_D8,100, -1);IF(ClassLevelHigherOrEqualThan(10,'Bard') and not ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(BARDIC_INSPIRATION_D10,100, -1);IF(ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(BARDIC_INSPIRATION_D12,100, -1);AI_ONLY:ApplyStatus(AI_HELPER_BARDIC_INSPIRATION,100,3)"
+// data "TargetRadius" "18"
+// data "TargetConditions" "Character() and not Enemy() and not Self() and not (HasStatus('BARDIC_INSPIRATION') or HasStatus('BARDIC_INSPIRATION_D8') or HasStatus('BARDIC_INSPIRATION_COMBAT') or HasStatus('BARDIC_INSPIRATION_COMBAT_D8'))"
+data "TargetConditions" "Character() and not Enemy() and not Self() and not (HasStatus('BARDIC_INSPIRATION') or HasStatus('BARDIC_INSPIRATION_D8') or HasStatus('BARDIC_INSPIRATION_D10') or HasStatus('BARDIC_INSPIRATION_D12') or HasStatus('BARDIC_INSPIRATION_COMBAT') or HasStatus('BARDIC_INSPIRATION_COMBAT_D8') or HasStatus('BARDIC_INSPIRATION_COMBAT_D10') or HasStatus('BARDIC_INSPIRATION_COMBAT_D12') or HasStatus('SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION'))"
+// data "Icon" "Action_Bard_GrantBardicInspiration"
+// Bardic Inspiration
+// data "DisplayName" "he811cf79gab9dg4fc3g908dg12f52b41e976;1"
+// Inspire an ally to add a +[1] bonus to their next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;.
+// data "Description" "hb2e60320g20ebg4a60gb572g098b49a5c544;5"
+// data "DescriptionParams" "LevelMapValue(BardicInspiration)"
+// data "TooltipStatusApply" "ApplyStatus(BARDIC_INSPIRATION,100, -1)"
+// data "CastSound" "Spell_Cast_Bard_BardicInspiration_L1to3"
+// data "TargetSound" "Spell_Impact_Bard_BardicInspiration_L1to3"
+// data "PreviewCursor" "Cast"
+// data "CastTextEvent" "Cast"
+// data "InstrumentComponentPrepareSound" "Instrument_Bard_BardicInspiration_Prepare"
+// data "InstrumentComponentLoopingSound" "Instrument_Bard_BardicInspiration_Loop"
+// data "InstrumentComponentCastSound" "Instrument_Bard_BardicInspiration_Cast"
+// data "InstrumentComponentImpactSound" "Instrument_Bard_BardicInspiration_Impact"
+// data "CycleConditions" "Ally() and not Dead()"
+// data "UseCosts" "BonusActionPoint:1;BardicInspiration:1"
+// data "SpellAnimation" "850cd2f3-dde2-475d-b3a3-f35c47333523,,;,,;62819708-175d-4ad4-95d5-55757e18d981,,;2a6a403d-1b6f-41ea-9324-445761b2cbb3,,;ad775f69-0d9f-4215-bfc2-8e0ec7e32189,,;,,;6bfce8a0-80f1-47a8-97f4-34f4b8b6fe9e,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent"
+// data "HitAnimationType" "MagicalNonDamage"
+// data "MaximumTargets" "1"
+// data "PrepareEffect" "cc478d8f-d3eb-46dc-844c-203ae2ec7df5"
+// data "CastEffect" "6c5aecc7-c5a0-4fda-9f9b-24afe3e1f76a"
+// data "TargetEffect" "b4d2ce64-af72-45a2-8146-6a9c3b71f1a6"
+// data "SpellSoundMagnitude" "Big"
+// data "Sheathing" "Instrument"
+
+// Expansion
+new entry "Target_BardicInspiration_2"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_BardicInspiration"
+using "Target_BardicInspiration_2"
+// data "SpellProperties" "IF(not ClassLevelHigherOrEqualThan(5,'Bard')):ApplyStatus(BARDIC_INSPIRATION,100, -1);IF(ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(BARDIC_INSPIRATION_D8,100, -1);IF(ClassLevelHigherOrEqualThan(10,'Bard') and not ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(BARDIC_INSPIRATION_D10,100, -1);IF(ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(BARDIC_INSPIRATION_D12,100, -1);AI_ONLY:ApplyStatus(AI_HELPER_BARDIC_INSPIRATION,100,3)"
+// data "TargetConditions" "Character() and not Enemy() and not Self() and not (HasStatus('BARDIC_INSPIRATION') or HasStatus('BARDIC_INSPIRATION_D8') or HasStatus('BARDIC_INSPIRATION_D10') or HasStatus('BARDIC_INSPIRATION_D12') or HasStatus('BARDIC_INSPIRATION_COMBAT') or HasStatus('BARDIC_INSPIRATION_COMBAT_D8') or HasStatus('BARDIC_INSPIRATION_COMBAT_D10') or HasStatus('BARDIC_INSPIRATION_COMBAT_D12'))"
+data "TargetConditions" "Character() and not Enemy() and not Self() and not (HasStatus('BARDIC_INSPIRATION') or HasStatus('BARDIC_INSPIRATION_D8') or HasStatus('BARDIC_INSPIRATION_D10') or HasStatus('BARDIC_INSPIRATION_D12') or HasStatus('BARDIC_INSPIRATION_COMBAT') or HasStatus('BARDIC_INSPIRATION_COMBAT_D8') or HasStatus('BARDIC_INSPIRATION_COMBAT_D10') or HasStatus('BARDIC_INSPIRATION_COMBAT_D12') or HasStatus('SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION'))"
+
+// new entry "BARDIC_INSPIRATION"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// Bardic Inspiration
+// data "DisplayName" "ha17eddd6g8caag4e9cg9711g416567f45bc0;1"
+// Can use Bardic Inspiration to add a +[1] bonus to the next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;.
+// data "Description" "hbda42016gc1cbg4a44ga127gc489931349d1;1"
+// data "DescriptionParams" "1d6"
+// data "Icon" "Action_Bard_GrantBardicInspiration"
+// data "SoundLoop" "Spell_Status_BardicInspiration_MO"
+// data "SoundStop" "Spell_Status_BardicInspiration_MO_Stop"
+// data "StackId" "BARDIC_INSPIRATION"
+// data "StackPriority" "0"
+// data "Boosts" "ActionResource(BardicInspiration,1,0,d6);UnlockInterrupt(Interrupt_BardicInspiration_Attack);UnlockInterrupt(Interrupt_BardicInspiration_SavingThrow)"
+// data "Passives" "BardicInspiration_Ability"
+// data "StatusEffect" "29d548ee-cf3e-465c-b12d-004240ce0546"
+
+// new entry "BARDIC_INSPIRATION_D8"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BARDIC_INSPIRATION"
+// data "DescriptionParams" "1d8"
+// data "StackPriority" "1"
+// data "Boosts" "ActionResource(BardicInspiration,1,0,d8);UnlockInterrupt(Interrupt_BardicInspiration_Attack_d8);UnlockInterrupt(Interrupt_BardicInspiration_SavingThrow_d8)"
+// data "Passives" "BardicInspiration_Ability_d8"
+
+// new entry "BARDIC_INSPIRATION_D10"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BARDIC_INSPIRATION"
+// data "DescriptionParams" "1d10"
+// data "StackPriority" "2"
+// data "Boosts" "ActionResource(BardicInspiration,1,0,d10);UnlockInterrupt(Interrupt_BardicInspiration_Attack_d10);UnlockInterrupt(Interrupt_BardicInspiration_SavingThrow_d10)"
+// data "Passives" "BardicInspiration_Ability_d10"
+
+// Expansion
+// new entry "BARDIC_INSPIRATION_D12"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BARDIC_INSPIRATION"
+// data "DescriptionParams" "1d12"
+// data "StackPriority" "2"
+// data "Boosts" "ActionResource(BardicInspiration,1,0,d12);UnlockInterrupt(Interrupt_BardicInspiration_Attack_d12);UnlockInterrupt(Interrupt_BardicInspiration_SavingThrow_d12)"
+// data "Passives" "BardicInspiration_Ability_d12"
+
+// ==================================== Ability - Bardic Inspiration
+
+// new entry "BardicInspiration_Ability"
+// type "PassiveData"
+// Bardic Roll
+// data "DisplayName" "h22af06bagd2d2g4b30ga1adg8e1cdfa85c72;2"
+// Add a +[1] bonus to your next &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.
+// data "Description" "hd8bd4b9fg59a5g4295g9ab0g1915746c3a53;1"
+// data "DescriptionParams" "1d6"
+// You expend your &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; when the effect triggers.
+// data "ExtraDescription" "h67a7eabdg4358g4f61g8997gbeaaff0cd8f8;1"
+// data "TooltipUseCosts" "BardicInspiration:1"
+// data "Icon" "PassiveFeature_BardicInspiration_Ability"
+// data "Properties" "IsToggled;Temporary;ToggledDefaultOn"
+// data "Boosts" "RollBonus(SkillCheck,1d6);RollBonus(RawAbility,1d6)"
+// data "StatsFunctorContext" "OnAbilityCheck"
+// data "StatsFunctors" "RemoveStatus(SELF,BARDIC_INSPIRATION)"
+// data "ToggleOnEffect" "VFX_Spells_Cast_Bard_Generic_BodyFX_Passive_BardicInspiration_Ability_01:Dummy_BodyFX:;"
+
+// new entry "BardicInspiration_Ability_d8"
+// type "PassiveData"
+// Bardic Roll
+// data "DisplayName" "h5b6f3236g47dcg433fg8babg2151e821310e;1"
+// Add a +[1] bonus to your next &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.
+// data "Description" "h97e12495geba7g467fg8116g51be2c994492;1"
+// data "DescriptionParams" "1d8"
+// You expend your &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; when the effect triggers.
+// data "ExtraDescription" "h15f4f91fg2892g47d5g81eeg909841eac6e6;1"
+// data "TooltipUseCosts" "BardicInspiration:1"
+// data "Icon" "PassiveFeature_BardicInspiration_Ability"
+// data "Properties" "IsToggled;Temporary;ToggledDefaultOn"
+// data "Boosts" "RollBonus(SkillCheck,1d8);RollBonus(RawAbility,1d8)"
+// data "StatsFunctorContext" "OnAbilityCheck"
+// data "StatsFunctors" "RemoveStatus(SELF,BARDIC_INSPIRATION_D8)"
+// data "ToggleOnEffect" "VFX_Spells_Cast_Bard_Generic_BodyFX_Passive_BardicInspiration_Ability_01:Dummy_BodyFX:;"
+
+// new entry "BardicInspiration_Ability_d10"
+// type "PassiveData"
+// using "BardicInspiration_Ability"
+// data "DescriptionParams" "1d10"
+// data "Boosts" "RollBonus(SkillCheck,1d10);RollBonus(RawAbility,1d10)"
+// data "StatsFunctors" "RemoveStatus(SELF,BARDIC_INSPIRATION_D10)"
+
+// Expansion (doesn't exist as of 1.7.2.4)
+new entry "BardicInspiration_Ability_d12"
+type "PassiveData"
+using "BardicInspiration_Ability"
+data "DescriptionParams" "1d12"
+data "Boosts" "RollBonus(SkillCheck,1d12);RollBonus(RawAbility,1d12)"
+data "StatsFunctors" "RemoveStatus(SELF,BARDIC_INSPIRATION_D12)"
+
+// ==================================== Attack - Bardic Inspiration
 
 new entry "Interrupt_BardicInspiration_Attack"
 type "InterruptData"
@@ -19,19 +197,49 @@ using "Interrupt_BardicInspiration_Attack"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(6, context.Source)"
-data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(12, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(6, context.Source)"
 // data "Properties" "AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D8);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_ATTACK,100,0)"
-data "Properties" "AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D12);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_ATTACK,100,0)"
+data "Properties" "AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D12);RemoveStatus(OBSERVER_OBSERVER,SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_ATTACK,100,0)"
 // data "Cost" "BardicInspiration:1"
 // data "Stack" "BardicInspiration"
 // data "InterruptDefaultValue" "Enabled"
 // data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
 data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
 
-// new entry "Interrupt_BardicInspiration_SavingThrow"
-// type "InterruptData"
+new entry "Interrupt_BardicInspiration_Attack_d8"
+type "InterruptData"
 // using "Interrupt_BardicInspiration_Attack"
+using "Interrupt_BardicInspiration_Attack_d8"
+// data "DescriptionParams" "1d8"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(8, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(8, context.Source)"
+
+new entry "Interrupt_BardicInspiration_Attack_d10"
+type "InterruptData"
+// using "Interrupt_BardicInspiration_Attack"
+using "Interrupt_BardicInspiration_Attack_d10"
+// data "DescriptionParams" "1d10"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(10, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(10, context.Source)"
+
+// Expansion
+new entry "Interrupt_BardicInspiration_Attack_d12"
+type "InterruptData"
+// using "Interrupt_BardicInspiration_Attack"
+using "Interrupt_BardicInspiration_Attack_d12"
+// data "DescriptionParams" "1d12"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(12, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(12, context.Source)"
+// data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== Defence - Bardic Inspiration
+
+new entry "Interrupt_BardicInspiration_SavingThrow"
+type "InterruptData"
+// using "Interrupt_BardicInspiration_Attack"
+using "Interrupt_BardicInspiration_SavingThrow"
 // Bardic Defence
 // data "DisplayName" "h21b3aaeeg4994g4506gb44fg648ca1ffd977;1"
 // Add a +[1] bonus to your &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;.
@@ -39,13 +247,113 @@ data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPoly
 // data "Icon" "PassiveFeature_BardicInspiration_SavingThrow"
 // data "InterruptContext" "OnPostRoll"
 // data "Conditions" "not Dead(context.Observer) and HasInterruptedSavingThrow() and Self(context.Observer,context.Target) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(6)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedSavingThrow() and Self(context.Observer,context.Target) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(6)"
 // data "Properties" "AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D8);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_SAVINGTHROW,100,0)"
+data "Properties" "AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D12);RemoveStatus(OBSERVER_OBSERVER,SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_SAVINGTHROW,100,0)"
+
+new entry "Interrupt_BardicInspiration_SavingThrow_d8"
+type "InterruptData"
+// using "Interrupt_BardicInspiration_SavingThrow"
+using "Interrupt_BardicInspiration_SavingThrow_d8"
+// data "DescriptionParams" "1d8"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedSavingThrow() and Self(context.Observer,context.Target) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(8)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedSavingThrow() and Self(context.Observer,context.Target) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(8)"
+
+new entry "Interrupt_BardicInspiration_SavingThrow_d10"
+type "InterruptData"
+// using "Interrupt_BardicInspiration_SavingThrow"
+using "Interrupt_BardicInspiration_SavingThrow_d10"
+// data "DescriptionParams" "1d10"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedSavingThrow() and Self(context.Observer,context.Target) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(10)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedSavingThrow() and Self(context.Observer,context.Target) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(10)"
+
+// Expansion
+new entry "Interrupt_BardicInspiration_SavingThrow_d12"
+type "InterruptData"
+// using "Interrupt_BardicInspiration_SavingThrow"
+using "Interrupt_BardicInspiration_SavingThrow_d12"
+// data "DescriptionParams" "1d12"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedSavingThrow() and Self(context.Observer,context.Target) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(12)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedSavingThrow() and Self(context.Observer,context.Target) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(12)"
+// data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== Combat Inspiration ====================================
 
-// new entry "Interrupt_CombatInspiration_Attack"
-// type "InterruptData"
+new entry "Target_BardicInspiration_Combat"
+type "SpellData"
+data "SpellType" "Target"
+// using "Target_BardicInspiration"
+using "Target_BardicInspiration_Combat"
+// data "SpellProperties" "IF(not ClassLevelHigherOrEqualThan(5,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT,100, -1);IF(ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT_D8,100, -1);IF(ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT_D10,100, -1);AI_ONLY:ApplyStatus(AI_HELPER_BARDIC_INSPIRATION,100,3)"
+data "SpellProperties" "IF(not ClassLevelHigherOrEqualThan(5,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT,100, -1);IF(ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT_D8,100, -1);IF(ClassLevelHigherOrEqualThan(10,'Bard') and not ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT_D10,100, -1);IF(ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT_D12,100, -1);AI_ONLY:ApplyStatus(AI_HELPER_BARDIC_INSPIRATION,100,3)"
+// Combat Inspiration
+// data "DisplayName" "h25beb4b1ge268g4d1dg9440g62bfc37e5266;1"
+// Inspire an ally to add a +[1] bonus to their next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;, weapon damage, or  &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt;.
+// data "Description" "h69581877gf9c5g4250g8ff7g491e83e34177;5"
+// data "DescriptionParams" "LevelMapValue(BardicInspiration);4"
+// data "ExtraDescription" ""
+// data "TooltipStatusApply" "ApplyStatus(BARDIC_INSPIRATION_COMBAT,100, -1)"
+
+// Expansion
+// new entry "Target_BardicInspiration_Combat_2"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_BardicInspiration_Combat"
+// data "SpellProperties" "IF(not ClassLevelHigherOrEqualThan(5,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT,100, -1);IF(ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT_D8,100, -1);IF(ClassLevelHigherOrEqualThan(10,'Bard') and not ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT_D10,100, -1);IF(ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(BARDIC_INSPIRATION_COMBAT_D12,100, -1);AI_ONLY:ApplyStatus(AI_HELPER_BARDIC_INSPIRATION,100,3)"
+
+// new entry "BARDIC_INSPIRATION_COMBAT"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BARDIC_INSPIRATION"
+// Combat Inspiration
+// data "DisplayName" "h8557fe0ag566bg4478g9871g1bd710713a54;1"
+// Can use their Bardic Inspiration to add a +[1] bonus to their next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;. &lt;br&gt;&lt;br&gt;They can also choose a +[1] bonus to the damage their next weapon attack deals, or to their &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; for one attack.
+// data "Description" "h5e435b27gb2c2g4904g9719g41316947ed70;1"
+// data "DescriptionParams" "1d6;4"
+// data "StackPriority" "0"
+// data "Boosts" "ActionResource(BardicInspiration,1,0,d6);UnlockInterrupt(Interrupt_CombatInspiration_Attack);UnlockInterrupt(Interrupt_CombatInspiration_SavingThrow_ArmorClass);UnlockInterrupt(Interrupt_CombatInspiration_Damage)"
+// data "Passives" "CombatInspiration_Ability"
+
+// new entry "BARDIC_INSPIRATION_COMBAT_D8"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BARDIC_INSPIRATION_COMBAT"
+// data "DescriptionParams" "1d8;+4"
+// data "StackPriority" "1"
+// data "Boosts" "ActionResource(BardicInspiration,1,0,d8);UnlockInterrupt(Interrupt_CombatInspiration_Attack_d8);UnlockInterrupt(Interrupt_CombatInspiration_SavingThrow_ArmorClass_d8);UnlockInterrupt(Interrupt_CombatInspiration_Damage_d8)"
+// data "Passives" "CombatInspiration_Ability_d8"
+
+// new entry "BARDIC_INSPIRATION_COMBAT_D10"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BARDIC_INSPIRATION_COMBAT"
+// data "DescriptionParams" "1d10;+4"
+// data "StackPriority" "2"
+// data "Boosts" "ActionResource(BardicInspiration,1,0,d10);UnlockInterrupt(Interrupt_CombatInspiration_Attack_d10);UnlockInterrupt(Interrupt_CombatInspiration_SavingThrow_ArmorClass_d10);UnlockInterrupt(Interrupt_CombatInspiration_Damage_d10)"
+// data "Passives" "CombatInspiration_Ability_d10"
+
+// Expansion
+// new entry "BARDIC_INSPIRATION_COMBAT_D12"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BARDIC_INSPIRATION_COMBAT"
+// data "DescriptionParams" "1d12;+4"
+// data "StackPriority" "2"
+// data "Boosts" "ActionResource(BardicInspiration,1,0,d12);UnlockInterrupt(Interrupt_CombatInspiration_Attack_d12);UnlockInterrupt(Interrupt_CombatInspiration_SavingThrow_ArmorClass_d12);UnlockInterrupt(Interrupt_CombatInspiration_Damage_d12)"
+// data "Passives" "CombatInspiration_Ability_d12"
+
+// ==================================== Attack - Combat Inspiration
+
+// new entry "INTERRUPT_BARDIC_INSPIRATION_COMBAT_ATTACK"
+// type "StatusData"
+// data "StatusType" "EFFECT"
+// using "_PASSIVES"
+// data "StatusEffect" "989a16f3-5612-408c-80ab-4a7a1c854b66"
+
+new entry "Interrupt_CombatInspiration_Attack"
+type "InterruptData"
 // using "Interrupt_BardicInspiration_Attack"
+using "Interrupt_CombatInspiration_Attack"
 // Valiant Attack
 // data "DisplayName" "he474b8dfgb613g418agbdf8g20c70b50e1b2;1"
 // Add a +[1] bonus to your &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;.
@@ -53,23 +361,51 @@ data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPoly
 // You will expend your &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION_COMBAT"&gt;Combat Inspiration&lt;/LSTag&gt;.
 // data "ExtraDescription" "h125295c5g4ca5g43a6ga206g01dc3a485a05;2"
 // data "InterruptContext" "OnPostRoll"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(6, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(6, context.Source)"
 // data "Properties" "AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_ATTACK,100,0)"
+data "Properties" "AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D12);RemoveStatus(OBSERVER_OBSERVER,SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_ATTACK,100,0)"
 
-// new entry "Interrupt_CombatInspiration_SavingThrow_ArmorClass"
+new entry "Interrupt_CombatInspiration_Attack_d8"
 // type "InterruptData"
 // using "Interrupt_CombatInspiration_Attack"
-// Valiant Defence
-// data "DisplayName" "h7ab5fb1fg7bc8g4403gbe63g19b28d7b2bd3;1"
-// Add a +[1] bonus to your &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; or &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt;.
-// data "Description" "h7f53adbag7148g45c1g9915g1480491df7b8;3"
-// data "Icon" "PassiveFeature_CombatInspiration_ArmorClassOrSavingThrow"
-// data "InterruptContext" "OnPostRoll"
-// data "Conditions" "not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(6, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(6))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
-// data "Properties" "IF(HasInterruptedSavingThrow()):AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));IF(HasInterruptedAttack()):AdjustRoll(OBSERVER_OBSERVER,0-ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DEFENSE,100,0)"
+using "Interrupt_CombatInspiration_Attack_d8"
+// data "DescriptionParams" "1d8"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(8, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(8, context.Source)"
 
-// new entry "Interrupt_CombatInspiration_Damage"
+new entry "Interrupt_CombatInspiration_Attack_d10"
 // type "InterruptData"
 // using "Interrupt_CombatInspiration_Attack"
+using "Interrupt_CombatInspiration_Attack_d10"
+// data "DescriptionParams" "1d10"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(10, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(10, context.Source)"
+
+// Expansion
+new entry "Interrupt_CombatInspiration_Attack_d12"
+// type "InterruptData"
+// using "Interrupt_CombatInspiration_Attack"
+using "Interrupt_CombatInspiration_Attack_d12"
+// data "DescriptionParams" "1d12"
+// data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(12, context.Source)"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and not AnyEntityIsItem() and IsFlatValueInterruptInteresting(12, context.Source)"
+// data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== Damage - Combat Inspiration
+// Bug Fix: Valiant Damage is no longer a damage rider acting as a damage rider source.
+// Bug Fix: d12 interrupt now exists where it otherwise didn't exist in Expansion.
+
+// new entry "INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE"
+// type "StatusData"
+// data "StatusType" "EFFECT"
+// using "_PASSIVES"
+// data "StatusEffect" "2b4f4f1c-e6a9-44c6-b305-03dff0fb8239"
+
+new entry "Interrupt_CombatInspiration_Damage"
+type "InterruptData"
+// using "Interrupt_CombatInspiration_Attack"
+using "Interrupt_CombatInspiration_Damage"
 // Valiant Damage
 // data "DisplayName" "haa3da5c0g3bc8g4fe1g870fgd137c96c4103;1"
 // Add an additional [1] damage to your weapon attack.
@@ -77,9 +413,137 @@ data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPoly
 // data "Icon" "PassiveFeature_CombatInspiration_WeaponDamage"
 // data "InterruptContext" "OnCastHit"
 // data "Conditions" "not Dead(context.Observer) and Character() and IsWeaponAttack() and not Self() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and not IsKillingBlow() and not AnyEntityIsItem();"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and Character() and IsWeaponAttack() and not Self() and Self(context.Source,context.Observer) and HasDamageEffectFlag(DamageFlags.Hit) and not IsKillingBlow() and not AnyEntityIsItem();"
 // data "Properties" "IF(IsMeleeAttack()):DealDamage(ResourceRoll(BardicInspiration,1), MainMeleeWeaponDamageType);IF(IsRangedAttack()):DealDamage(ResourceRoll(BardicInspiration,1), MainRangedWeaponDamageType);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0)"
+data "Properties" "IF(IsMeleeAttack()):DealDamage(ResourceRoll(BardicInspiration,1), MainMeleeWeaponDamageType,,,0,,true,false);IF(IsRangedAttack()):DealDamage(ResourceRoll(BardicInspiration,1), MainRangedWeaponDamageType,,,0,,true,false);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D12);RemoveStatus(OBSERVER_OBSERVER,SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0)"
+
+// new entry "Interrupt_CombatInspiration_Damage_d8"
+// type "InterruptData"
+// using "Interrupt_CombatInspiration_Damage"
+// data "DescriptionParams" "1d8"
+
+// new entry "Interrupt_CombatInspiration_Damage_d10"
+// type "InterruptData"
+// using "Interrupt_CombatInspiration_Damage"
+// data "DescriptionParams" "1d10"
+
+// Expansion (doesn't exist as of 1.7.2.4)
+new entry "Interrupt_CombatInspiration_Damage_d12"
+type "InterruptData"
+using "Interrupt_CombatInspiration_Damage"
+data "DescriptionParams" "1d12"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== Defence - Combat Inspiration
+
+// new entry "INTERRUPT_BARDIC_INSPIRATION_COMBAT_DEFENSE"
+// type "StatusData"
+// data "StatusType" "EFFECT"
+// using "_PASSIVES"
+// data "StatusEffect" "fadf4d08-82e3-4d67-af8b-cdd0490d0457"
+
+new entry "Interrupt_CombatInspiration_SavingThrow_ArmorClass"
+// type "InterruptData"
+// using "Interrupt_CombatInspiration_Attack"
+using "Interrupt_CombatInspiration_SavingThrow_ArmorClass"
+// Valiant Defence
+// data "DisplayName" "h7ab5fb1fg7bc8g4403gbe63g19b28d7b2bd3;1"
+// Add a +[1] bonus to your &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; or &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt;.
+// data "Description" "h7f53adbag7148g45c1g9915g1480491df7b8;3"
+// data "Icon" "PassiveFeature_CombatInspiration_ArmorClassOrSavingThrow"
+// data "InterruptContext" "OnPostRoll"
+// data "Conditions" "not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(6, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(6))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(6, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(6))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
+// data "Properties" "IF(HasInterruptedSavingThrow()):AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));IF(HasInterruptedAttack()):AdjustRoll(OBSERVER_OBSERVER,0-ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DEFENSE,100,0)"
+data "Properties" "IF(HasInterruptedSavingThrow()):AdjustRoll(OBSERVER_OBSERVER,ResourceRoll(BardicInspiration,1));IF(HasInterruptedAttack()):AdjustRoll(OBSERVER_OBSERVER,0-ResourceRoll(BardicInspiration,1));RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D12);RemoveStatus(OBSERVER_OBSERVER,SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DEFENSE,100,0)"
+
+new entry "Interrupt_CombatInspiration_SavingThrow_ArmorClass_d8"
+// type "InterruptData"
+// using "Interrupt_CombatInspiration_SavingThrow_ArmorClass"
+using "Interrupt_CombatInspiration_SavingThrow_ArmorClass_d8"
+// data "DescriptionParams" "1d8"
+// data "Conditions" "not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(8, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(8))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(8, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(8))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
+
+new entry "Interrupt_CombatInspiration_SavingThrow_ArmorClass_d10"
+// type "InterruptData"
+// using "Interrupt_CombatInspiration_SavingThrow_ArmorClass"
+using "Interrupt_CombatInspiration_SavingThrow_ArmorClass_d10"
+// data "DescriptionParams" "1d10"
+// data "Conditions" "not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(10, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(10))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(10, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(10))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
+
+new entry "Interrupt_CombatInspiration_SavingThrow_ArmorClass_d12"
+// type "InterruptData"
+// using "Interrupt_CombatInspiration_SavingThrow_ArmorClass"
+using "Interrupt_CombatInspiration_SavingThrow_ArmorClass_d12"
+// data "DescriptionParams" "1d12"
+// data "Conditions" "not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(12, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(12))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and ((HasInterruptedAttack() and IsFlatValueInterruptInteresting(12, context.Source)) or (HasInterruptedSavingThrow() and IsFlatValueInterruptInteresting(12))) and Self(context.Observer,context.Target) and not AnyEntityIsItem()"
+// data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== Ability - Combat Inspiration
+
+// new entry "CombatInspiration_Ability"
+// type "PassiveData"
+// Valiant Roll
+// data "DisplayName" "h9e3b46a1g170ag4dcdgac5ag7218283b3961;2"
+// Add a +[1] bonus to your next &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.
+// data "Description" "hee79482dgd994g44d9g9701gff081730e822;1"
+// data "DescriptionParams" "1d6"
+// You expend your &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION_COMBAT"&gt;Combat Inspiration&lt;/LSTag&gt; when the effect triggers.
+// data "ExtraDescription" "h2912845egd877g47f7ga344g5dee380377c8;1"
+// data "Icon" "PassiveFeature_BardicInspiration_Ability"
+// data "Properties" "IsToggled;Temporary;ToggledDefaultOn"
+// data "Boosts" "RollBonus(SkillCheck,1d6);RollBonus(RawAbility,1d6)"
+// data "StatsFunctorContext" "OnAbilityCheck"
+// data "StatsFunctors" "RemoveStatus(SELF,BARDIC_INSPIRATION_COMBAT)"
+// data "ToggleOnEffect" "VFX_Spells_Cast_Bard_Generic_BodyFX_Passive_Combat_01:Dummy_BodyFX:;"
+
+// new entry "CombatInspiration_Ability_d8"
+// type "PassiveData"
+// Valiant Roll
+// data "DisplayName" "h7bcdfc4fga0f3g42d0g9d1dgbedaaab3ef1f;1"
+// Add a +[1] bonus to your next &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.
+// data "Description" "had86657dg7eadg4dbdg855dg08a36842c9d5;1"
+// data "DescriptionParams" "1d8"
+// You expend your &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION_COMBAT"&gt;Combat Inspiration&lt;/LSTag&gt; when the effect triggers.
+// data "ExtraDescription" "hc9a94a44g1b9ag4b7egb552g85c317279f55;1"
+// data "Icon" "PassiveFeature_BardicInspiration_Ability"
+// data "Properties" "IsToggled;Temporary;ToggledDefaultOn"
+// data "Boosts" "RollBonus(SkillCheck,1d8);RollBonus(RawAbility,1d8)"
+// data "StatsFunctorContext" "OnAbilityCheck"
+// data "StatsFunctors" "RemoveStatus(SELF,BARDIC_INSPIRATION_COMBAT_D8)"
+// data "ToggleOnEffect" "VFX_Spells_Cast_Bard_Generic_BodyFX_Passive_Combat_01:Dummy_BodyFX:;"
+
+// new entry "CombatInspiration_Ability_d10"
+// type "PassiveData"
+// using "CombatInspiration_Ability"
+// data "DescriptionParams" "1d10"
+// data "Boosts" "RollBonus(SkillCheck,1d10);RollBonus(RawAbility,1d10)"
+// data "StatsFunctors" "RemoveStatus(SELF,BARDIC_INSPIRATION_COMBAT_D10)"
+
+// Expansion
+// new entry "CombatInspiration_Ability_d12"
+// type "PassiveData"
+// using "CombatInspiration_Ability"
+// data "DescriptionParams" "1d10"
+// data "Boosts" "RollBonus(SkillCheck,1d12);RollBonus(RawAbility,1d12)"
+// data "StatsFunctors" "RemoveStatus(SELF,BARDIC_INSPIRATION_COMBAT_D12)"
 
 // ==================================== Magical Inspiration (Expansion) ====================================
+
+// new entry "MagicalInspiration"
+// type "PassiveData"
+// Magical Inspiration
+// data "DisplayName" "h6d5b2ac7g6f8ag4d37g8dd6ga969e2609afe;1"
+// If a creature has a &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; from you and casts a spell that restores hit points or deals damage, the creature can roll that die. Add the number rolled as a bonus to the hit points regained or the damage dealt. The &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt; is then lost.
+// data "Description" "h5eca9cf0g4753g49fagb9efg7c1c17f570ca;1"
+// data "Properties" "Highlighted"
+// data "Icon" "PassiveFeature_MagicalInspiration"
+// data "Conditions" "SpellId('Target_BardicInspiration') or SpellId('Target_BardicInspiration_Combat')"
+// data "StatsFunctors" "IF(not ClassLevelHigherOrEqualThan(5,'Bard')):ApplyStatus(MAGICAL_INSPIRATION,100,-1);IF(ClassLevelHigherOrEqualThan(5,'Bard') and not ClassLevelHigherOrEqualThan(10,'Bard')):ApplyStatus(MAGICAL_INSPIRATION_D8,100,-1);IF(ClassLevelHigherOrEqualThan(10,'Bard') and not ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(MAGICAL_INSPIRATION_D10,100,-1);IF(ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(MAGICAL_INSPIRATION_D12,100,-1)"
+// data "StatsFunctorContext" "OnAttack"
 
 new entry "Interrupt_MagicalInspiration_Damage"
 type "InterruptData"
@@ -93,42 +557,87 @@ using "Interrupt_MagicalInspiration_Damage"
 // data "InterruptContext" "OnCastHit"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
-// data "Conditions" "not Dead(context.Observer) and Character() and Self(context.Source, context.Observer) and HasFunctor(StatsFunctorType.DealDamage) and not IsKillingBlow() and IsSpell() and IsHit()"
-// data "Properties" "IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d6, Fire,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d6, Cold,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d6, Lightning,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d6, Acid,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d6, Poison,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d6, Force,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d6, Necrotic,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d6, Radiant,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d6, Thunder,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d6, Psychic,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d6, Bludgeoning,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d6, Slashing,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d6, Piercing,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d6/2, Fire,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d6/2, Cold,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d6/2, Lightning,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d6/2, Acid,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d6/2, Poison,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d6/2, Force,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d6/2, Necrotic,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d6/2, Radiant,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d6/2, Thunder,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d6/2, Psychic,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d6/2, Bludgeoning,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d6/2, Slashing,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d6/2, Piercing,Magical,,0,,true,true);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION)"
+// data "Conditions" "not Dead(context.Observer) and Character() and Self(context.Source, context.Observer) and HasFunctor(StatsFunctorType.DealDamage) and not IsKillingBlow() and IsSpell() and IsHit() and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and Character() and Self(context.Source, context.Observer) and HasFunctor(StatsFunctorType.DealDamage) and not IsKillingBlow() and IsSpell() and IsHit()"
+// data "Properties" "IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d6, Fire,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d6, Cold,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d6, Lightning,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d6, Acid,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d6, Poison,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d6, Force,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d6, Necrotic,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d6, Radiant,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d6, Thunder,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d6, Psychic,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d6, Bludgeoning,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d6, Slashing,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d6, Piercing,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d6/2, Fire,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d6/2, Cold,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d6/2, Lightning,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d6/2, Acid,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d6/2, Poison,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d6/2, Force,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d6/2, Necrotic,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d6/2, Radiant,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d6/2, Thunder,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d6/2, Psychic,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d6/2, Bludgeoning,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d6/2, Slashing,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d6/2, Piercing,Magical,,0,,true,false);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION)"
 // data "Cost" "BardicInspiration:1"
 // data "Stack" "BardicInspiration"
-// data "InterruptDefaultValue" "Ask;Enabled"
-// data "EnableCondition" "not HasStatus('SG_Polymorph') or Tagged('MINDFLAYER') or HasStatus('SG_Disguise')"
+// data "EnableCondition" "not HasStatus('SG_Polymorph_BeastShape')"
 data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
-// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "InterruptFlags" "InterruptWhileInvisible"
+
+// new entry "MAGICAL_INSPIRATION"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// Magical Inspiration
+// data "DisplayName" "h6d5b2ac7g6f8ag4d37g8dd6ga969e2609afe;1"
+// Can add an additional [1] to damage dealt or hit points restored by a spell by expending and &lt;LSTag Type="Status" Tooltip="BARDIC_INSPIRATION"&gt;Bardic Inspiration&lt;/LSTag&gt;.
+// data "Description" "h6edc236ag9155g4734ga926g160e1620cf5f;1"
+// data "DescriptionParams" "1d6"
+// data "Icon" "PassiveFeature_MagicalInspiration"
+// data "StackId" "MAGICAL_INSPIRATION"
+// data "Boosts" "UnlockInterrupt(Interrupt_MagicalInspiration_Damage);UnlockInterrupt(Interrupt_MagicalInspiration_Healing)"
+// data "RemoveConditions" "not (HasStatus('BARDIC_INSPIRATION') or HasStatus('BARDIC_INSPIRATION_COMBAT'))"
+// data "RemoveEvents" "OnStatusRemoved"
+// data "StatusPropertyFlags" "DisableOverhead"
+// data "StatusGroups" "SG_RemoveOnRespec"
+
+// new entry "MAGICAL_INSPIRATION_D8"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "MAGICAL_INSPIRATION"
+// data "DescriptionParams" "1d8"
+// data "Boosts" "UnlockInterrupt(Interrupt_MagicalInspiration_Damage_D8);UnlockInterrupt(Interrupt_MagicalInspiration_Healing_D8)"
+// data "RemoveConditions" "not (HasStatus('BARDIC_INSPIRATION_D8') or HasStatus('BARDIC_INSPIRATION_COMBAT_D8'))"
+
+// new entry "MAGICAL_INSPIRATION_D10"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "MAGICAL_INSPIRATION"
+// data "DescriptionParams" "1d10"
+// data "Boosts" "UnlockInterrupt(Interrupt_MagicalInspiration_Damage_D10);UnlockInterrupt(Interrupt_MagicalInspiration_Healing_D10)"
+// data "RemoveConditions" "not (HasStatus('BARDIC_INSPIRATION_D10') or HasStatus('BARDIC_INSPIRATION_COMBAT_D10'))"
+
+// new entry "MAGICAL_INSPIRATION_D12"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "MAGICAL_INSPIRATION"
+// data "DescriptionParams" "1d12"
+// data "Boosts" "UnlockInterrupt(Interrupt_MagicalInspiration_Damage_D12);UnlockInterrupt(Interrupt_MagicalInspiration_Healing_D12)"
+// data "RemoveConditions" "not (HasStatus('BARDIC_INSPIRATION_D12') or HasStatus('BARDIC_INSPIRATION_COMBAT_D12'))"
+
+// ==================================== Damage - Magical Inspiration (Expansion)
 
 // new entry "Interrupt_MagicalInspiration_Damage_D8"
 // type "InterruptData"
 // using "Interrupt_MagicalInspiration_Damage"
 // data "DescriptionParams" "1d8"
-// data "Properties" "IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d8, Fire,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d8, Cold,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d8, Lightning,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d8, Acid,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d8, Poison,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d8, Force,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d8, Necrotic,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d8, Radiant,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d8, Thunder,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d8, Psychic,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d8, Bludgeoning,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d8, Slashing,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d8, Piercing,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d8/2, Fire,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d8/2, Cold,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d8/2, Lightning,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d8/2, Acid,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d8/2, Poison,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d8/2, Force,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d8/2, Necrotic,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d8/2, Radiant,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d8/2, Thunder,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d8/2, Psychic,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d8/2, Bludgeoning,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d8/2, Slashing,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d8/2, Piercing,Magical,,0,,true,true);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION_D8)"
+// data "Properties" "IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d8, Fire,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d8, Cold,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d8, Lightning,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d8, Acid,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d8, Poison,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d8, Force,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d8, Necrotic,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d8, Radiant,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d8, Thunder,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d8, Psychic,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d8, Bludgeoning,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d8, Slashing,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d8, Piercing,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d8/2, Fire,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d8/2, Cold,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d8/2, Lightning,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d8/2, Acid,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d8/2, Poison,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d8/2, Force,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d8/2, Necrotic,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d8/2, Radiant,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d8/2, Thunder,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d8/2, Psychic,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d8/2, Bludgeoning,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d8/2, Slashing,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d8/2, Piercing,Magical,,0,,true,false);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D8);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D8);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION_D8)"
 
 // new entry "Interrupt_MagicalInspiration_Damage_D10"
 // type "InterruptData"
 // using "Interrupt_MagicalInspiration_Damage"
 // data "DescriptionParams" "1d10"
-// data "Properties" "IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d10, Fire,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d10, Cold,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d10, Lightning,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d10, Acid,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d10, Poison,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d10, Force,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d10, Necrotic,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d10, Radiant,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d10, Thunder,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d10, Psychic,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d10, Bludgeoning,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d10, Slashing,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d10, Piercing,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d10/2, Fire,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d10/2, Cold,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d10/2, Lightning,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d10/2, Acid,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d10/2, Poison,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d10/2, Force,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d10/2, Necrotic,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d10/2, Radiant,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d10/2, Thunder,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d10/2, Psychic,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d10/2, Bludgeoning,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d10/2, Slashing,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d10/2, Piercing,Magical,,0,,true,true);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION_D10)"
+// data "Properties" "IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d10, Fire,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d10, Cold,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d10, Lightning,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d10, Acid,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d10, Poison,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d10, Force,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d10, Necrotic,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d10, Radiant,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d10, Thunder,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d10, Psychic,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d10, Bludgeoning,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d10, Slashing,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d10, Piercing,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d10/2, Fire,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d10/2, Cold,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d10/2, Lightning,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d10/2, Acid,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d10/2, Poison,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d10/2, Force,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d10/2, Necrotic,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d10/2, Radiant,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d10/2, Thunder,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d10/2, Psychic,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d10/2, Bludgeoning,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d10/2, Slashing,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d10/2, Piercing,Magical,,0,,true,false);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D10);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D10);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION_D10)"
 
 // new entry "Interrupt_MagicalInspiration_Damage_D12"
 // type "InterruptData"
 // using "Interrupt_MagicalInspiration_Damage"
 // data "DescriptionParams" "1d12"
-// data "Properties" "IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d12, Fire,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d12, Cold,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d12, Lightning,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d12, Acid,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d12, Poison,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d12, Force,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d12, Necrotic,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d12, Radiant,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d12, Thunder,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d12, Psychic,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d12, Bludgeoning,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d12, Slashing,Magical,,0,,true,true);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d12, Piercing,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d12/2, Fire,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d12/2, Cold,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d12/2, Lightning,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d12/2, Acid,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d12/2, Poison,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d12/2, Force,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d12/2, Necrotic,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d12/2, Radiant,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d12/2, Thunder,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d12/2, Psychic,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d12/2, Bludgeoning,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d12/2, Slashing,Magical,,0,,true,true);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d12/2, Piercing,Magical,,0,,true,true);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D12);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D12);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION_D12)"
+// data "Properties" "IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d12, Fire,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d12, Cold,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d12, Lightning,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d12, Acid,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d12, Poison,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d12, Force,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d12, Necrotic,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d12, Radiant,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d12, Thunder,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d12, Psychic,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d12, Bludgeoning,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d12, Slashing,Magical,,0,,true,false);IF(not HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d12, Piercing,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Fire)):DealDamage(1d12/2, Fire,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Cold)):DealDamage(1d12/2, Cold,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Lightning)):DealDamage(1d12/2, Lightning,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Acid)):DealDamage(1d12/2, Acid,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Poison)):DealDamage(1d12/2, Poison,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Force)):DealDamage(1d12/2, Force,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Necrotic)):DealDamage(1d12/2, Necrotic,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Radiant)):DealDamage(1d12/2, Radiant,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Thunder)):DealDamage(1d12/2, Thunder,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Psychic)):DealDamage(1d12/2, Psychic,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Bludgeoning)):DealDamage(1d12/2, Bludgeoning,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Slashing)):DealDamage(1d12/2, Slashing,Magical,,0,,true,false);IF(HasDamageEffectFlag(DamageFlags.SavingThrow) and SpellDamageTypeIs(DamageType.Piercing)):DealDamage(1d12/2, Piercing,Magical,,0,,true,false);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D12);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D12);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_COMBAT_DAMAGE,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION_D12)"
 
-// new entry "Interrupt_MagicalInspiration_Healing"
-// type "InterruptData"
+// ==================================== Healing - Magical Inspiration (Expansion)
+
+new entry "Interrupt_MagicalInspiration_Healing"
+type "InterruptData"
 // using "Interrupt_MagicalInspiration_Damage"
-// Magical Inspiration: Healing
+using "Interrupt_MagicalInspiration_Healing"
 // data "DisplayName" "h792002a4g391dg4a96ga926g3ef5ba03a4ac;1"
-// Heal an additional [1] hit points when you heal a creature with a spell.
 // data "Description" "h0c370ca2ge440g4481ga510g18f9845da391;1"
 // data "Icon" "PassiveFeature_MagicalInspiration_Healing"
-// data "Conditions" "not Dead(context.Observer) and Character() and Self(context.Source, context.Observer) and HasFunctor(StatsFunctorType.RegainHitPoints) and IsSpell()"
+// data "Conditions" "not Dead(context.Observer) and Character() and Self(context.Source, context.Observer) and HasFunctor(StatsFunctorType.RegainHitPoints) and IsSpell() and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and Character() and Self(context.Source, context.Observer) and HasFunctor(StatsFunctorType.RegainHitPoints) and IsSpell()"
 // data "Properties" "ApplyStatus(OBSERVER_TARGET,MAGICAL_INSPIRATION_HEALING,100,0);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_SAVINGTHROW,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION)"
 
 // new entry "Interrupt_MagicalInspiration_Healing_D8"
@@ -148,3 +657,151 @@ data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPoly
 // using "Interrupt_MagicalInspiration_Healing"
 // data "DescriptionParams" "1d12"
 // data "Properties" "ApplyStatus(OBSERVER_TARGET,MAGICAL_INSPIRATION_HEALING_D12,100,0);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_D12);RemoveStatus(OBSERVER_OBSERVER,BARDIC_INSPIRATION_COMBAT_D12);ApplyStatus(OBSERVER_OBSERVER,INTERRUPT_BARDIC_INSPIRATION_SAVINGTHROW,100,0);RemoveStatus(OBSERVER_OBSERVER,MAGICAL_INSPIRATION_D12)"
+
+// new entry "MAGICAL_INSPIRATION_HEALING"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// Magical Inspiration
+// data "DisplayName" "h6d5b2ac7g6f8ag4d37g8dd6ga969e2609afe;1"
+// data "OnApplyFunctors" "RegainHitPoints(1d6)"
+// data "StatusPropertyFlags" "IgnoreResting;DisableOverhead;DisableOverhead;DisablePortraitIndicator"
+
+// new entry "MAGICAL_INSPIRATION_HEALING_D8"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "MAGICAL_INSPIRATION_HEALING"
+// data "OnApplyFunctors" "RegainHitPoints(1d8)"
+
+// new entry "MAGICAL_INSPIRATION_HEALING_D10"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "MAGICAL_INSPIRATION_HEALING"
+// data "OnApplyFunctors" "RegainHitPoints(1d10)"
+
+// new entry "MAGICAL_INSPIRATION_HEALING_D12"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "MAGICAL_INSPIRATION_HEALING"
+// data "OnApplyFunctors" "RegainHitPoints(1d12)"
+
+// ==================================== Peerless Skill (Expansion) ====================================
+// Bug Fix: Passive description params.
+
+// new entry "Shout_BardicInspiration_PeerlessSkill"
+// type "SpellData"
+// data "SpellType" "Shout"
+// data "SpellProperties" "IF(ClassLevelHigherOrEqualThan(10,'Bard') and not ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(PEERLESS_SKILL_D10,100, -1);IF(ClassLevelHigherOrEqualThan(15,'Bard')):ApplyStatus(PEERLESS_SKILL_D12,100, -1)"
+// data "TargetConditions" "Self() and not (HasStatus('PEERLESS_SKILL_D10,context.Source') or HasStatus('PEERLESS_SKILL_D12',context.Source))"
+// data "Icon" "Action_PeerlessSkill"
+// Peerless Skill
+// data "DisplayName" "h9fe47639gea70g4a94g8728gda379d0e5794;1"
+// Inspire yourself to add a +[1] bonus to your next &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.
+// data "Description" "h15722390g6ca3g47deg93e3gb07c6a83e409;1"
+// data "DescriptionParams" "LevelMapValue(BardicInspiration)"
+// You cannot use this ability while already under its effects.
+// data "ExtraDescription" "hb63bac6bg7bd8g4ab1g912fgc6bedf9b6faf;1"
+// data "TooltipStatusApply" "ApplyStatus(BARDIC_INSPIRATION,100, -1)"
+// data "CastSound" "Spell_Cast_Bard_BardicInspiration_L1to3"
+// data "TargetSound" "Spell_Impact_Bard_BardicInspiration_L1to3"
+// data "PreviewCursor" "Cast"
+// data "CastTextEvent" "Cast"
+// data "InstrumentComponentPrepareSound" "Instrument_Bard_BardicInspiration_Prepare"
+// data "InstrumentComponentLoopingSound" "Instrument_Bard_BardicInspiration_Loop"
+// data "InstrumentComponentCastSound" "Instrument_Bard_BardicInspiration_Cast"
+// data "InstrumentComponentImpactSound" "Instrument_Bard_BardicInspiration_Impact"
+// data "CycleConditions" "Ally() and not Dead()"
+// data "UseCosts" "BardicInspiration:1"
+// data "SpellAnimation" "850cd2f3-dde2-475d-b3a3-f35c47333523,,;,,;62819708-175d-4ad4-95d5-55757e18d981,,;2a6a403d-1b6f-41ea-9324-445761b2cbb3,,;ad775f69-0d9f-4215-bfc2-8e0ec7e32189,,;,,;6bfce8a0-80f1-47a8-97f4-34f4b8b6fe9e,,;,,;,,"
+// data "VerbalIntent" "Buff"
+// data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent"
+// data "HitAnimationType" "MagicalNonDamage"
+// data "MaximumTargets" "1"
+// data "PrepareEffect" "cc478d8f-d3eb-46dc-844c-203ae2ec7df5"
+// data "CastEffect" "6c5aecc7-c5a0-4fda-9f9b-24afe3e1f76a"
+// data "TargetEffect" "b4d2ce64-af72-45a2-8146-6a9c3b71f1a6"
+// data "SpellSoundMagnitude" "Big"
+// data "Sheathing" "Instrument"
+// data "RequirementConditions" "not (HasStatus('PEERLESS_SKILL_D10') or HasStatus('PEERLESS_SKILL_D12'))"
+
+// new entry "PeerlessSkill_d10"
+// type "PassiveData"
+// Bardic Roll
+// data "DisplayName" "h22af06bagd2d2g4b30ga1adg8e1cdfa85c72;2"
+// Add a +[1] bonus to your next &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.
+// data "Description" "hd8bd4b9fg59a5g4295g9ab0g1915746c3a53;1"
+// data "DescriptionParams" "1d10"
+// data "Boosts" "RollBonus(SkillCheck,1d10);RollBonus(RawAbility,1d10)"
+// data "StatsFunctors" "RemoveStatus(SELF,PEERLESS_SKILL_D10)"
+// data "Icon" "PassiveFeature_BardicInspiration_Ability"
+// data "Properties" "IsToggled;Temporary;ToggledDefaultOn"
+// data "StatsFunctorContext" "OnAbilityCheck"
+// data "ToggleOnEffect" "VFX_Spells_Cast_Bard_Generic_BodyFX_Passive_BardicInspiration_Ability_01:Dummy_BodyFX:;"
+
+new entry "PeerlessSkill_d12"
+type "PassiveData"
+// using "PeerlessSkill_d10"
+using "PeerlessSkill_d12"
+// data "DescriptionParams" "1d10"
+data "DescriptionParams" "1d12"
+// data "Boosts" "RollBonus(SkillCheck,1d12);RollBonus(RawAbility,1d12)"
+
+// ==================================== Alfira NPC variants ====================================
+// TODO: Any reason to have all this custom entries when it could just inherit from player facing stuff?
+// TODO: Missing Ability variant
+// I can't even see where this is used, so just gonna leave it be...
+
+// new entry "SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION_UNLOCK"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// %%%|Do not destub. Improved Bardic Inspriation Unlock|
+// data "DisplayName" "h5fe69d31gb462g4451g9ee8g1100cd0b66e8;1"
+// data "Boosts" "UnlockSpell(Target_SCE_TieflingFollowup_BardicInspiration)"
+// data "StatusPropertyFlags" "DisableCombatlog;DisableOverhead;DisablePortraitIndicator;IgnoreResting;ApplyToDead"
+
+// new entry "SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// using "BARDIC_INSPIRATION"
+// Improved Bardic Inspiration
+// data "DisplayName" "h37622d43gc13dg4787g859ag07c3ccaedac4;1"
+// data "DescriptionParams" "1d12"
+// data "Passives" "SCE_TieflingFollowup_BardicInspiration_Attack_Ability;SCE_TieflingFollowup_BardicInspiration_SavingThrow"
+
+// new entry "Target_SCE_TieflingFollowup_BardicInspiration"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_BardicInspiration"
+// data "Cooldown" "OncePerRest"
+// data "SpellProperties" "ApplyStatus(SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION,100, -1)"
+// Improved Bardic Inspiration
+// data "DisplayName" "h268ac238gff84g4ab4gae8fg59cb11a81a8d;2"
+// data "DescriptionParams" "1d12"
+// data "TooltipStatusApply" "ApplyStatus(SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION,100, -1)"
+// data "UseCosts" "BonusActionPoint:1"
+
+// new entry "SCE_TieflingFollowup_BardicInspiration_Attack_Ability"
+// type "PassiveData"
+// Improved Bardic Inspiration: Attack Roll or Ability Check
+// data "DisplayName" "h72532d76gf663g4eecg8cd9g625918f7834c;1"
+// Add a +[1] bonus to your next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; or &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;.
+// data "Description" "h70716d9ag9f1bg4701g8c0eg059826ffe79b;1"
+// data "DescriptionParams" "1d12"
+// data "Icon" "Action_Bard_GrantBardicInspiration"
+// data "Properties" "IsToggled;Temporary"
+// data "Boosts" "RollBonus(SkillCheck,1d12);RollBonus(RawAbility,1d12);RollBonus(Attack,1d12)"
+// data "StatsFunctorContext" "OnAttack;OnAbilityCheck"
+// data "StatsFunctors" "IF(context.HasContextFlag(StatsFunctorContext.OnAttack) and IsAttack()):RemoveStatus(SELF,SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION);IF(context.HasContextFlag(StatsFunctorContext.OnAbilityCheck)):RemoveStatus(SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION)"
+
+// new entry "SCE_TieflingFollowup_BardicInspiration_SavingThrow"
+// type "PassiveData"
+// Improved Bardic Inspiration: Saving Throw
+// data "DisplayName" "h14507907g5e43g41adg9cecg873b5ab11080;1"
+// Add a +[1] bonus to your next &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt;.
+// data "Description" "hcda33f89g31a6g4235gbb8eg564b5411e3e3;1"
+// data "DescriptionParams" "1d12"
+// data "Icon" "PassiveFeature_BardicInspiration_Ability"
+// data "Properties" "IsToggled;Temporary"
+// data "Boosts" "RollBonus(SavingThrow,1d12)"
+// data "StatsFunctorContext" "OnAttacked"
+// data "StatsFunctors" "RemoveStatus(SCE_TIEFLINGFOLLOWUP_BARDIC_INSPIRATION)"

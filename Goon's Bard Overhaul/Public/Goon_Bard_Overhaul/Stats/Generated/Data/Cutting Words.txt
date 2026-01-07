@@ -1,4 +1,5 @@
 // ==================================== College of Lore - Cutting Words ====================================
+// Bug Fix: Added missing "DescriptionParams" to the spell so it shows the die value.
 // Bug Fix: Now checks for level 15 Bard's d12 Bardic Inspiration for the roll, instead of capping at d10. (Believe this was fixed in Expansion Level 13-20 (Configurable) but didn't yet check.)
 // Bug Fix: Can no longer be used while Silenced.
 // Bug Fix: Can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
@@ -6,6 +7,25 @@
 // Changes: Can now be used by Invisible player characters.
 // Changes: Cutting Words condition is now considered a Charm and part of the "SG_Charmed" status group.
 // Changes: Cannot be used on characters who are Deafened, or Immune to Charms.
+
+new entry "Target_CuttingWords"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_CuttingWords"
+// data "TargetRadius" "18"
+// data "TargetConditions" "Character() and not Self()"
+// data "Icon" "Action_Bard_CuttingWords"
+// Cutting Words
+// data "DisplayName" "hd35183deg195fg4f3dg911bg272294249b84;1"
+// The target receives a [1] penalty to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt; or damage dealt.
+// data "Description" "h874c3e78gb424g40d9g9c7eg780447f96920;3"
+data "DescriptionParams" "LevelMapValue(BardicInspiration)"
+// data "CastTextEvent" "Cast"
+// data "CycleConditions" "Enemy() and not Dead()"
+// data "SpellAnimation" "ff78157b-f004-4813-b6d7-83744a7a56e4,,;,,;ebc9253d-d2b2-4657-b8c1-df334c6047b1,,;3aa138db-f6d7-495b-a34f-281b1d71fbc9,,;34da5af5-71b6-4278-9cc0-d5266ca98876,,;,,;32eb3c27-cd2c-49c1-a6c6-b21b2cccf050,,;,,;,,"
+// data "VerbalIntent" "Debuff"
+// data "SpellFlags" "HasVerbalComponent;IsHarmful"
+// data "Sheathing" "Sheathed"
 
 new entry "Interrupt_CuttingWords"
 type "InterruptData"
@@ -37,4 +57,16 @@ new entry "CUTTING_WORDS"
 type "StatusData"
 data "StatusType" "BOOST"
 using "CUTTING_WORDS"
+// Cutting Words
+// data "DisplayName" "h342194a3gfde6g4839gaf4ag60d57444236a;2"
+// Confidence has been badly shaken. &lt;br&gt;&lt;br&gt;Has a 1d6 penalty to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;, and damage dealt.
+// data "Description" "h52568fbfge89ag4788g8a6bgb3c30d87d3e3;1"
+// data "Icon" "Action_Bard_CuttingWords"
+// data "SoundLoop" "Spell_Status_CuttingWords_MO"
+// data "SoundStop" "Spell_Status_CuttingWords_MO_Stop"
+// data "StackId" "CUTTING_WORDS"
+// data "TickType" "StartTurn"
+// data "Boosts" "RollBonus(SkillCheck,-1d6);RollBonus(RawAbility,-1d6);RollBonus(Attack,-1d6);DamageBonus(-1d6,,false)"
+// data "StatusPropertyFlags" "TickingWithSource;InitiateCombat;BringIntoCombat"
 data "StatusGroups" "SG_Charmed"
+// data "StatusEffect" "8841b0b4-25cc-488d-bcb0-ce32b94909e2"

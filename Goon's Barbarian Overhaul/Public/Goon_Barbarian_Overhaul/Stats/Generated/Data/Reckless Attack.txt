@@ -1,5 +1,6 @@
 // ==================================== Vanilla Reckless Attack ====================================
 // Changes: Now works with all melee and thrown attacks.
+// Changes: Can now be used by Invisible player characters.
 // Changes: Can now be used while under the effects of all non-hostile Polymorphs.
 // Changes: The spells are removed, and only the Interrupts remain as I find the spells to be pointless and plain detrimental to use.
 // Bonus: Natively compatible with 5e Reckless Attack by sumradagnoth8 (load this mod after/below).
@@ -35,13 +36,14 @@ data "Description" "hfc92c4e0g549fg4e2cgbe0ega95a16d7e7d7;1"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and IsMeleeWeaponAttack() and not HasStatus('RECKLESS_ATTACK',context.Observer) and not SpellId('Target_RecklessAttack') and not AnyEntityIsItem() and IsRerollInterruptInteresting(context.Source) and not InterruptHasAdvantage()"
-data "Conditions" "not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and (IsMeleeAttack() or IsRangedUnarmedAttack()) and not HasStatus('RECKLESS_ATTACK',context.Observer) and not SpellId('Target_RecklessAttack') and not AnyEntityIsItem() and IsRerollInterruptInteresting(context.Source) and not InterruptHasAdvantage()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and not Dead(context.Observer) and HasInterruptedAttack() and Self(context.Observer,context.Source) and (IsMeleeAttack() or IsRangedUnarmedAttack()) and not HasStatus('RECKLESS_ATTACK',context.Observer) and not SpellId('Target_RecklessAttack') and not AnyEntityIsItem() and IsRerollInterruptInteresting(context.Source) and not InterruptHasAdvantage()"
 // data "Properties" "SetAdvantage();ApplyStatus(OBSERVER_OBSERVER,RECKLESS_ATTACK,100,1)"
 // data "Cooldown" "OncePerTurn"
 // data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
 data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus()"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "RECKLESS_ATTACK"
 type "StatusData"

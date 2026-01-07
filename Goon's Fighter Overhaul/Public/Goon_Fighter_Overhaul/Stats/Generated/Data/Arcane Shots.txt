@@ -1,15 +1,37 @@
 // ==================================== Arcane Shot ====================================
+// Bug Fix: Arcane Shot: Bursting Arrow no longer behaves incorrectly with Curving Shot's Arcane Shot resource restoration.
 // Changes: Tooltips now specify that the Spell Save DC of Arcane Shots increase with your Intelligence Modifier.
 
-// new entry "ArcaneShot"
-// type "PassiveData"
+new entry "ArcaneShot"
+type "PassiveData"
+using "ArcaneShot"
 // Arcane Shot
 // data "DisplayName" "h2e8de670g9f71g4d53ga652ga2816de3eb8b;2"
 // data "Properties" "IsHidden;OncePerAttack"
 // data "Boosts" "IF(SpellId('Projectile_ArcaneShot_BeguilingArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(2d6,Psychic,Magical);IF(SpellId('Projectile_ArcaneShot_ShadowArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(2d6,Psychic,Magical);IF(SpellId('Projectile_ArcaneShot_EnfeeblingArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(2d6,Necrotic,Magical);IF(SpellId('Projectile_ArcaneShot_GraspingArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(2d6,Poison,Magical);IF(SpellId('Projectile_ArcaneShot_SeekingArrow') and not TotalDamageDoneGreaterThan(0)):DamageBonus(1d6,Force,Magical);"
 // data "StatsFunctorContext" "OnAttack"
 // data "Conditions" "(SpellId('Projectile_ArcaneShot_BurstingArrow') and (IsCriticalMiss() or IsMiss()));"
+data "Conditions" "SpellId('Projectile_ArcaneShot_BurstingArrow') and (IsCriticalMiss() or IsMiss()) and not HasStatus('GOON_ARCANESHOT_REFUND_TECHNICAL',context.Source)"
 // data "StatsFunctors" "RestoreResource(SELF,ArcaneShot,1,0)"
+data "StatsFunctors" "RestoreResource(SELF,ArcaneShot,1,0);ApplyStatus(SELF,GOON_ARCANESHOT_REFUND_TECHNICAL,100,1);"
+
+new entry "GOON_ARCANESHOT_REFUND_TECHNICAL"
+type "StatusData"
+data "StatusType" "BOOST"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+data "TickType" "EndTurn"
+data "RemoveEvents" "OnSpellCast"
+data "RemoveConditions" "SpellId('Projectile_ArcaneShot_BurstingArrow')"
+
+// new entry "ARCANESHOT_USED"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// %%%|Arcane Shot: Used|
+// data "DisplayName" "hffcba7f7g54adg440dg9472g80dc63d085ae;1"
+// %%%|Avilable next turn|
+// data "Description" "h5d01d9c4ge3ceg4129g8ac0gd546699d648c;1"
+// data "StackId" "ARCANESHOT_USED"
+// data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
 
 // new entry "Projectile_ArcaneShot_Parent"
 // type "SpellData"

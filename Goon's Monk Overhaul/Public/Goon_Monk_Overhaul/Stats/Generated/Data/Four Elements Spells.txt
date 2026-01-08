@@ -62,8 +62,8 @@ data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVe
 // data "CastEffect" "b89fdfba-d70d-4d45-95da-ad0fe16982d1"
 
 // ==================================== Clench of the North Wind ====================================
+// Bug Fix: Added missing LSTag (hyperlink) for Critical Hits.
 // Changes: Now considered a spell.
-// TODO: LSTags.
 
 new entry "Target_HoldPerson_Monk"
 type "SpellData"
@@ -78,6 +78,8 @@ using "Target_HoldPerson_Monk"
 // data "DisplayName" "hd82ec163ge78ag4ecbgae09g7fab45598d2d;2"
 // &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within 3m are always Critical Hits.
 // data "Description" "he64de87egcc5fg499fgb827g1f28db161d10;3"
+// &lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within [1] are always &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hits&lt;/LSTag&gt;.
+data "Description" "hcd87bb08g774ag4881g8194g3aac50e64f70;6"
 // data "TooltipStatusApply" "ApplyStatus(HOLD_PERSON_MONK,100,10)"
 // data "PrepareSound" "Vocal_Component_Monk_Control"
 // data "CastSound" "Spell_Cast_Monk_ClenchoftheNorthwind_L1to3"
@@ -631,6 +633,8 @@ data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsMelee;IsHarmful;Disa
 // data "TargetEffect" "15929690-0a9b-4f77-9c2c-6f7dda893aaf"
 
 // ==================================== Water Whip ====================================
+// Bug Fix: Water Whip: Knock Prone no longer applies Prone until Long Rest, instead applying it for 1 turn. (1 turn is arbitrary from me, could be 2?)
+// Bug Fix: Water Whip: Pull can now cause fall damage to the target.
 // Changes: Now considered a spell.
 // Changes: Can now slightly control the trajectory of the pull based on cursor position on the target entity. 
 
@@ -685,7 +689,7 @@ data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);Force(-9,O
 // data "Description" "h7e38ea30g1795g4b98gaca8gf6278ebb561d;2"
 // data "SpellAnimation" "101629c4-d30c-4ae7-b316-9d6423e7298a,,;,,;ab4c9091-4f03-4545-9194-11eb280f41a4,,;0bbaec15-d206-4956-839f-c07d7738b9a6,,;9af429ab-54e8-455b-99d0-71c62e66ad64,,;,,;e550f983-faab-412b-a55d-237a1e17d4da,,;,,;,,"
 // data "SpellFlags" "IsHarmful;DisableBlood"
-data "SpellFlags" "IsHarmful;DisableBlood;IsSpell"
+data "SpellFlags" "IsHarmful;DisableBlood;IsSpell;AddFallDamageOnLand"
 
 new entry "Target_WaterWhip_Prone"
 type "SpellData"
@@ -695,6 +699,7 @@ using "Target_WaterWhip_Prone"
 // data "SpellContainerID" "Target_WaterWhip"
 // data "ContainerSpells" ""
 // data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);ApplyStatus(PRONE,100,-1)"
+data "SpellSuccess" "DealDamage(LevelMapValue(WaterWhip),Bludgeoning);ApplyStatus(PRONE,100,1)"
 // data "TargetConditions" "Character() and not Dead()"
 // data "Icon" "Action_Monk_WaterWhip_Prone"
 // Water Whip: Knock Prone
@@ -702,6 +707,7 @@ using "Target_WaterWhip_Prone"
 // Use the water whip to knock the target &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt;.
 // data "Description" "hf00f123ag9b13g4ed1ga501g1fbeddd86817;2"
 // data "TooltipStatusApply" "ApplyStatus(PRONE,100,-1)"
+data "TooltipStatusApply" "ApplyStatus(PRONE,100,1)"
 // data "SpellAnimation" "101629c4-d30c-4ae7-b316-9d6423e7298a,,;,,;5787f12b-23ba-4fcb-8404-2580b7bdb6bd,,;f0ad7144-f061-4bf0-97be-b7ac68b9fe95,,;9af429ab-54e8-455b-99d0-71c62e66ad64,,;,,;e550f983-faab-412b-a55d-237a1e17d4da,,;,,;,,"
 // data "SpellFlags" "IsHarmful;DisableBlood"
 data "SpellFlags" "IsHarmful;DisableBlood;IsSpell"

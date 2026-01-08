@@ -7,8 +7,11 @@
 	<content contentuid="h55a26020g5be8g44f6g9a3ag0386a1926180" version="1">Tides of Chaos (Success)</content>
 	<content contentuid="h8142c950gac76g4c7eg949bge9145bfc5329" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt; that would land, or an &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Check&lt;/LSTag&gt;, or &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; that would be successful&lt;br&gt;&lt;br&gt;Increased chance of &lt;LSTag Tooltip="WildMagic"&gt;Wild Magic&lt;/LSTag&gt; surge afterwards.</content>	
 
+	<!-- "Interrupt_HeartOfTheStorm_Lightning" --> <content contentuid="h08f00b61g8f24g4deegb79ag2448e19f4737" version="1">When you cast a spell of Level 1 or higher that deals[3], you cause a small, local storm. All enemies within [2] take [1].</content>
+	<!-- "Interrupt_HeartOfTheStorm_Thunder" --> <content contentuid="h17b239d7g4632g49c0ga0a0gfc55ef54a0db" version="1">When you cast a spell of Level 1 or higher that deals[3], you cause a small, local storm. All enemies within [2] take [1].</content>
+
 	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>	
+	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 	<!-- "" --> <content contentuid="" version="1"></content>
 </contentList>

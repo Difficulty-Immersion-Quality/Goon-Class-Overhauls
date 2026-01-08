@@ -1,5 +1,6 @@
 // ==================================== Storm Sorcery - Heart of the Storm ====================================
 // Bug Fix: No longer inappropriately functions with cantrips.
+// Bug Fix: No longer triggers if a spell has a "DamageType" of Thunder or Lightning specified that doesn't actually deal those damage types in its "SpellProperties" or "SpellSuccess".
 // Bug Fix: Can be used while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
 // Changes: Can now be used by Invisible player characters.
 
@@ -10,13 +11,16 @@ using "Interrupt_HeartOfTheStorm_Lightning"
 // data "DisplayName" "h16ce0037g0b42g454dg96cdgd77f403c3eb0;2"
 // When you cast a spell of Level 1 or higher that deals Lightning damage, you cause a small, local storm. All enemies within [2] take [1].
 // data "Description" "h19c2405fg17a7g4310ga182g4a9c0c1e1e68;2"
+// When you cast a spell of Level 1 or higher that deals[3], you cause a small, local storm. All enemies within [2] take [1].
+data "Description" "h08f00b61g8f24g4deegb79ag2448e19f4737;1"
 // data "DescriptionParams" "DealDamage(ClassLevel(Sorcerer)/2,Lightning);Distance(6)"
+data "DescriptionParams" "DealDamage(ClassLevel(Sorcerer)/2,Lightning);Distance(6);DealDamage(,Lightning)"
 // data "Icon" "PassiveFeature_HeartOfTheStorm_Lightning"
 // data "InterruptContext" "OnSpellCast"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "Self(context.Source, context.Observer) and IsSpell() and SpellDamageTypeIs(DamageType.Lightning) and not AnyEntityIsItem()"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source, context.Observer) and IsSpell() and not IsCantrip() and SpellDamageTypeIs(DamageType.Lightning) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source, context.Observer) and IsSpell() and not IsCantrip() and SpellDamageTypeIs(DamageType.Lightning) and Goon_IsSpellDealingFunctorDamage() and not AnyEntityIsItem()"
 // data "Properties" "CreateExplosion(OBSERVER_OBSERVER,Projectile_HeartOfTheStorm_Lightning)"
 // data "Stack" "HeartOfTheStorm"
 // data "InterruptDefaultValue" "Enabled"
@@ -24,6 +28,24 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
+
+// new entry "Projectile_HeartOfTheStorm_Lightning"
+// type "SpellData"
+// data "SpellType" "Projectile"
+// data "SpellProperties" "DealDamage(ClassLevel(Sorcerer)/2,Lightning,Magical)"
+// data "ExplodeRadius" "6"
+// data "TargetConditions" "Enemy() and not Dead()"
+// data "ProjectileCount" "1"
+// data "Trajectories" "4af71ae2-8ee7-422e-adcb-bafbdcdbf489"
+// data "Icon" "PassiveFeature_HeartOfTheStorm_Lightning"
+// Heart of the Storm: Lightning
+// data "DisplayName" "hb87b5264g01ccg49b5g88c3gfa8a0cf7474f;2"
+// Cause an eruption of electricity and lightning.
+// data "Description" "h3a27f5e0g4de8g45a9gb53ag1553ab1d91c7;2"
+// data "TooltipDamageList" "DealDamage(ClassLevel(Sorcerer)/2,Lightning)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;38cdb41c-2eec-4e03-bb31-83cff0346c35,,;85414f5f-b448-4dda-9370-1b6c4b38b561,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+// data "SpellFlags" "IsHarmful"
+// data "DamageType" "Lightning"
 
 new entry "Interrupt_HeartOfTheStorm_Thunder"
 type "InterruptData"
@@ -33,10 +55,27 @@ using "Interrupt_HeartOfTheStorm_Thunder"
 // data "DisplayName" "h8885d812g7862g4d6ag9ef1gb1896a9bd4ee;2"
 // When you cast a spell of Level 1 or higher that deals Thunder damage, you cause a small, local storm. All enemies within [2] take [1].
 // data "Description" "hed5bead4gb65eg409dgb5a5g5a747e87457c;1"
+// When you cast a spell of Level 1 or higher that deals[3], you cause a small, local storm. All enemies within [2] take [1].
+data "Description" "h17b239d7g4632g49c0ga0a0gfc55ef54a0db;1"
 // data "DescriptionParams" "DealDamage(ClassLevel(Sorcerer)/2,Thunder);Distance(6)"
+data "DescriptionParams" "DealDamage(ClassLevel(Sorcerer)/2,Thunder);Distance(6);DealDamage(,Thunder)"
 // data "Icon" "PassiveFeature_HeartOfTheStorm_Thunder"
 // data "Conditions" "Self(context.Source, context.Observer) and IsSpell() and SpellDamageTypeIs(DamageType.Thunder) and not AnyEntityIsItem()"
-data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source, context.Observer) and IsSpell() and not IsCantrip() and SpellDamageTypeIs(DamageType.Thunder) and not AnyEntityIsItem()"
+data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',context.Observer)) and Self(context.Source, context.Observer) and IsSpell() and not IsCantrip() and SpellDamageTypeIs(DamageType.Thunder) and Goon_IsSpellDealingFunctorDamage() and not AnyEntityIsItem()"
 // data "Properties" "CreateExplosion(OBSERVER_OBSERVER,Projectile_HeartOfTheStorm_Thunder)"
 // data "EnableCondition" "not HasStatus('SG_Polymorph') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
 data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()"
+
+// new entry "Projectile_HeartOfTheStorm_Thunder"
+// type "SpellData"
+// data "SpellType" "Projectile"
+// using "Projectile_HeartOfTheStorm_Lightning"
+// data "SpellProperties" "DealDamage(ClassLevel(Sorcerer)/2,Thunder,Magical)"
+// data "Trajectories" "5b6c12fe-97d2-4fbe-a34e-79c83ca5e1b8"
+// data "Icon" "PassiveFeature_HeartOfTheStorm_Thunder"
+// Heart of the Storm: Thunder
+// data "DisplayName" "h262b2753g7f12g481ega315ge7a142bd38d0;2"
+// Cause an eruption of thunder.
+// data "Description" "hcd2e2425g20d4g4fe1ga02dgf1cf16182439;2"
+// data "TooltipDamageList" "DealDamage(ClassLevel(Sorcerer)/2,Thunder)"
+// data "DamageType" "Thunder"

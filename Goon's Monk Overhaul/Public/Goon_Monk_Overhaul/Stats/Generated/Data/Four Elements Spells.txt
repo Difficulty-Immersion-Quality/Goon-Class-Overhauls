@@ -636,7 +636,7 @@ data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsMelee;IsHarmful;Disa
 // Bug Fix: Water Whip: Knock Prone no longer applies Prone until Long Rest, instead applying it for 1 turn. (1 turn is arbitrary from me, could be 2?)
 // Bug Fix: Water Whip: Pull can now cause fall damage to the target.
 // Changes: Now considered a spell.
-// Changes: Can now slightly control the trajectory of the pull based on cursor position on the target entity. 
+// Changes: Water Whip: Pull can now slightly control the trajectory of the pull based on cursor position on the target entity. 
 
 new entry "Target_WaterWhip"
 type "SpellData"

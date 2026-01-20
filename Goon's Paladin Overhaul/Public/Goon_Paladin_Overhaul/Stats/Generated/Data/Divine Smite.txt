@@ -3,7 +3,8 @@
 // Bug Fix: Now works while under the effects of more non-hostile and non-spellcasting restricted Polymorphs.
 // Bug Fix: The tooltip damage appropriately displays the additional 1d8 Radiant damage dealt to Fiends and Undead as conditional damage.
 // Bug Fix: Interrupts now have "TooltipDamageList" values, including the above.
-// Bug Fix: Animations are no longer weird for the base action and level 3+ upcasts when using the honour ruleset.
+// Bug Fix: Animations are no longer weird for the base action and level 3+ upcasts when using the Honour ruleset.
+// Bug Fix: Oath of the Crown now has its unique VFX. (It shares SFX with Oath of Devotion.)
 // Changes: Interrupts are now defaulted to ask, instead of being used automatically.
 // Changes: Interrupts can trigger from throwing melee weapons.
 // Changes: Interrupts can now be used by Invisible player characters.

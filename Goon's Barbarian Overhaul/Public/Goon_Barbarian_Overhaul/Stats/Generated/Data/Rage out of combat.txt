@@ -1,16 +1,7 @@
 // ==================================== Rage now functions out of combat ====================================
 // Changes: All Rages check for if Expansion's level 15 Barbarian feature Persistant Rage exists before removing the condition, so it won't be removed immediately when exiting combat.
 // Bonus: Sparing the details a bit, but beyond that it's just compatibility patching for Expansion and Barbarian Quality of Life's implementations when it comes to loosening the reigns on Rage restrictions.
-// TODO: Add support for custom Rages as needed, especially 5e Barbarian Subclasses Combined﻿.
-
-new entry "RAGE"
-type "StatusData"
-data "StatusType" "BOOST"
-using "RAGE"
-// data "RemoveConditions" "not HasStatus('RAGE_STOP_REMOVE') or not Combat()"
-data "RemoveConditions" "not HasPassive('PersistentRage') and not HasStatus('RAGE_STOP_REMOVE') and not Combat()"
-// data "TickFunctors" "IF(not Combat(context.Source)):RemoveStatus(SG_Rage)"
-data "TickFunctors" "IF(not HasPassive('PersistentRage') and not HasStatus('RAGE_STOP_REMOVE') and not Combat(context.Source)):RemoveStatus(SG_Rage)"
+// TODO: Add support for custom Rages as needed, especially 5e Barbarian Subclasses Combined.
 
 // Inheriting and changing Barbarian QoL edits
 new entry "RAGE_STOP_REMOVE"

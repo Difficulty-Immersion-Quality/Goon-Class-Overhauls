@@ -66,6 +66,10 @@
 	<!-- "RAGE_GIANT", "Rage_Rage_Boosts" --> 
 	<content contentuid="h9ab9eea6g8249g4801g90adg95589360d4c8" version="1">&lt;LSTag Type="Status" Tooltip="RAGE"&gt;Raging&lt;/LSTag&gt; and increased in size. Deals an additional [1] damage with melee and improvised weapons, and [2] damage when throwing objects.&lt;br&gt;&lt;br&gt;Also has &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to physical damage and &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&lt;br&gt;&lt;br&gt;Cannot cast or concentrate on spells.</content>
 
+	<!-- ==================================== Aspect of the Beast ==================================== -->
+	<!-- "Shout_AspectOfTheWolf" --> 
+	<content contentuid="h66474a3fg081eg44bbg9df6ga2614c38cb7e" version="1">You and nearby allies add your &lt;LSTag Tooltip="Dexterity"&gt;Dexterity&lt;/LSTag&gt; modifier as a bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.</content>
+
 	<!-- "" --> 
 	<content contentuid="" version="1"></content>
 	<!-- "" --> 

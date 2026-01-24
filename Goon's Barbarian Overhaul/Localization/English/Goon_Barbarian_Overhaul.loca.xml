@@ -20,9 +20,12 @@
 
 	<!-- ==================================== Danger Sense ==================================== -->
 	<!-- "DangerSense" --> 
-	<content contentuid="h4a49b28bg3663g40d7g9bbaga07d215387c7" version="1">End your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;.</content>
+	<content contentuid="h4a49b28bg3663g40d7g9bbaga07d215387c7" version="1">You sense when things aren't as they should be.&lt;br&gt;&lt;br&gt;You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;. &lt;br&gt;&lt;br&gt;To gain this benefit, you can't be &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinded&lt;/LSTag&gt; or Incapacitated.</content>
 
 	<!-- ==================================== Rage Misc ==================================== -->
+	<!-- "Shout_EndRage" --> 
+	<content contentuid="h2fbf423agb067g4219ga854g6266a2a95813" version="1">End your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt;.</content>
+
 	<!-- "GOON_RAGE_STOP_REMOVE_DISPLAY" --> 
 	<content contentuid="ha25eb620g8154g47d1g98ccge7a3d82fc327" version="1">Rage Sustained</content>
 	<content contentuid="hd10cc4b0g12d6g4aa3gac31ge1c121123e1f" version="1">Your &lt;LSTag Type="Status" Tooltip="RAGE"&gt;Rage&lt;/LSTag&gt; will not end this turn.</content>

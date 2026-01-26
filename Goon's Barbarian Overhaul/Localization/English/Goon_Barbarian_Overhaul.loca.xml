@@ -70,6 +70,10 @@
 	<!-- "Shout_AspectOfTheWolf" --> 
 	<content contentuid="h66474a3fg081eg44bbg9df6ga2614c38cb7e" version="1">You and nearby allies add your &lt;LSTag Tooltip="Dexterity"&gt;Dexterity&lt;/LSTag&gt; modifier as a bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.</content>
 
+	<!-- ==================================== Wildheart stuff ==================================== -->
+	<!-- "Shout_PackHowl_Barbarian" --> 
+	<content contentuid="hccc0c469g4897g4aacg93b5gf39930539474" version="1">Each ally within earshot can &lt;LSTag Tooltip="MovementSpeed"&gt;move&lt;/LSTag&gt; an additional [1] during their next turn.</content>
+
 	<!-- "" --> 
 	<content contentuid="" version="1"></content>
 	<!-- "" --> 

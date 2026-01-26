@@ -142,6 +142,7 @@ data "SpellFlags" "IsHarmful;Temporary"
 // data "CastEffect" "456c19a5-ca43-4f93-b5a7-bb01fa8d1240"
 
 // ==================================== Rage: Wolf Heart - Inciting Howl ====================================
+// Bug Fix: Inciting Howl can no longer stack with itself.
 
 new entry "Shout_PackHowl_Barbarian"
 type "SpellData"
@@ -166,14 +167,16 @@ data "SpellFlags" "Temporary"
 // data "CastEffect" "f41341dd-ba51-43fe-9847-814925cb2982"
 // data "Sheathing" "Sheathed"
 
-// new entry "PACK_HOWL_WOLF_DIRE"
-// type "StatusData"
-// data "StatusType" "BOOST"
+new entry "PACK_HOWL_WOLF_DIRE"
+type "StatusData"
+data "StatusType" "BOOST"
+using "PACK_HOWL_WOLF_DIRE"
 // Inciting Howl
 // data "DisplayName" "h2bc70a04g9bb0g4ac3g9df7gf00a26cdd35d;2"
 // &lt;LSTag Tooltip="MovementSpeed"&gt;Movement speed&lt;/LSTag&gt; increased by [1].
 // data "Description" "h56cdffe6g9623g4647g839ag8cd406319fc5;3"
 // data "DescriptionParams" "Distance(3)"
 // data "Icon" "Action_DireWolfPack_Howl"
+data "StackId" "PACK_HOWL_WOLF_DIRE"
 // data "TickType" "EndTurn"
 // data "Boosts" "ActionResource(Movement,3,0)"

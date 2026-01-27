@@ -1,6 +1,8 @@
-// Larian really didn't care about RAW for this stuff it seems.
+// ==================================== Wildheart actions ====================================
+// Changes: All conditional actions requiring the Barbarian to be raging have been turned into temporary spells that are unlocked by the Rage conditions.
+// Note: Larian really didn't care about RAW for this stuff it seems.
 
-// ==================================== Rage: Bear Heart - Unrelenting Ferocity ====================================
+// ==================================== Rage: Bear Heart - Unrelenting Ferocity
 
 new entry "Shout_FerociousAppetite"
 type "SpellData"
@@ -27,7 +29,7 @@ data "SpellFlags" "Temporary"
 // data "PrepareEffect" "50723b45-0942-4cf5-b39b-9b486e971c17"
 // data "CastEffect" "423e2b62-1926-4918-a087-1400838524f6"
 
-// ==================================== Rage: Eagle Heart - Diving Strike ====================================
+// ==================================== Rage: Eagle Heart - Diving Strike
 
 new entry "Projectile_DivingStrike"
 type "SpellData"
@@ -62,9 +64,9 @@ data "SpellFlags" "IsJump;IsHarmful;HasHighGroundRangeExtension;CombatLogSetSing
 // data "CastEffect" "c6096e49-8aa5-409e-9361-3984bb9865d4"
 // data "SpellSoundMagnitude" "Normal"
 
-// ==================================== Rage: Elk Heart - Primal Stampede ====================================
+// ==================================== Rage: Elk Heart - Primal Stampede
 // Bug Fix: Now deals unarmed damage instead of a flat 1d4, this fixes lots of interactions.
-// Bug Fix: No longer has an innapropriate "CanAreaDamageEvade" "SpellFlags" allowing Evasion, Shield Master: Block and similar effects from reducing the damage.
+// Bug Fix: No longer has an inappropriate "CanAreaDamageEvade" "SpellFlags" allowing Evasion, Shield Master: Block and similar effects from reducing the damage.
 
 new entry "Rush_Primal_Stampede"
 type "SpellData"
@@ -109,11 +111,11 @@ data "SpellFlags" "IsHarmful;AddFallDamageOnLand;Temporary"
 // data "DamageType" "Bludgeoning"
 // data "Sheathing" "Sheathed"
 
-// ==================================== Rage: Tiger Heart - Tiger's Bloodlust ====================================
+// ==================================== Rage: Tiger Heart - Tiger's Bloodlust
 // Bug Fix: Tooltip no longer displays as dealing damage with your ranged main hand weapon while it is active.
 // Bug Fix: Now executes weapon functors, allowing appropriate damage riders to apply.
 // TODO: Maybe make it a target like my Slashing Flourish?
-// TODO: This might be OP given there's no cooldown, but like... consistency of mechanics kinda more important.
+// TODO: This might be OP given there's no cooldown, but like... consistency of mechanics is more my focus for right now.
 
 new entry "Zone_TigersBloodlust"
 type "SpellData"
@@ -141,7 +143,7 @@ data "SpellFlags" "IsHarmful;Temporary"
 // data "PrepareEffect" "83c458da-6afa-47af-8fdb-825c98963719"
 // data "CastEffect" "456c19a5-ca43-4f93-b5a7-bb01fa8d1240"
 
-// ==================================== Rage: Wolf Heart - Inciting Howl ====================================
+// ==================================== Rage: Wolf Heart - Inciting Howl
 // Bug Fix: Inciting Howl can no longer stack with itself.
 
 new entry "Shout_PackHowl_Barbarian"

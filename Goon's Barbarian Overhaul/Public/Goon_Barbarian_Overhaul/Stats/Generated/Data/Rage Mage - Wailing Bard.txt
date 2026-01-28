@@ -10,7 +10,7 @@ data "SpellProperties" "AI_IGNORE:IF(not ClassLevelHigherOrEqualThan(9,'Barbaria
 // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; Rage ends early if you don't attack an enemy, take damage, or cast a spell on each turn.
 // data "TooltipPermanentWarnings" "2f6f2400-a2ee-445d-801e-6a7229a02172"
 // data "RequirementConditions" "not HasStatus('SG_Rage') and not HasStatus('CALM_EMOTIONS')"
-data "RequirementConditions" "not HasAnyStatus({'RAGE','RAGE_2','RAGE_3','CALM_EMOTIONS'},{},{})"
+data "RequirementConditions" "not HasAnyStatus({'MHRAGE_RAGE','MHRAGE_RAGE_2','MHRAGE_RAGE_3','CALM_EMOTIONS'},{},{})"
 
 new entry "MHRAGE_RAGE"
 type "StatusData"

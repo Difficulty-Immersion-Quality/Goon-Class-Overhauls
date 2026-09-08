@@ -1,5 +1,6 @@
 // ==================================== Rakish Audacity ====================================
 // Bug Fix: Description of mechanics is now accurate to functionality.
+// Changes: Increases to a +5 initiative bonus at level 13+.
 // TODO: 
 
 new entry "RakishAudacity"
@@ -17,6 +18,8 @@ data "DescriptionParams" "LevelMapValue(RakishAudacity);Distance(1.5);Distance(2
 // data "Properties" "Highlighted"
 // data "BoostContext" "OnCombatStarted;OnCreate"
 // data "Boosts" "IF(not ClassLevelHigherOrEqualThan(5,'Rogue')):Initiative(2);IF(ClassLevelHigherOrEqualThan(5,'Rogue') and not ClassLevelHigherOrEqualThan(10,'Rogue')):Initiative(3);IF(ClassLevelHigherOrEqualThan(10,'Rogue')):Initiative(4);"
+// data "Boosts" "IF(not ClassLevelHigherOrEqualThan(5,'Rogue')):Initiative(2);IF(ClassLevelHigherOrEqualThan(5,'Rogue') and not ClassLevelHigherOrEqualThan(10,'Rogue')):Initiative(3);IF(ClassLevelHigherOrEqualThan(10,'Rogue') and not ClassLevelHigherOrEqualThan(13,'Rogue')):Initiative(4);IF(ClassLevelHigherOrEqualThan(13,'Rogue')):Initiative(5)"
+data "Boosts" "IF(not ClassLevelHigherOrEqualThan(5,'Rogue')):Initiative(2);IF(ClassLevelHigherOrEqualThan(5,'Rogue') and not ClassLevelHigherOrEqualThan(10,'Rogue')):Initiative(3);IF(ClassLevelHigherOrEqualThan(10,'Rogue') and not ClassLevelHigherOrEqualThan(13,'Rogue')):Initiative(4);IF(ClassLevelHigherOrEqualThan(13,'Rogue')):Initiative(5)"
 
 // ==================================== Rakish Sneak Attack ====================================
 // Bug Fix: Range check mechanics now function as intended, and match the descriptions.

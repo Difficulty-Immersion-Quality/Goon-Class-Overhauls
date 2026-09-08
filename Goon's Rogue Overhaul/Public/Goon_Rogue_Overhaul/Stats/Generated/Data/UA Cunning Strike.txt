@@ -53,7 +53,7 @@ data "Properties" "IF(IsAttackType(AttackType.MeleeWeaponAttack)):DealDamage(Lev
 data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableContext" "OnActionResourcesChanged;OnEquip;OnStatusApplied;OnStatusRemoved"
 // data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (WieldingFinesseWeaponInSpecificHand(context.Source, false) or WieldingFinesseWeaponInSpecificHand(context.Source, true) or WieldingWeapon('Ammunition', false, true, context.Source) or SpellTypeIs(SpellType.Throw)) and not HasStatus('SG_Polymorph_BeastShape')"
-data "EnableCondition" "HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source) and (((not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus())) or Goon_IsRestrictedPolymorphStatus() and not Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "Goon_InterruptEnableConditions(true) and HasActionResource('SneakAttack_Charge',1,0,false,false,context.Source)"
 // data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Goon_Interrupt_DWE_SneakAttack_Critical"

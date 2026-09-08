@@ -63,7 +63,7 @@ data "Conditions" "(Player(context.Observer) or not HasStatus('SG_Invisible',con
 data "Properties" "ApplyStatus(GOON_UNCANNYDODGE,100,1)"
 data "Cost" "ReactionActionPoint:1"
 data "InterruptDefaultValue" "Ask;Enabled"
-data "EnableCondition" "not HasStatus('SG_Polymorph') or Goon_IsNonHostilePolymorphStatus()"
+data "EnableCondition" "Goon_InterruptEnableConditions(true)"
 data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
 

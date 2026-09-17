@@ -1,0 +1,210 @@
+-- ==================================== Draconic Bloodline - Elemental Affinity: Damage ====================================
+
+function Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+    target = target or context.Target
+
+    if not IsSpell().Result then
+        return ConditionResult(false)
+    end
+    if HasStatus('GOON_ONCEPERACTION_COOLDOWN_ELEMENTALAFFINITY', target).Result then
+        return ConditionResult(false)
+    end
+
+    if conditionalDamageSpell ~= nil then
+        if conditionalDamageSpell then
+            return Goon_IsConditionalDamageCantripEligible()
+        else
+            return ~Goon_IsConditionalDamageCantripEligible()
+        end
+    end
+
+    return ConditionResult(true)
+end
+
+function Goon_EAD_Acid(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Acid(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeAcid().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Cold(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Cold(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeCold().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Fire(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Fire(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeFire().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Lightning(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Lightning(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeLightning().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Poison(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Poison(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypePoison().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+-- Custom
+function Goon_EAD_Force(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Force(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeForce().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Radiant(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Radiant(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeRadiant().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Psychic(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Psychic(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypePsychic().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Thunder(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Thunder(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeThunder().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Necrotic(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Necrotic(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeNecrotic().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Bludgeoning(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Bludgeoning(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeBludgeoning().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Piercing(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Piercing(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypePiercing().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+function Goon_EAD_Slashing(conditionalDamageSpell, source, target)
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_DraconicAncestry_Slashing(source).Result then return ConditionResult(false) end
+    if not Goon_IsSpellDamageTypeSlashing().Result       then return ConditionResult(false) end
+
+    return Goon_ElementalAffinityDamage(conditionalDamageSpell, target)
+end
+
+-- ==================================== Draconic Bloodline - Elemental Affinity: Resistance ====================================
+
+function Goon_NoElementalAffinityStatus(source)
+    source = source or context.Source
+
+    local result = ~HasAnyStatus({ 'ELEMENTALAFFINITY_ACID', 'ELEMENTALAFFINITY_COLD', 'ELEMENTALAFFINITY_FIRE', 'ELEMENTALAFFINITY_LIGHTNING', 'ELEMENTALAFFINITY_POISON', 'GOON_ELEMENTALAFFINITY_FORCE', 'ELEMENTALAFFINITY_FORCE', 'GOON_ELEMENTALAFFINITY_RADIANT', 'ELEMENTALAFFINITY_RADIANT', 'GOON_ELEMENTALAFFINITY_PSYCHIC', 'ELEMENTALAFFINITY_PSYCHIC', 'GOON_ELEMENTALAFFINITY_THUNDER', 'ELEMENTALAFFINITY_THUNDER', 'GOON_ELEMENTALAFFINITY_NECROTIC', 'ELEMENTALAFFINITY_NECROTIC', 'GOON_ELEMENTALAFFINITY_BLUDGEONING', 'ELEMENTALAFFINITY_BLUDGEONING', 'GOON_ELEMENTALAFFINITY_PIERCING', 'ELEMENTALAFFINITY_PIERCING', 'GOON_ELEMENTALAFFINITY_SLASHING', 'ELEMENTALAFFINITY_SLASHING' }, {}, {}, source)
+
+    if not result.Result then
+        return ConditionResult(false, { ConditionError('Goon_ElementalAffinity_Active') })
+    end
+
+    return result
+end
+
+function ElementalAffinityCheck(observer, source, target)
+    observer = observer or context.Observer
+    source = source or context.Source
+    target = target or context.Target
+
+    if not Goon_NoElementalAffinityStatus(observer).Result then
+        return ConditionResult(false)
+    end
+
+    if Goon_EAD_Acid(nil, source, target).Result        then return ConditionResult(true) end
+    if Goon_EAD_Cold(nil, source, target).Result        then return ConditionResult(true) end
+    if Goon_EAD_Fire(nil, source, target).Result        then return ConditionResult(true) end
+    if Goon_EAD_Lightning(nil, source, target).Result   then return ConditionResult(true) end
+    if Goon_EAD_Poison(nil, source, target).Result      then return ConditionResult(true) end
+    if Goon_EAD_Force(nil, source, target).Result       then return ConditionResult(true) end
+    if Goon_EAD_Radiant(nil, source, target).Result     then return ConditionResult(true) end
+    if Goon_EAD_Psychic(nil, source, target).Result     then return ConditionResult(true) end
+    if Goon_EAD_Thunder(nil, source, target).Result     then return ConditionResult(true) end
+    if Goon_EAD_Necrotic(nil, source, target).Result    then return ConditionResult(true) end
+    if Goon_EAD_Bludgeoning(nil, source, target).Result then return ConditionResult(true) end
+    if Goon_EAD_Piercing(nil, source, target).Result    then return ConditionResult(true) end
+    if Goon_EAD_Slashing(nil, source, target).Result    then return ConditionResult(true) end
+
+    return ConditionResult(false)
+end
+
+-- function ElementalAffinityCheck(entity)
+--     local entity = entity or context.Observer
+
+--     local noStatus = (~HasStatus('ELEMENTALAFFINITY_ACID',entity) & ~HasStatus('ELEMENTALAFFINITY_COLD',entity) & ~HasStatus('ELEMENTALAFFINITY_FIRE',entity) & ~HasStatus('ELEMENTALAFFINITY_LIGHTNING',entity) & ~HasStatus('ELEMENTALAFFINITY_POISON',entity)).Result
+--     local acid = (SpellDamageTypeIs(DamageType.Acid) & (HasPassive('DraconicAncestry_Black',entity) | HasPassive('DraconicAncestry_Copper',entity))).Result
+--     local cold = (SpellDamageTypeIs(DamageType.Cold) & (HasPassive('DraconicAncestry_Silver',entity) | HasPassive('DraconicAncestry_White',entity))).Result
+--     local fire = (SpellDamageTypeIs(DamageType.Fire) & (HasPassive('DraconicAncestry_Red',entity) | HasPassive('DraconicAncestry_Gold',entity) | HasPassive('DraconicAncestry_Brass',entity))).Result
+--     local lightning = (SpellDamageTypeIs(DamageType.Lightning) & (HasPassive('DraconicAncestry_Blue',entity) | HasPassive('DraconicAncestry_Bronze',entity))).Result
+--     local poison = (SpellDamageTypeIs(DamageType.Poison) & HasPassive('DraconicAncestry_Green',entity)).Result
+
+--     if (acid or cold or fire or lightning or poison) and noStatus then
+--         return ConditionResult(true)
+--     end
+
+--     return ConditionResult(false)
+-- end

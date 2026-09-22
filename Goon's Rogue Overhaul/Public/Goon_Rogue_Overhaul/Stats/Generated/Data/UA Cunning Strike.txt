@@ -12,6 +12,7 @@ using "DWE_SneakAttack"
 // data "DescriptionParams" "LevelMapValue(DWE_SneakAttack)"
 // data "Icon" "DWE_UACunningStrike_SneakAttack"
 // data "Properties" "Highlighted"
+data "Properties" "IsHidden"
 // data "Boosts" "ActionResource(DWE_SneakAttack,1,0,d6); UnlockInterrupt(Interrupt_DWE_SneakAttack)"
 data "Boosts" "ActionResource(DWE_SneakAttack,1,0,d6)"
 // data "StatsFunctorContext" "OnTurn"
@@ -35,7 +36,7 @@ using "Interrupt_DWE_SneakAttack"
 // data "DisplayName" "hc999d4c5ga839g45afgb385g5f648e0bb34b;1"
 // // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to the target.
 // data "Description" "h3c64245ag90fag473cg8094g513b6a73d5e2;1"
-// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
+// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.
 data "Description" "h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab;1"
 // data "DescriptionParams" "LevelMapValue(DWE_SneakAttack)"
 data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"

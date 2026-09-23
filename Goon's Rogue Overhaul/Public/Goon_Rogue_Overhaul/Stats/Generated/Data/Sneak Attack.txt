@@ -26,7 +26,7 @@ using "SneakAttack_Unlock"
 // // Sneak Attack
 data "DisplayName" "h961ba0c5g8bc0g4449g9543gb45a449a768c;1"
 // // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.
-data "Description" "h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab;1"
+data "Description" "he443e59eg43feg4b6ag9f78gd4d616dcece8;1"
 data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"
 // // The extra damage increases by 1 die for every odd level you gain in this class.
 data "ExtraDescription" "h2c0763f5g9c76g4e82gb902geb39438b5a15;1"
@@ -39,7 +39,7 @@ data "BoostContext" "OnCreate"
 data "BoostConditions" "not Goon_HasUniqueSneakAttack()"
 data "Boosts" "UnlockSpell(Target_SneakAttack);UnlockSpell(Projectile_SneakAttack)"
 data "StatsFunctorContext" "OnCreate"
-data "StatsFunctors" "IF(not HasPassive('DWE_SneakAttack', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK,100,-1);IF(HasPassive('DWE_SneakAttack', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_DWE,100,-1)"
+data "StatsFunctors" "IF(not HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK,100,-1);IF(HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_DWE,100,-1);IF(HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_RUFFIAN,100,-1);"
 
 new entry "GOON_SNEAKATTACK_UNLOCK"
 type "StatusData"
@@ -49,13 +49,19 @@ data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_
 data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator;ApplyToDead;IgnoreResting"
 data "StatusGroups" "SG_RemoveOnRespec"
 data "RemoveEvents" "OnStatusApplied"
-data "RemoveConditions" "Goon_HasUniqueSneakAttack()"
+data "RemoveConditions" "not HasPassive('SneakAttack_Unlock', context.Source)"
 
 new entry "GOON_SNEAKATTACK_UNLOCK_DWE"
 type "StatusData"
 data "StatusType" "BOOST"
 using "GOON_SNEAKATTACK_UNLOCK"
 data "Boosts" "UnlockInterrupt(Interrupt_DWE_SneakAttack);UnlockInterrupt(Goon_Interrupt_DWE_SneakAttack_Critical)"
+
+new entry "GOON_SNEAKATTACK_UNLOCK_RUFFIAN"
+type "StatusData"
+data "StatusType" "BOOST"
+using "GOON_SNEAKATTACK_UNLOCK"
+data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack_Ruffian);UnlockInterrupt(Interrupt_SneakAttack_Ruffian_Critical)"
 
 // ==================================== Sneak Attack - Spells
 
@@ -77,7 +83,7 @@ data "TargetConditions" "Goon_SneakAttackTargetConditions_Melee()"
 // data "DisplayName" "h256bdc37g70bdg458bgae28g999cfab73548;1"
 // // Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
 // data "Description" "he28213afga38ag4f07gbc83gfb1c8d9978f1;5"
-// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.
+// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
 data "Description" "h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab;1"
 data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"
 // // Also works if you have an ally within [1] of the target and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
@@ -121,7 +127,7 @@ data "TargetConditions" "Goon_SneakAttackTargetConditions_Ranged()"
 // data "DisplayName" "h6b58bcf5g0aa9g48a7g9296g59f2899fb1e5;1"
 // // Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
 // data "Description" "h09e1b1c0g0540g4737gb65dgdc58ff9bf98b;7"
-// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.
+// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
 data "Description" "h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab;1"
 data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"
 // // You can also use this attack if you have an ally within [1] of the target and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
@@ -154,7 +160,7 @@ using "Interrupt_SneakAttack"
 // data "DisplayName" "hd8a8ad84g4f65g46fdgb04dg5b91daf7f291;1"
 // // Deal extra damage to a foe you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against.
 // data "Description" "h23701712ge994g40bfga729g36dc38dc7c65;2"
-// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.
+// // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.
 data "Description" "h33bdc83bgfdaag4d6fga7bcg1c7a1c842aab;1"
 data "DescriptionParams" "LevelMapValue(SneakAttack);Distance(1.5);Distance(2)"
 // // You can also Sneak Attack targets &lt;LSTag Type="Status" Tooltip="FLANKED"&gt;Threatened&lt;/LSTag&gt; by adjacent allies provided you aren't attacking with &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;.

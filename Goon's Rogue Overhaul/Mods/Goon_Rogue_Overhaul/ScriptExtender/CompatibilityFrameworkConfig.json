@@ -42,8 +42,8 @@
       ]
     },
     {
-      "Comment": "Swashbuckler level 3: Don't want this removed anymore.",
-      "UUIDs": ["8a40ab89-549d-49c2-8fb5-7ba8215eeeca"],
+      "Comment": "Swashbuckler level 3 + Ruffian level 3: Don't want this removed anymore.",
+      "UUIDs": ["8a40ab89-549d-49c2-8fb5-7ba8215eeeca", "7205ae5b-ed1a-41d6-9d3d-9da39721e490"],
       "Strings": [
         {
           "Action": "Remove",

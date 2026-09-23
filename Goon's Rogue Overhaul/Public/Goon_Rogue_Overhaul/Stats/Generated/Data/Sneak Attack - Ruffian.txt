@@ -5,7 +5,7 @@ type "PassiveData"
 using "SneakAttack_LLRuffian"
 // data "Properties" "IsHidden"
 // data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack_Ruffian);UnlockInterrupt(Interrupt_SneakAttack_Ruffian_Critical);UnlockSpell(Projectile_SneakAttack);"
-data "Boosts" ""
+data "Boosts" "UnlockSpell(Projectile_SneakAttack)"
 
 // ==================================== Sneak Attack (Ruffian) - Spells
 

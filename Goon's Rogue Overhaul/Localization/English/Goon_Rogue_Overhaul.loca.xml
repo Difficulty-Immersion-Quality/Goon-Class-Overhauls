@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
-	<!-- "SneakAttack_Unlock" -->
+	<!-- "Goon_SneakAttack_Unlock" -->
 	<content contentuid="he443e59eg43feg4b6ag9f78gd4d616dcece8" version="1">Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.</content>
 	<content contentuid="h2c0763f5g9c76g4e82gb902geb39438b5a15" version="1">The extra damage increases by 1 die for every odd level you gain in this class.</content>
 	<!-- "RakishAudacity" -->

@@ -22,9 +22,14 @@
       "UUIDs": ["16f00e7f-12f6-4cff-b610-4ee738b02d62", "cd3d8b16-37ce-4107-a2e3-e729751c2b1c"],
       "Strings": [
         {
-          "Action": "Insert",
+          "Action": "Remove",
           "Type": "PassivesAdded",
           "Strings": ["SneakAttack_Unlock"]
+        },
+        {
+          "Action": "Insert",
+          "Type": "PassivesAdded",
+          "Strings": ["Goon_SneakAttack_Unlock"]
         }
       ]
     },
@@ -38,17 +43,6 @@
           "Params": {
             "Guid": "d84379aa-8bd1-41e5-a21c-242669151fae"
           }
-        }
-      ]
-    },
-    {
-      "Comment": "Swashbuckler level 3 + Ruffian level 3: Don't want this removed anymore.",
-      "UUIDs": ["8a40ab89-549d-49c2-8fb5-7ba8215eeeca", "7205ae5b-ed1a-41d6-9d3d-9da39721e490"],
-      "Strings": [
-        {
-          "Action": "Remove",
-          "Type": "PassivesRemoved",
-          "Strings": ["SneakAttack_Unlock"]
         }
       ]
     },

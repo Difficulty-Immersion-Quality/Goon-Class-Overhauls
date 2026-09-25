@@ -16,13 +16,8 @@
 // TODO: Offhand & throw spell variants, put them in a container.
 // TODO: It would be nice to filter druid shit by the actual DamageType on the actions, but it's unreliable. E.g. "Target_Claws" doesn't even change it from Bludgeoning to Slashing. (Fixed that in UNSO.)
 
-new entry "SneakAttack_Unlock"
+new entry "Goon_SneakAttack_Unlock"
 type "PassiveData"
-using "SneakAttack_Unlock"
-// // %%% Unlock Sneak Attack interrupt
-// data "DisplayName" "hc4558204g2c77g4b58gafb6g0ba6b3995c49;1"
-// // %%% Empty
-// data "DisplayName" "hda7154c9g13f4g4b24gbf26g96c03c4eb431;1"
 // // Sneak Attack
 data "DisplayName" "h961ba0c5g8bc0g4449g9543gb45a449a768c;1"
 // // Deal &lt;font color="#ffffff"&gt;[1] extra damage&lt;/font&gt; to a creature you have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; against, or if an ally who is not &lt;LSTag Type="Status" Tooltip="INCAPACITATED"&gt;Incapacitated&lt;/LSTag&gt; is within [2] of the target creature and you don't have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. The attack must use a &lt;LSTag Tooltip="Finesse"&gt;Finesse&lt;/LSTag&gt; or ranged weapon.
@@ -33,13 +28,22 @@ data "ExtraDescription" "h2c0763f5g9c76g4e82gb902geb39438b5a15;1"
 data "Icon" "Action_SneakAttack_Melee"
 // data "Properties" "IsHidden"
 data "Properties" "Highlighted"
-// data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_SneakAttack_Critical)"
-// data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_SneakAttack_Critical);UnlockSpell(Target_SneakAttack);UnlockSpell(Projectile_SneakAttack)"
 data "BoostContext" "OnCreate"
 data "BoostConditions" "not Goon_HasUniqueSneakAttack()"
 data "Boosts" "UnlockSpell(Target_SneakAttack);UnlockSpell(Projectile_SneakAttack)"
 data "StatsFunctorContext" "OnCreate"
-data "StatsFunctors" "IF(not HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK,100,-1);IF(HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_DWE,100,-1);IF(HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_RUFFIAN,100,-1);"
+data "StatsFunctors" "IF(not HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK,100,-1);IF(HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_DWE,100,-1);IF(HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_RUFFIAN,100,-1)"
+
+new entry "SneakAttack_Unlock"
+type "PassiveData"
+using "Goon_SneakAttack_Unlock"
+// // %%% Unlock Sneak Attack interrupt
+// data "DisplayName" "hc4558204g2c77g4b58gafb6g0ba6b3995c49;1"
+// // %%% Empty
+// data "DisplayName" "hda7154c9g13f4g4b24gbf26g96c03c4eb431;1"
+// data "Properties" "IsHidden"
+// data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_SneakAttack_Critical)"
+// data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_SneakAttack_Critical);UnlockSpell(Target_SneakAttack);UnlockSpell(Projectile_SneakAttack)"
 
 new entry "GOON_SNEAKATTACK_UNLOCK"
 type "StatusData"
@@ -49,7 +53,7 @@ data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_
 data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator;ApplyToDead;IgnoreResting"
 data "StatusGroups" "SG_RemoveOnRespec"
 data "RemoveEvents" "OnStatusApplied"
-data "RemoveConditions" "not HasPassive('SneakAttack_Unlock', context.Source)"
+data "RemoveConditions" "not HasPassive('Goon_SneakAttack_Unlock', context.Source) and not HasPassive('SneakAttack_Unlock', context.Source)"
 
 new entry "GOON_SNEAKATTACK_UNLOCK_DWE"
 type "StatusData"

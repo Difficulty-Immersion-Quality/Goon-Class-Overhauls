@@ -57,3 +57,18 @@ function IsSmiteSpells()
         --  | SpellId('Target_MAG_Smite_Wrathful')
         --  | SpellId('Target_StaggeringSmite')
 end
+
+-- ==================================== Other ====================================
+
+function Goon_IsNonHostileFiendOrUndead(entity, source)
+    entity = entity or context.Target
+    source = source or context.Source
+
+    if Self(entity, source).Result  then return ConditionResult(false) end
+    if Enemy(entity, source).Result then return ConditionResult(false) end
+
+    if Tagged('UNDEAD', entity).Result then return ConditionResult(true) end
+    if Tagged('FIEND', entity).Result  then return ConditionResult(true) end
+
+    return ConditionResult(false)
+end

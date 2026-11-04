@@ -2,11 +2,11 @@
 <contentList>
 <!-- ==================================== Aura of Hate ==================================== -->
 	<!-- "Shout_AuraOf_Hate" -->
-	<content contentuid="h78b5693cge759g4e86g8160gd23afbcaa0f8" version="1">You and allied fiends and undead within [1] deal additional damage equal to your &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons.</content>
+	<content contentuid="h78b5693cge759g4e86g8160gd23afbcaa0f8" version="1">You and non-hostile fiends and undead within [1] deal additional damage equal to your &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons and unarmed strikes.</content>
 	<!-- "AURA_OF_HATE" -->
-	<content contentuid="h8e371248gddd7g40dag8d49g785183b1f9eb" version="1">The paladin and allied fiends and undead within [1] deal additional damage equal to the paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons.</content>
+	<content contentuid="h8e371248gddd7g40dag8d49g785183b1f9eb" version="1">The paladin and non-hostile fiends and undead within [1] deal additional damage equal to the paladin's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons and unarmed strikes.</content>
 	<!-- "AURA_OF_HATE_BUFF" -->
-	<content contentuid="hb7b88a5bg94a0g459cga5e4gea0863985113" version="1">Deals additional damage equal to the caster's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons.</content>
+	<content contentuid="hb7b88a5bg94a0g459cga5e4gea0863985113" version="1">Deals additional damage equal to the caster's &lt;LSTag Tooltip="Charisma"&gt;Charisma&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityModifier"&gt;Modifier&lt;/LSTag&gt;, to a minimum of 1, with melee weapons and unarmed strikes.</content>
 
 <!-- ==================================== Divine Smite ==================================== -->
 	<!-- "ImprovedDivineSmite" -->

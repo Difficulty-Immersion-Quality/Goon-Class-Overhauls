@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<save>
+	<version major="4" minor="0" revision="9" build="328" />
+	<region id="SpellLists">
+		<node id="root">
+			<children>
+                <node id="SpellList">
+                    <attribute id="Name" type="FixedString" value="Rogue sneak attacks" />
+                    <!-- <attribute id="Spells" type="LSString" value="Target_SneakAttack;Projectile_SneakAttack" /> -->
+                    <attribute id="Spells" type="LSString" value="" />
+                    <attribute id="UUID" type="guid" value="d84379aa-8bd1-41e5-a21c-242669151fae" />
+                </node>
+			</children>
+		</node>
+	</region>
+</save>

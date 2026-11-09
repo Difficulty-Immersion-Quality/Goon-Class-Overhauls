@@ -3,6 +3,9 @@
 // Changes: All Way of Four Elements spells now require somatic and verbal components, unless the base spell being inherited also doesn't require them.
 // Changes: All Way of Four Elements spells now only have minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells. Additionally, Martial Arts: Unarmed Strike condition is applied via a hidden passive instead of SpellProperties to reduce the amount of mechanically important fields that need overwriting.
 // TODO: Test "VocalComponentSound" "Vocal_Component_Stop" removal.
+// TODO: Inheritance from Expansion for 7-9? It would make shit ugly for people not using it unless I made the 7-9 support more dynamic.
+// Note: Containers don't have IsSpell so it shows as a class action, which is preferable to it showing as a cantrip.
+// Note: Containers cannot inherit from the spells they contain, only container spells inheriting from the container is allowed.
 
 new entry "Goon_WayOfFourElementsSpellCast"
 type "PassiveData"
@@ -16,7 +19,7 @@ data "StatsFunctors" "ApplyStatus(MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 // Bug Fix: Now has a somatic component.
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
-// TODO: Upcasting.
+// Changes: Now has RAW upcasting.
 
 new entry "Projectile_BladeOfTheRime"
 type "SpellData"
@@ -25,6 +28,9 @@ data "SpellType" "Projectile"
 using "Projectile_IceKnife"
 // data "Level" "1" (Projectile_IceKnife)
 // data "Level" "" (Projectile_BladeOfTheRime)
+data "Level" ""
+data "PowerLevel" ""
+data "ContainerSpells" "Goon_Projectile_BladeOfTheRime;Goon_Projectile_BladeOfTheRime_2;Goon_Projectile_BladeOfTheRime_3;Goon_Projectile_BladeOfTheRime_4;Goon_Projectile_BladeOfTheRime_5;Goon_Projectile_BladeOfTheRime_6;Goon_Projectile_BladeOfTheRime_7;Goon_Projectile_BladeOfTheRime_8;Goon_Projectile_BladeOfTheRime_9"
 // data "SpellSchool" "Conjuration" (Projectile_IceKnife)
 // data "SpellSchool" "" (Projectile_BladeOfTheRime)
 // data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse);RemoveStatus(BURNING);GROUND:CreateSurface(2,2,WaterFrozen)" (Projectile_IceKnife)
@@ -55,10 +61,300 @@ data "SpellAnimation" "33be4e81-ccf5-42e4-8f21-2fa524b47f37,,;,,;11877b70-4549-4
 data "SpellStyleGroup" "Class"
 // data "SpellFlags" "HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_IceKnife)
 // data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_BladeOfTheRime)
+data "SpellFlags" "HasSomaticComponent;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;IsLinkedSpellContainer"
 // data "PrepareEffect" "ee97e6e4-90a1-4181-b7fa-f6fe8b2af2d0" (Projectile_IceKnife)
 data "PrepareEffect" "5a2ca077-dab5-4e00-bb02-85cb21ee349e"
 // data "CastEffect" "5c953997-0342-4865-bec2-414dccbd4588" (Projectile_IceKnife)
 data "CastEffect" "577d7896-70e2-419e-b4b9-33c03ecd8df1"
+
+new entry "Goon_Projectile_BladeOfTheRime"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Projectile_BladeOfTheRime"
+// data "Level" "1" (Projectile_IceKnife)
+// data "Level" "" (Projectile_BladeOfTheRime)
+data "Level" "1"
+data "SpellContainerID" "Projectile_BladeOfTheRime"
+// data "ContainerSpells" "Goon_Projectile_BladeOfTheRime;Goon_Projectile_BladeOfTheRime_2;Goon_Projectile_BladeOfTheRime_3;Goon_Projectile_BladeOfTheRime_4;Goon_Projectile_BladeOfTheRime_5;Goon_Projectile_BladeOfTheRime_6;Goon_Projectile_BladeOfTheRime_7;Goon_Projectile_BladeOfTheRime_8;Goon_Projectile_BladeOfTheRime_9" (Projectile_BladeOfTheRime)
+data "ContainerSpells" ""
+// data "SpellFlags" "HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_IceKnife)
+// data "SpellFlags" "HasSomaticComponent;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful;IsLinkedSpellContainer" (Projectile_BladeOfTheRime)
+data "SpellFlags" "HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful"
+
+new entry "Goon_Projectile_BladeOfTheRime_2"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_IceKnife_2"
+using "Projectile_IceKnife_2"
+// data "Level" "1" (Projectile_IceKnife)
+// data "Level" "" (Projectile_BladeOfTheRime)
+data "SpellContainerID" "Projectile_BladeOfTheRime"
+// data "RootSpellID" "Projectile_IceKnife" (Projectile_IceKnife_2)
+data "RootSpellID" ""
+// data "SpellSchool" "Conjuration" (Projectile_IceKnife)
+// data "SpellSchool" "" (Projectile_BladeOfTheRime)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse);RemoveStatus(BURNING);GROUND:CreateSurface(2,2,WaterFrozen)" (Projectile_IceKnife)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_BladeOfTheRime)
+// data "Trajectories" "9a2a98bc-91aa-44fe-8c20-bc63264547a2" (Projectile_IceKnife)
+data "Trajectories" "086f7395-9d32-4e27-92f1-9db66a1ab1c9"
+// data "Icon" "Spell_Conjuration_IceKnife" (Projectile_IceKnife & Projectile_BladeOfTheRime)
+// // Ice Knife
+// data "DisplayName" "hce888eb5g91eeg4feegafa5g87801fc112e8;1" (Projectile_IceKnife_2)
+// // Blade of Rime
+data "DisplayName" "hf04d6f71gca7fg42aega6c5g478aafbb6551;2"
+// // Throw a shard of ice that deals [1]. It explodes and deals [2] to anyone nearby. It leaves an ice surface.
+// data "Description" "h90563be4g32b9g438bg82fcgdf3a614322ed;1" (Projectile_IceKnife_2)
+// // This spell can be cast while you are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt;.
+// data "ExtraDescription" "h5c60ab45gedc0g449egb4a3gdc36999cd923;1" (Projectile_IceKnife_2)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_IceKnife_L1to3" (Projectile_IceKnife)
+data "CastSound" "Spell_Cast_Monk_BladeoftheRime_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:2" (Projectile_IceKnife_2)
+data "UseCosts" "ActionPoint:1;KiPoint:3"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(3)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;b9bf0c36-7d07-472d-b5cc-82b0b4911e99,,;f1fe3ffe-9aec-445b-9473-0d7900b85550,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_IceKnife)
+data "SpellAnimation" "33be4e81-ccf5-42e4-8f21-2fa524b47f37,,;,,;11877b70-4549-43cd-88ad-45af4313c091,,;71063f81-0c5e-4c4d-9152-72d87b1566c9,,;d92db159-23c8-4bdb-8858-e6a0c481b818,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_IceKnife)
+// data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_BladeOfTheRime)
+// data "PowerLevel" "2" (Projectile_IceKnife_2)
+// data "PrepareEffect" "ee97e6e4-90a1-4181-b7fa-f6fe8b2af2d0" (Projectile_IceKnife)
+data "PrepareEffect" "5a2ca077-dab5-4e00-bb02-85cb21ee349e"
+// data "CastEffect" "5c953997-0342-4865-bec2-414dccbd4588" (Projectile_IceKnife)
+data "CastEffect" "577d7896-70e2-419e-b4b9-33c03ecd8df1"
+
+new entry "Goon_Projectile_BladeOfTheRime_3"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_IceKnife_3"
+using "Projectile_IceKnife_3"
+// data "Level" "1" (Projectile_IceKnife)
+// data "Level" "" (Projectile_BladeOfTheRime)
+data "SpellContainerID" "Projectile_BladeOfTheRime"
+// data "RootSpellID" "Projectile_IceKnife" (Projectile_IceKnife_3)
+data "RootSpellID" ""
+// data "SpellSchool" "Conjuration" (Projectile_IceKnife)
+// data "SpellSchool" "" (Projectile_BladeOfTheRime)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse);RemoveStatus(BURNING);GROUND:CreateSurface(2,2,WaterFrozen)" (Projectile_IceKnife)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_BladeOfTheRime)
+// data "Trajectories" "9a2a98bc-91aa-44fe-8c20-bc63264547a2" (Projectile_IceKnife)
+data "Trajectories" "086f7395-9d32-4e27-92f1-9db66a1ab1c9"
+// data "Icon" "Spell_Conjuration_IceKnife" (Projectile_IceKnife & Projectile_BladeOfTheRime)
+// // Ice Knife
+// data "DisplayName" "h0dff1d82g0b9dg43e7ga66eg1790ddb26a63;1" (Projectile_IceKnife_3)
+// // Blade of Rime
+data "DisplayName" "hf04d6f71gca7fg42aega6c5g478aafbb6551;2"
+// // Throw a shard of ice that deals [1]. It explodes and deals [2] to anyone nearby. It leaves an ice surface.
+// data "Description" "h546fb904ge766g4a07g9274g3cac64968911;1" (Projectile_IceKnife_3)
+// // This spell can be cast while you are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt;.
+// data "ExtraDescription" "hed455520g733bg4738gb6a0gf56b46e6df52;1" (Projectile_IceKnife_3)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_IceKnife_L1to3" (Projectile_IceKnife)
+data "CastSound" "Spell_Cast_Monk_BladeoftheRime_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:3" (Projectile_IceKnife_3)
+data "UseCosts" "ActionPoint:1;KiPoint:4"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(4)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;b9bf0c36-7d07-472d-b5cc-82b0b4911e99,,;f1fe3ffe-9aec-445b-9473-0d7900b85550,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_IceKnife)
+data "SpellAnimation" "33be4e81-ccf5-42e4-8f21-2fa524b47f37,,;,,;11877b70-4549-43cd-88ad-45af4313c091,,;71063f81-0c5e-4c4d-9152-72d87b1566c9,,;d92db159-23c8-4bdb-8858-e6a0c481b818,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_IceKnife)
+// data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_BladeOfTheRime)
+// data "PowerLevel" "3" (Projectile_IceKnife_3)
+// data "PrepareEffect" "ee97e6e4-90a1-4181-b7fa-f6fe8b2af2d0" (Projectile_IceKnife)
+data "PrepareEffect" "5a2ca077-dab5-4e00-bb02-85cb21ee349e"
+// data "CastEffect" "5c953997-0342-4865-bec2-414dccbd4588" (Projectile_IceKnife)
+data "CastEffect" "577d7896-70e2-419e-b4b9-33c03ecd8df1"
+
+new entry "Goon_Projectile_BladeOfTheRime_4"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_IceKnife_4"
+using "Projectile_IceKnife_4"
+// data "Level" "1" (Projectile_IceKnife)
+// data "Level" "" (Projectile_BladeOfTheRime)
+data "SpellContainerID" "Projectile_BladeOfTheRime"
+// data "RootSpellID" "Projectile_IceKnife" (Projectile_IceKnife_4)
+data "RootSpellID" ""
+// data "SpellSchool" "Conjuration" (Projectile_IceKnife)
+// data "SpellSchool" "" (Projectile_BladeOfTheRime)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse);RemoveStatus(BURNING);GROUND:CreateSurface(2,2,WaterFrozen)" (Projectile_IceKnife)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_BladeOfTheRime)
+// data "Trajectories" "9a2a98bc-91aa-44fe-8c20-bc63264547a2" (Projectile_IceKnife)
+data "Trajectories" "086f7395-9d32-4e27-92f1-9db66a1ab1c9"
+// data "Icon" "Spell_Conjuration_IceKnife" (Projectile_IceKnife & Projectile_BladeOfTheRime)
+// // Ice Knife
+// data "DisplayName" "h2be319c1g21eeg453egbd27gd3daf138208c;1" (Projectile_IceKnife_4)
+// // Blade of Rime
+data "DisplayName" "hf04d6f71gca7fg42aega6c5g478aafbb6551;2"
+// // Throw a shard of ice that deals [1]. It explodes and deals [2] to anyone nearby. It leaves an ice surface.
+// data "Description" "hd6659ce3g1568g4822ga800g8be6c622fb6b;1" (Projectile_IceKnife_4)
+// // This spell can be cast while you are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt;.
+// data "ExtraDescription" "h2225edaaga43fg4501g9db2g8eaf073a13cf;1" (Projectile_IceKnife_4)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_IceKnife_L1to3" (Projectile_IceKnife)
+data "CastSound" "Spell_Cast_Monk_BladeoftheRime_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:4" (Projectile_IceKnife_4)
+data "UseCosts" "ActionPoint:1;KiPoint:5"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(5)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;b9bf0c36-7d07-472d-b5cc-82b0b4911e99,,;f1fe3ffe-9aec-445b-9473-0d7900b85550,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_IceKnife)
+data "SpellAnimation" "33be4e81-ccf5-42e4-8f21-2fa524b47f37,,;,,;11877b70-4549-43cd-88ad-45af4313c091,,;71063f81-0c5e-4c4d-9152-72d87b1566c9,,;d92db159-23c8-4bdb-8858-e6a0c481b818,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_IceKnife)
+// data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_BladeOfTheRime)
+// data "PowerLevel" "4" (Projectile_IceKnife_4)
+// data "PrepareEffect" "ee97e6e4-90a1-4181-b7fa-f6fe8b2af2d0" (Projectile_IceKnife)
+data "PrepareEffect" "5a2ca077-dab5-4e00-bb02-85cb21ee349e"
+// data "CastEffect" "5c953997-0342-4865-bec2-414dccbd4588" (Projectile_IceKnife)
+data "CastEffect" "577d7896-70e2-419e-b4b9-33c03ecd8df1"
+
+new entry "Goon_Projectile_BladeOfTheRime_5"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_IceKnife_5"
+using "Projectile_IceKnife_5"
+// data "Level" "1" (Projectile_IceKnife)
+// data "Level" "" (Projectile_BladeOfTheRime)
+data "SpellContainerID" "Projectile_BladeOfTheRime"
+// data "RootSpellID" "Projectile_IceKnife" (Projectile_IceKnife_5)
+data "RootSpellID" ""
+// data "SpellSchool" "Conjuration" (Projectile_IceKnife)
+// data "SpellSchool" "" (Projectile_BladeOfTheRime)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse);RemoveStatus(BURNING);GROUND:CreateSurface(2,2,WaterFrozen)" (Projectile_IceKnife)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_BladeOfTheRime)
+// data "Trajectories" "9a2a98bc-91aa-44fe-8c20-bc63264547a2" (Projectile_IceKnife)
+data "Trajectories" "086f7395-9d32-4e27-92f1-9db66a1ab1c9"
+// data "Icon" "Spell_Conjuration_IceKnife" (Projectile_IceKnife & Projectile_BladeOfTheRime)
+// // Ice Knife
+// data "DisplayName" "h685c0d26g2514g4582g89f4gedf1563d86e4;1" (Projectile_IceKnife_5)
+// // Blade of Rime
+data "DisplayName" "hf04d6f71gca7fg42aega6c5g478aafbb6551;2"
+// // Throw a shard of ice that deals [1]. It explodes and deals [2] to anyone nearby. It leaves an ice surface.
+// data "Description" "h1a711eb0g570cg47a6ga4begecc14b7a5fea;1" (Projectile_IceKnife_5)
+// // This spell can be cast while you are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt;.
+// data "ExtraDescription" "h06bc2865g5ea7g4f38g9289gb52cc99523d7;1" (Projectile_IceKnife_5)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_IceKnife_L1to3" (Projectile_IceKnife)
+data "CastSound" "Spell_Cast_Monk_BladeoftheRime_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:5" (Projectile_IceKnife_5)
+data "UseCosts" "ActionPoint:1;KiPoint:6"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(6)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;b9bf0c36-7d07-472d-b5cc-82b0b4911e99,,;f1fe3ffe-9aec-445b-9473-0d7900b85550,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_IceKnife)
+data "SpellAnimation" "33be4e81-ccf5-42e4-8f21-2fa524b47f37,,;,,;11877b70-4549-43cd-88ad-45af4313c091,,;71063f81-0c5e-4c4d-9152-72d87b1566c9,,;d92db159-23c8-4bdb-8858-e6a0c481b818,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_IceKnife)
+// data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_BladeOfTheRime)
+// data "PowerLevel" "5" (Projectile_IceKnife_5)
+// data "PrepareEffect" "ee97e6e4-90a1-4181-b7fa-f6fe8b2af2d0" (Projectile_IceKnife)
+data "PrepareEffect" "5a2ca077-dab5-4e00-bb02-85cb21ee349e"
+// data "CastEffect" "5c953997-0342-4865-bec2-414dccbd4588" (Projectile_IceKnife)
+data "CastEffect" "577d7896-70e2-419e-b4b9-33c03ecd8df1"
+
+new entry "Goon_Projectile_BladeOfTheRime_6"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_IceKnife_6"
+using "Projectile_IceKnife_6"
+// data "Level" "1" (Projectile_IceKnife)
+// data "Level" "" (Projectile_BladeOfTheRime)
+data "SpellContainerID" "Projectile_BladeOfTheRime"
+// data "RootSpellID" "Projectile_IceKnife" (Projectile_IceKnife_6)
+data "RootSpellID" ""
+// data "SpellSchool" "Conjuration" (Projectile_IceKnife)
+// data "SpellSchool" "" (Projectile_BladeOfTheRime)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse);RemoveStatus(BURNING);GROUND:CreateSurface(2,2,WaterFrozen)" (Projectile_IceKnife)
+// data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:CreateSurface(2,2,WaterFrozen);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_BladeOfTheRime)
+// data "Trajectories" "9a2a98bc-91aa-44fe-8c20-bc63264547a2" (Projectile_IceKnife)
+data "Trajectories" "086f7395-9d32-4e27-92f1-9db66a1ab1c9"
+// data "Icon" "Spell_Conjuration_IceKnife" (Projectile_IceKnife & Projectile_BladeOfTheRime)
+// // Ice Knife
+// data "DisplayName" "hac936162g59f3g45daga814g2d6ccee0cabf;1" (Projectile_IceKnife_6)
+// // Blade of Rime
+data "DisplayName" "hf04d6f71gca7fg42aega6c5g478aafbb6551;2"
+// // Throw a shard of ice that deals [1]. It explodes and deals [2] to anyone nearby. It leaves an ice surface.
+// data "Description" "ha9eaf87dg03fbg4916gb6e2g0ac20e359662;1" (Projectile_IceKnife_6)
+// // This spell can be cast while you are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt;.
+// data "ExtraDescription" "hcece42b8g114fg4f15ga334g95dba7839597;1" (Projectile_IceKnife_6)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_IceKnife_L1to3" (Projectile_IceKnife)
+data "CastSound" "Spell_Cast_Monk_BladeoftheRime_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:6" (Projectile_IceKnife_6)
+data "UseCosts" "ActionPoint:1;KiPoint:7"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(7)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;b9bf0c36-7d07-472d-b5cc-82b0b4911e99,,;f1fe3ffe-9aec-445b-9473-0d7900b85550,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_IceKnife)
+data "SpellAnimation" "33be4e81-ccf5-42e4-8f21-2fa524b47f37,,;,,;11877b70-4549-43cd-88ad-45af4313c091,,;71063f81-0c5e-4c4d-9152-72d87b1566c9,,;d92db159-23c8-4bdb-8858-e6a0c481b818,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasSomaticComponent;IsSpell;HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_IceKnife)
+// data "SpellFlags" "HasHighGroundRangeExtension;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_BladeOfTheRime)
+// data "PowerLevel" "6" (Projectile_IceKnife_6)
+// data "PrepareEffect" "ee97e6e4-90a1-4181-b7fa-f6fe8b2af2d0" (Projectile_IceKnife)
+data "PrepareEffect" "5a2ca077-dab5-4e00-bb02-85cb21ee349e"
+// data "CastEffect" "5c953997-0342-4865-bec2-414dccbd4588" (Projectile_IceKnife)
+data "CastEffect" "577d7896-70e2-419e-b4b9-33c03ecd8df1"
+
+new entry "Goon_Projectile_BladeOfTheRime_7"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Goon_Projectile_BladeOfTheRime_6"
+// data "SpellSuccess" "TARGET:DealDamage(1d10,Piercing);TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(7d6, Cold,Magical)" (Projectile_IceKnife_6)
+data "SpellSuccess" "TARGET:DealDamage(1d10,Piercing);TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(8d6, Cold,Magical)"
+// data "SpellFail" "TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(7d6, Cold,Magical)" (Projectile_IceKnife_6)
+data "SpellFail" "TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(8d6, Cold,Magical)"
+// data "DescriptionParams" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "DescriptionParams" "DealDamage(1d10,Piercing);DealDamage(8d6,Cold)"
+// data "ExtraDescriptionParams" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "ExtraDescriptionParams" "DealDamage(1d10,Piercing);DealDamage(8d6,Cold)"
+// data "TooltipDamageList" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "TooltipDamageList" "DealDamage(1d10,Piercing);DealDamage(8d6,Cold)"
+// data "UseCosts" "ActionPoint:1;KiPoint:7" (Goon_Projectile_BladeOfTheRime_6)
+data "UseCosts" "ActionPoint:1;KiPoint:8"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(8)"
+// data "PowerLevel" "6" (Projectile_IceKnife_6)
+data "PowerLevel" "7"
+
+new entry "Goon_Projectile_BladeOfTheRime_8"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Goon_Projectile_BladeOfTheRime_6"
+// data "SpellSuccess" "TARGET:DealDamage(1d10,Piercing);TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(7d6, Cold,Magical)" (Projectile_IceKnife_6)
+data "SpellSuccess" "TARGET:DealDamage(1d10,Piercing);TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(9d6, Cold,Magical)"
+// data "SpellFail" "TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(7d6, Cold,Magical)" (Projectile_IceKnife_6)
+data "SpellFail" "TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(9d6, Cold,Magical)"
+// data "DescriptionParams" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "DescriptionParams" "DealDamage(1d10,Piercing);DealDamage(9d6,Cold)"
+// data "ExtraDescriptionParams" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "ExtraDescriptionParams" "DealDamage(1d10,Piercing);DealDamage(9d6,Cold)"
+// data "TooltipDamageList" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "TooltipDamageList" "DealDamage(1d10,Piercing);DealDamage(9d6,Cold)"
+// data "UseCosts" "ActionPoint:1;KiPoint:7" (Goon_Projectile_BladeOfTheRime_6)
+data "UseCosts" "ActionPoint:1;KiPoint:9"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(9)"
+// data "PowerLevel" "6" (Projectile_IceKnife_6)
+data "PowerLevel" "8"
+
+new entry "Goon_Projectile_BladeOfTheRime_9"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Goon_Projectile_BladeOfTheRime_6"
+// data "SpellSuccess" "TARGET:DealDamage(1d10,Piercing);TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(7d6, Cold,Magical)" (Projectile_IceKnife_6)
+data "SpellSuccess" "TARGET:DealDamage(1d10,Piercing);TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(10d6, Cold,Magical)"
+// data "SpellFail" "TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(7d6, Cold,Magical)" (Projectile_IceKnife_6)
+data "SpellFail" "TARGET:AOE:IF(not SavingThrow(Ability.Dexterity, SourceSpellDC())):DealDamage(10d6, Cold,Magical)"
+// data "DescriptionParams" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "DescriptionParams" "DealDamage(1d10,Piercing);DealDamage(10d6,Cold)"
+// data "ExtraDescriptionParams" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "ExtraDescriptionParams" "DealDamage(1d10,Piercing);DealDamage(10d6,Cold)"
+// data "TooltipDamageList" "DealDamage(1d10,Piercing);DealDamage(7d6,Cold)" (Projectile_IceKnife_6)
+data "TooltipDamageList" "DealDamage(1d10,Piercing);DealDamage(10d6,Cold)"
+// data "UseCosts" "ActionPoint:1;KiPoint:7" (Goon_Projectile_BladeOfTheRime_6)
+data "UseCosts" "ActionPoint:1;KiPoint:10"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(10)"
+// data "PowerLevel" "6" (Projectile_IceKnife_6)
+data "PowerLevel" "9"
 
 // ==================================== Chill of the Mountain ====================================
 // Bug Fix: Now douses surfaces.

@@ -361,6 +361,7 @@ data "PowerLevel" "9"
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
 // Changes: Now flagged as having a verbal component.
+// Changes: Damage is now 1d8 instead of 1d10 (or the same as Ray of Frost), and it scales the same as other cantrips instead of increasing to 2d10 at level 9.
 
 new entry "Projectile_RayOfFrost_Monk"
 type "SpellData"
@@ -372,7 +373,7 @@ using "Projectile_RayOfFrost"
 // data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse)" (Projectile_RayOfFrost)
 // data "SpellProperties" "GROUND:SurfaceChange(Freeze);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_RayOfFrost_Monk)
 // data "SpellSuccess" "DealDamage(LevelMapValue(D8Cantrip),Cold,Magical);ApplyStatus(RAY_OF_FROST,100,1)" (Projectile_RayOfFrost)
-data "SpellSuccess" "DealDamage(LevelMapValue(RayOfFrost_Monk),Cold,Magical);ApplyStatus(RAY_OF_FROST,100,1)"
+// data "SpellSuccess" "DealDamage(LevelMapValue(RayOfFrost_Monk),Cold,Magical);ApplyStatus(RAY_OF_FROST,100,1)" (Projectile_RayOfFrost_Monk)
 // data "Trajectories" "47ac1e9a-3b62-4010-bde9-0dc602edd114" (Projectile_RayOfFrost)
 data "Trajectories" "2aefac3d-6d62-48cf-8a38-c798ef7bca41"
 // // Ray of Frost
@@ -384,7 +385,7 @@ data "DisplayName" "he665a132g2048g43bdga4e4gce2bbfba80f6;2"
 // // Call forth the cold mountain winds and reduce the target's &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; by [1].
 data "Description" "hfd677da6gb613g4624g8edeg15ec661985f7;2"
 // data "TooltipDamageList" "DealDamage(LevelMapValue(D8Cantrip),Cold)" (Projectile_RayOfFrost)
-data "TooltipDamageList" "DealDamage(LevelMapValue(RayOfFrost_Monk),Cold)"
+// data "TooltipDamageList" "DealDamage(LevelMapValue(RayOfFrost_Monk),Cold)" (Projectile_RayOfFrost_Monk)
 data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Ice_RayOfFrost_L0" (Projectile_RayOfFrost)
 data "CastSound" "Spell_Cast_Monk_ChilloftheMountain_L1to3"

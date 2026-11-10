@@ -1191,7 +1191,7 @@ data "Boosts" "IF(Goon_IsAttackUsingMeleeWeapon()):CharacterWeaponDamage(1d4,Fir
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
 // Changes: Now flagged as having a verbal component.
-// TODO: Upcasting.
+// Changes: Now has RAW upcasting. Damage now scales through upcasting instead of Monk level.
 
 new entry "Zone_Thunderwave_Monk"
 type "SpellData"
@@ -1200,11 +1200,13 @@ data "SpellType" "Zone"
 using "Zone_Thunderwave"
 // data "Level" "1" (Zone_Thunderwave)
 // data "Level" "" (Zone_Thunderwave_Monk)
+data "Level" ""
+data "PowerLevel" ""
+data "ContainerSpells" "Goon_Zone_Thunderwave_Monk;Goon_Zone_Thunderwave_Monk_2;Goon_Zone_Thunderwave_Monk_3;Goon_Zone_Thunderwave_Monk_4;Goon_Zone_Thunderwave_Monk_5;Goon_Zone_Thunderwave_Monk_6;Goon_Zone_Thunderwave_Monk_7;Goon_Zone_Thunderwave_Monk_8;Goon_Zone_Thunderwave_Monk_9"
 // data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Zone_Thunderwave_Monk)
 // data "SpellSuccess" "DealDamage(2d8,Thunder,Magical);Force(8, OriginToTarget)" (Zone_Thunderwave)
-data "SpellSuccess" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder,Magical);Force(8, OriginToTarget)"
+// data "SpellFail" "DealDamage((LevelMapValue(Thunderwave_Monk))/2,Thunder,Magical);" (Zone_Thunderwave_Monk)
 // data "SpellFail" "DealDamage((2d8)/2,Thunder,Magical);" (Zone_Thunderwave)
-data "SpellFail" "DealDamage((LevelMapValue(Thunderwave_Monk))/2,Thunder,Magical);"
 // // Thunderwave
 // data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
 // // Fist of Four Thunders
@@ -1213,7 +1215,7 @@ data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
 // data "Description" "hb9f84afcgb059g4e4eg9d82g612350b77b2c;12" (Zone_Thunderwave)
 // data "Description" "h1780b369gb2c3g4bbagb0c5ga163962737e3;2" (Zone_Thunderwave_Monk)
 // data "TooltipDamageList" "DealDamage(2d8,Thunder)" (Zone_Thunderwave)
-data "TooltipDamageList" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder)"
+// data "TooltipDamageList" "DealDamage(LevelMapValue(Thunderwave_Monk),Thunder)" (Zone_Thunderwave_Monk)
 // data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
 data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
@@ -1226,6 +1228,279 @@ data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4
 data "SpellStyleGroup" "Class"
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
 // data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;AddFallDamageOnLand;IsHarmful;IsLinkedSpellContainer"
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
+
+new entry "Goon_Zone_Thunderwave_Monk"
+type "SpellData"
+data "SpellType" "Zone"
+using "Zone_Thunderwave_Monk"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "Level" "1"
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "ContainerSpells" "Goon_Zone_Thunderwave_Monk;Goon_Zone_Thunderwave_Monk_2;Goon_Zone_Thunderwave_Monk_3;Goon_Zone_Thunderwave_Monk_4;Goon_Zone_Thunderwave_Monk_5;Goon_Zone_Thunderwave_Monk_6;Goon_Zone_Thunderwave_Monk_7;Goon_Zone_Thunderwave_Monk_8;Goon_Zone_Thunderwave_Monk_9" (Zone_Thunderwave_Monk)
+data "ContainerSpells" ""
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;AddFallDamageOnLand;IsHarmful;IsLinkedSpellContainer" (Zone_Thunderwave_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful"
+
+new entry "Goon_Zone_Thunderwave_Monk_2"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Thunderwave_2"
+using "Zone_Thunderwave_2"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "RootSpellID" "Zone_Thunderwave" (Zone_Thunderwave_2)
+data "RootSpellID" ""
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
+// // Fist of Four Thunders
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:2" (Zone_Thunderwave_2)
+data "UseCosts" "ActionPoint:1;KiPoint:3"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(3)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "PowerLevel" "2" (Zone_Thunderwave_2)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
+
+new entry "Goon_Zone_Thunderwave_Monk_3"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Thunderwave_3"
+using "Zone_Thunderwave_3"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "RootSpellID" "Zone_Thunderwave" (Zone_Thunderwave_3)
+data "RootSpellID" ""
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
+// // Fist of Four Thunders
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:3" (Zone_Thunderwave_3)
+data "UseCosts" "ActionPoint:1;KiPoint:4"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(4)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "PowerLevel" "3" (Zone_Thunderwave_3)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
+// data "TargetEffect" "154802bd-3dae-4bdc-9889-4addfdc0ca57" (Zone_Thunderwave_3)
+
+new entry "Goon_Zone_Thunderwave_Monk_4"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Thunderwave_4"
+using "Zone_Thunderwave_4"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "RootSpellID" "Zone_Thunderwave" (Zone_Thunderwave_4)
+data "RootSpellID" ""
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
+// // Fist of Four Thunders
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:4" (Zone_Thunderwave_4)
+data "UseCosts" "ActionPoint:1;KiPoint:5"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(5)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "PowerLevel" "4" (Zone_Thunderwave_4)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
+// data "TargetEffect" "154802bd-3dae-4bdc-9889-4addfdc0ca57" (Zone_Thunderwave_4)
+
+new entry "Goon_Zone_Thunderwave_Monk_5"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Thunderwave_5"
+using "Zone_Thunderwave_5"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "RootSpellID" "Zone_Thunderwave" (Zone_Thunderwave_5)
+data "RootSpellID" ""
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
+// // Fist of Four Thunders
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:5" (Zone_Thunderwave_5)
+data "UseCosts" "ActionPoint:1;KiPoint:6"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(6)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "PowerLevel" "5" (Zone_Thunderwave_5)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
+
+new entry "Goon_Zone_Thunderwave_Monk_6"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Thunderwave_6"
+using "Zone_Thunderwave_6"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "RootSpellID" "Zone_Thunderwave" (Zone_Thunderwave_6)
+data "RootSpellID" ""
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
+// // Fist of Four Thunders
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:6" (Zone_Thunderwave_6)
+data "UseCosts" "ActionPoint:1;KiPoint:7"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(7)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "PowerLevel" "6" (Zone_Thunderwave_6)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
+
+new entry "Goon_Zone_Thunderwave_Monk_7"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Thunderwave_7"
+using "Zone_Thunderwave_7"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "RootSpellID" "Zone_Thunderwave" (Zone_Thunderwave_7)
+data "RootSpellID" ""
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
+// // Fist of Four Thunders
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:7" (Zone_Thunderwave_7)
+data "UseCosts" "ActionPoint:1;KiPoint:8"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(8)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "PowerLevel" "7" (Zone_Thunderwave_7)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
+
+new entry "Goon_Zone_Thunderwave_Monk_8"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Thunderwave_8"
+using "Zone_Thunderwave_8"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "RootSpellID" "Zone_Thunderwave" (Zone_Thunderwave_8)
+data "RootSpellID" ""
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
+// // Fist of Four Thunders
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:8" (Zone_Thunderwave_8)
+data "UseCosts" "ActionPoint:1;KiPoint:9"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(9)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "PowerLevel" "8" (Zone_Thunderwave_8)
+// data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
+data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
+// data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)
+data "CastEffect" "2571b33b-1ec3-4c9d-8e5f-ef9bf9db501d"
+
+new entry "Goon_Zone_Thunderwave_Monk_9"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_Thunderwave_9"
+using "Zone_Thunderwave_9"
+// data "Level" "1" (Zone_Thunderwave)
+// data "Level" "" (Zone_Thunderwave_Monk)
+data "SpellContainerID" "Zone_Thunderwave_Monk"
+// data "RootSpellID" "Zone_Thunderwave" (Zone_Thunderwave_9)
+data "RootSpellID" ""
+// // Thunderwave
+// data "DisplayName" "h40c21f52g0271g4082g8742gba105f44c91d;1" (Zone_Thunderwave)
+// // Fist of Four Thunders
+data "DisplayName" "hd3e28c15gfb0fg42d1g98e1gf65e6d78ce6a;2"
+// data "PrepareSound" "Spell_Prepare_Damage_Thunder_Gen_L1to3" (Zone_Thunderwave)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Thunder_Thunderwave_L1to3_01" (Zone_Thunderwave)
+data "CastSound" "Spell_Cast_Monk_FistofFourThunders_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:9" (Zone_Thunderwave_9)
+data "UseCosts" "ActionPoint:1;KiPoint:10"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(10)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_Thunderwave)
+data "SpellAnimation" "32456253-9787-49c8-9775-4cd93d602f05,,;,,;9f3b2b6f-433c-4dd5-9be1-2874cba6c1be,,;c3fb6016-8964-4756-82f9-7045c9928917,,;5c9e3bb0-8963-4cc3-aa24-c0ba1c49494b,,;,,;c79f1495-5c5c-4e22-bed4-38beb3779b23,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand;IsHarmful" (Zone_Thunderwave)
+// data "PowerLevel" "9" (Zone_Thunderwave_9)
 // data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_Thunderwave)
 data "PrepareEffect" "e24845e1-b6cf-49fe-bd74-f4d6a3067be3"
 // data "CastEffect" "9c6f07ae-dd92-4e02-aa30-730644cd0d1d" (Zone_Thunderwave)

@@ -32,7 +32,7 @@ data "BoostContext" "OnCreate"
 data "BoostConditions" "not Goon_HasUniqueSneakAttack()"
 data "Boosts" "UnlockSpell(Target_SneakAttack);UnlockSpell(Projectile_SneakAttack)"
 data "StatsFunctorContext" "OnCreate"
-data "StatsFunctors" "IF(not HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK,100,-1);IF(HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_DWE,100,-1);IF(HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_RUFFIAN,100,-1)"
+data "StatsFunctors" "IF(not HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttackSwitch', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK,100,-1);IF(HasPassive('DWE_SneakAttack', context.Source) and not HasPassive('SneakAttackSwitch', context.Source) and not HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_DWE,100,-1);IF(HasPassive('SneakAttack_LLRuffian', context.Source)):ApplyStatus(GOON_SNEAKATTACK_UNLOCK_RUFFIAN,100,-1)"
 
 new entry "SneakAttack_Unlock"
 type "PassiveData"
@@ -53,19 +53,21 @@ data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack);UnlockInterrupt(Interrupt_
 data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator;ApplyToDead;IgnoreResting"
 data "StatusGroups" "SG_RemoveOnRespec"
 data "RemoveEvents" "OnStatusApplied"
-data "RemoveConditions" "not HasPassive('Goon_SneakAttack_Unlock', context.Source) and not HasPassive('SneakAttack_Unlock', context.Source)"
+data "RemoveConditions" "(not HasPassive('Goon_SneakAttack_Unlock', context.Source) and not HasPassive('SneakAttack_Unlock', context.Source)) or (HasPassive('DWE_SneakAttack', context.Source) or HasPassive('SneakAttackSwitch', context.Source) or HasPassive('SneakAttack_LLRuffian', context.Source))"
 
 new entry "GOON_SNEAKATTACK_UNLOCK_DWE"
 type "StatusData"
 data "StatusType" "BOOST"
 using "GOON_SNEAKATTACK_UNLOCK"
 data "Boosts" "UnlockInterrupt(Interrupt_DWE_SneakAttack);UnlockInterrupt(Goon_Interrupt_DWE_SneakAttack_Critical)"
+data "RemoveConditions" "(not HasPassive('Goon_SneakAttack_Unlock', context.Source) and not HasPassive('SneakAttack_Unlock', context.Source)) or (HasPassive('SneakAttackSwitch', context.Source) or HasPassive('SneakAttack_LLRuffian', context.Source))"
 
 new entry "GOON_SNEAKATTACK_UNLOCK_RUFFIAN"
 type "StatusData"
 data "StatusType" "BOOST"
 using "GOON_SNEAKATTACK_UNLOCK"
 data "Boosts" "UnlockInterrupt(Interrupt_SneakAttack_Ruffian);UnlockInterrupt(Interrupt_SneakAttack_Ruffian_Critical)"
+data "RemoveConditions" "(not HasPassive('Goon_SneakAttack_Unlock', context.Source) and not HasPassive('SneakAttack_Unlock', context.Source)) or HasPassive('SneakAttackSwitch', context.Source)"
 
 // ==================================== Sneak Attack - Spells
 

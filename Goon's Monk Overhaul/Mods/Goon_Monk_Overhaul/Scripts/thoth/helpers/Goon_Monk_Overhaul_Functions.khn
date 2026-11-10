@@ -1,5 +1,5 @@
 -- ==================================== IsCantrip ====================================
--- Changes: Removed blacklist on KiPoints so Chill of the Mountain (Ray of Frost) and Touch of the Storm (Shocking Graps) function with the function.
+-- Changes: Removed blacklist on KiPoints so Chill of the Mountain (Ray of Frost) and Touch of the Storm (Shocking Grasp) function with the function.
 -- Changes: Made more performant.
 
 -- function IsCantrip()
@@ -40,11 +40,11 @@ end
 -- Math is yucky, imagine being a Neil deGrasse Tyson or some shit. Couldn't be me.
 -- TODO: Figure out if there's a way to get this ConditionError bussin fr. Currently aint populating the tooltip with jack shit despite being functional.
 
-function Goon_FourElementsKiUpcastCheck(kiCost, entity)
-    local entity = entity or context.Source
+function Goon_FourElementsKiUpcastCheck(kiCost, source)
+    source = source or context.Source
 
     local requiredLevel = 5 + (kiCost - 3) * 4
-    local errorFalse = {ConditionError("Goon_CanNotSpendKiOnElementalDiscipline", {ConditionErrorData.MakeFromNumber(requiredLevel, EErrorDataType.SimpleNumber)})}
+    if ClassLevelHigherOrEqualThan(requiredLevel, 'Monk', source).Result then return ConditionResult(true) end
 
-    return ConditionResult(ClassLevelHigherOrEqualThan(requiredLevel, 'Monk', entity).Result, errorFalse)
+    return ConditionResult(false, {ConditionError("Goon_CanNotSpendKiOnElementalDiscipline", {ConditionErrorData.MakeFromNumber(requiredLevel, EErrorDataType.SimpleNumber)})})
 end

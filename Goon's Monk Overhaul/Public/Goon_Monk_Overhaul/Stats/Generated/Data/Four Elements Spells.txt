@@ -2574,7 +2574,7 @@ data "TargetEffect" "53412dd1-8066-4860-a2ae-b27e77bfdab5"
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
 // Changes: No longer flagged as disabling blood.
-// TODO: Upcasting.
+// Changes: Damage is now 1d8 instead of 1d10 (or the same as Shocking Grasp), and it scales the same as other cantrips instead of increasing to 2d10 at level 9.
 
 new entry "Target_ShockingGrasp_Monk"
 type "SpellData"
@@ -2586,13 +2586,13 @@ using "Target_ShockingGrasp"
 // data "SpellProperties" "GROUND:SurfaceChange(Electrify)" (Target_ShockingGrasp)
 // data "SpellProperties" "GROUND:SurfaceChange(Electrify);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Target_ShockingGrasp_Monk)
 // data "SpellSuccess" "ApplyStatus(SHOCKING_GRASP,100,1);DealDamage(LevelMapValue(D8Cantrip),Lightning,Magical)" (Target_ShockingGrasp)
-data "SpellSuccess" "ApplyStatus(SHOCKING_GRASP,100,1);DealDamage(LevelMapValue(ShockingGrasp_Monk),Lightning,Magical)"
+// data "SpellSuccess" "ApplyStatus(SHOCKING_GRASP,100,1);DealDamage(LevelMapValue(ShockingGrasp_Monk),Lightning,Magical)" (Target_ShockingGrasp_Monk)
 // // Shocking Grasp
 // data "DisplayName" "h83428213g0a17g4b04g9dbfg2cde3aed8b78;1" (Target_ShockingGrasp)
 // // Touch of the Storm
 data "DisplayName" "h227e145dg4ea6g47fdg9a48g75cfe8c2625b;3"
 // data "TooltipDamageList" "DealDamage(LevelMapValue(D8Cantrip),Lightning)" (Target_ShockingGrasp)
-data "TooltipDamageList" "DealDamage(LevelMapValue(ShockingGrasp_Monk),Lightning)"
+// data "TooltipDamageList" "DealDamage(LevelMapValue(ShockingGrasp_Monk),Lightning)" (Target_ShockingGrasp_Monk)
 // data "PrepareSound" "Spell_Prepare_Damage_Lightning_Gen_L1to3" (Target_ShockingGrasp)
 data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Lightning_ShockingGrasp_L0" (Target_ShockingGrasp)

@@ -1,6 +1,6 @@
 // ==================================== Breath of Winter ====================================
 // Changes: Now flagged as a spell.
-// TODO: Upcasting.
+// Changes: Now has RAW upcasting.
 
 new entry "Zone_ConeOfCold_Monk"
 type "SpellData"
@@ -9,6 +9,9 @@ data "SpellType" "Zone"
 using "Zone_ConeOfCold"
 // data "Level" "5" (Zone_ConeOfCold)
 // data "Level" "" (Zone_ConeOfCold_Monk)
+data "Level" ""
+data "PowerLevel" ""
+data "ContainerSpells" "Goon_Zone_ConeOfCold_Monk;Goon_Zone_ConeOfCold_Monk_6;Goon_Zone_ConeOfCold_Monk_7;Goon_Zone_ConeOfCold_Monk_8;Goon_Zone_ConeOfCold_Monk_9"
 // data "SpellSchool" "Evocation" (Zone_ConeOfCold & Zone_ConeOfCold_Monk)
 // data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse);RemoveStatus(BURNING)" (Zone_ConeOfCold)
 // data "SpellProperties" "GROUND:SurfaceChange(Freeze);GROUND:SurfaceChange(Douse);RemoveStatus(BURNING);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Zone_ConeOfCold_Monk)
@@ -19,7 +22,7 @@ data "DisplayName" "h8c263eb2g696ag4a86g8bd9gc26ce00d4c94;1"
 data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Ice_ConeOfCold_L4to5" (Zone_ConeOfCold & Zone_ConeOfCold_Monk)
 // data "TargetSound" "Spell_Impact_Damage_Ice_ConeOfCold_L4to5" (Zone_ConeOfCold)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Zone_ConeOfCold_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:5" (Zone_ConeOfCold)
 data "UseCosts" "ActionPoint:1;KiPoint:6"
@@ -28,10 +31,100 @@ data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;2c5aae21-74b6-4
 data "SpellStyleGroup" "Class"
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsHarmful;IsSpell" (Zone_ConeOfCold)
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsHarmful" (Zone_ConeOfCold_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsHarmful;IsLinkedSpellContainer"
 // data "MemoryCost" "1" (Zone_ConeOfCold)
 // data "MemoryCost" "" (Zone_ConeOfCold_Monk)
 // data "PrepareEffect" "f4aab3ad-a4ad-48e1-9052-3808e2b65981" (Zone_ConeOfCold)
 data "PrepareEffect" "2992e832-81f9-4a70-8cf6-0f5281d69390"
+
+new entry "Goon_Zone_ConeOfCold_Monk"
+type "SpellData"
+data "SpellType" "Zone"
+using "Zone_ConeOfCold_Monk"
+// data "Level" "5" (Zone_ConeOfCold)
+// data "Level" "" (Zone_ConeOfCold_Monk)
+data "Level" "5"
+data "SpellContainerID" "Zone_ConeOfCold_Monk"
+// data "ContainerSpells" "Goon_Zone_ConeOfCold_Monk;Goon_Zone_ConeOfCold_Monk_6;Goon_Zone_ConeOfCold_Monk_7;Goon_Zone_ConeOfCold_Monk_8;Goon_Zone_ConeOfCold_Monk_9" (Zone_ConeOfCold_Monk)
+data "ContainerSpells" ""
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsHarmful;IsSpell" (Zone_ConeOfCold)
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsHarmful;IsLinkedSpellContainer" (Zone_ConeOfCold_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsHarmful;IsSpell"
+
+new entry "Goon_Zone_ConeOfCold_Monk_6"
+type "SpellData"
+data "SpellType" "Zone"
+// using "Zone_ConeOfCold_6"
+using "Zone_ConeOfCold_6"
+// data "Level" "5" (Zone_ConeOfCold)
+// data "Level" "" (Zone_ConeOfCold_Monk)
+data "SpellContainerID" "Zone_ConeOfCold_Monk"
+// data "RootSpellID" "Zone_ConeOfCold" (Zone_ConeOfCold_6)
+data "RootSpellID" ""
+// // Cone of Cold
+// data "DisplayName" "h68987a92g83b0g4f0cgb6cfg5613ee59969d;2" (Zone_ConeOfCold)
+// // Breath of Winter
+data "DisplayName" "h8c263eb2g696ag4a86g8bd9gc26ce00d4c94;1"
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:6" (Zone_ConeOfCold_6)
+data "UseCosts" "ActionPoint:1;KiPoint:7"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(7)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;5e7e63e1-0e69-46e7-ade7-fe3dadcc9184,,;e9ad50df-e7f1-43a0-b782-4c08f92b0f5a,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Zone_ConeOfCold)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;2c5aae21-74b6-452d-9d76-53d4c36e5ba2,,;4c923700-3192-4c7c-8009-26e1087fa91e,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsHarmful;IsSpell" (Zone_ConeOfCold)
+// data "PowerLevel" "6" (Zone_ConeOfCold_6)
+// data "PrepareEffect" "f4aab3ad-a4ad-48e1-9052-3808e2b65981" (Zone_ConeOfCold)
+data "PrepareEffect" "2992e832-81f9-4a70-8cf6-0f5281d69390"
+
+new entry "Goon_Zone_ConeOfCold_Monk_7"
+type "SpellData"
+data "SpellType" "Zone"
+using "Goon_Zone_ConeOfCold_Monk_6"
+// data "SpellSuccess" "DealDamage(9d8,Cold,Magical)" (Zone_ConeOfCold_6)
+data "SpellSuccess" "DealDamage(10d8,Cold,Magical)"
+// data "SpellFail" "DealDamage((9d8)/2,Cold,Magical)" (Zone_ConeOfCold_6)
+data "SpellFail" "DealDamage((10d8)/2,Cold,Magical)"
+// data "TooltipDamageList" "DealDamage(9d8,Cold)" (Zone_ConeOfCold_6)
+data "TooltipDamageList" "DealDamage(10d8,Cold)"
+// data "UseCosts" "ActionPoint:1;KiPoint:7" (Goon_Zone_ConeOfCold_Monk_6)
+data "UseCosts" "ActionPoint:1;KiPoint:8"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(8)"
+// data "PowerLevel" "6" (Zone_ConeOfCold_6)
+data "PowerLevel" "7"
+
+new entry "Goon_Zone_ConeOfCold_Monk_8"
+type "SpellData"
+data "SpellType" "Zone"
+using "Goon_Zone_ConeOfCold_Monk_6"
+// data "SpellSuccess" "DealDamage(9d8,Cold,Magical)" (Zone_ConeOfCold_6)
+data "SpellSuccess" "DealDamage(11d8,Cold,Magical)"
+// data "SpellFail" "DealDamage((9d8)/2,Cold,Magical)" (Zone_ConeOfCold_6)
+data "SpellFail" "DealDamage((11d8)/2,Cold,Magical)"
+// data "TooltipDamageList" "DealDamage(9d8,Cold)" (Zone_ConeOfCold_6)
+data "TooltipDamageList" "DealDamage(11d8,Cold)"
+// data "UseCosts" "ActionPoint:1;KiPoint:7" (Goon_Zone_ConeOfCold_Monk_6)
+data "UseCosts" "ActionPoint:1;KiPoint:9"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(9)"
+// data "PowerLevel" "6" (Zone_ConeOfCold_6)
+data "PowerLevel" "8"
+
+new entry "Goon_Zone_ConeOfCold_Monk_9"
+type "SpellData"
+data "SpellType" "Zone"
+using "Goon_Zone_ConeOfCold_Monk_6"
+// data "SpellSuccess" "DealDamage(9d8,Cold,Magical)" (Zone_ConeOfCold_6)
+data "SpellSuccess" "DealDamage(12d8,Cold,Magical)"
+// data "SpellFail" "DealDamage((9d8)/2,Cold,Magical)" (Zone_ConeOfCold_6)
+data "SpellFail" "DealDamage((12d8)/2,Cold,Magical)"
+// data "TooltipDamageList" "DealDamage(9d8,Cold)" (Zone_ConeOfCold_6)
+data "TooltipDamageList" "DealDamage(12d8,Cold)"
+// data "UseCosts" "ActionPoint:1;KiPoint:7" (Goon_Zone_ConeOfCold_Monk_6)
+data "UseCosts" "ActionPoint:1;KiPoint:10"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(10)"
+// data "PowerLevel" "6" (Zone_ConeOfCold_6)
+data "PowerLevel" "9"
 
 // ==================================== Eternal Mountain Defense ====================================
 // Bug Fix: Restored appropriate TargetSound.

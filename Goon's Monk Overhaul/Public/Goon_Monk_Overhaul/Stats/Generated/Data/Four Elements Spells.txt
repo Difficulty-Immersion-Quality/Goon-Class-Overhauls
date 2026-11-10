@@ -758,8 +758,7 @@ data "CombatAIOverrideSpell" ""
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
 // Changes: Now flagged as having a verbal component.
-// TODO: Upcasting.
-// TODO: Inherit the TooltipDamageList whenever proper upcasting is implemented. For now it works well enough.
+// Changes: Now has RAW upcasting. Additional rays now come from upcasting instead of Monk level.
 
 new entry "Projectile_ScorchingRay_Monk"
 type "SpellData"
@@ -768,10 +767,13 @@ data "SpellType" "Projectile"
 using "Projectile_ScorchingRay"
 // data "Level" "2" (Projectile_ScorchingRay)
 // data "Level" "" (Projectile_ScorchingRay_Monk)
+data "Level" ""
+data "PowerLevel" ""
+data "ContainerSpells" "Goon_Projectile_ScorchingRay_Monk;Goon_Projectile_ScorchingRay_Monk_3;Goon_Projectile_ScorchingRay_Monk_4;Goon_Projectile_ScorchingRay_Monk_5;Goon_Projectile_ScorchingRay_Monk_6;Goon_Projectile_ScorchingRay_Monk_7;Goon_Projectile_ScorchingRay_Monk_8;Goon_Projectile_ScorchingRay_Monk_9"
 // data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt)" (Projectile_ScorchingRay)
 // data "SpellProperties" "GROUND:SurfaceChange(Ignite);GROUND:SurfaceChange(Melt);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)" (Projectile_ScorchingRay_Monk)
 // data "AmountOfTargets" "3" (Projectile_ScorchingRay)
-data "AmountOfTargets" "LevelMapValue(ScorchingRay_Monk)"
+// data "AmountOfTargets" "LevelMapValue(ScorchingRay_Monk)" (Projectile_ScorchingRay_Monk)
 // data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
 data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
 // // Scorching Ray
@@ -782,10 +784,12 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
 data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
+data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);3" (Projectile_ScorchingRay)
-data "DescriptionParams" "LevelMapValue(ScorchingRay_Monk);DealDamage(2d6,Fire)"
+// data "DescriptionParams" "LevelMapValue(ScorchingRay_Monk);DealDamage(2d6,Fire)" (Projectile_ScorchingRay_Monk)
 // data "TooltipDamageList" "DealDamage(6d6,Fire)" (Projectile_ScorchingRay)
-data "TooltipDamageList" "DealDamage(2d6,Fire)"
+// data "TooltipDamageList" "DealDamage(2d6,Fire)" (Projectile_ScorchingRay_Monk)
 // data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
 data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
@@ -798,8 +802,324 @@ data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-4
 data "SpellStyleGroup" "Class"
 // data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
 // data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay_Monk)
+data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsLinkedSpellContainer"
 // data "MemoryCost" "1" (Projectile_ScorchingRay)
 // data "MemoryCost" "" (Projectile_ScorchingRay_Monk)
+// data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
+data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
+// data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)
+data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
+
+new entry "Goon_Projectile_ScorchingRay_Monk"
+type "SpellData"
+data "SpellType" "Projectile"
+using "Projectile_ScorchingRay_Monk"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+data "Level" "2"
+data "SpellContainerID" "Projectile_ScorchingRay_Monk"
+// data "ContainerSpells" "Goon_Projectile_ScorchingRay_Monk;Goon_Projectile_ScorchingRay_Monk_3;Goon_Projectile_ScorchingRay_Monk_4;Goon_Projectile_ScorchingRay_Monk_5;Goon_Projectile_ScorchingRay_Monk_6;Goon_Projectile_ScorchingRay_Monk_7;Goon_Projectile_ScorchingRay_Monk_8;Goon_Projectile_ScorchingRay_Monk_9" (Projectile_ScorchingRay_Monk)
+data "ContainerSpells" ""
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "SpellFlags" "HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful;IsLinkedSpellContainer" (Projectile_ScorchingRay_Monk)
+data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful"
+
+new entry "Goon_Projectile_ScorchingRay_Monk_3"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ScorchingRay_3"
+using "Projectile_ScorchingRay_3"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+data "SpellContainerID" "Projectile_ScorchingRay_Monk"
+// data "RootSpellID" "Projectile_ScorchingRay" (Projectile_ScorchingRay_3)
+data "RootSpellID" ""
+// data "AmountOfTargets" "4" (Projectile_ScorchingRay_3)
+// data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
+data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+// // Scorching Ray
+// data "DisplayName" "h0b8ccf68g4ea7g4d92g9c77g6ab716600ab0;1" (Projectile_ScorchingRay)
+// // Embrace of the Inferno
+data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+// // Hurl [2] rays of fire. Each ray deals [1].
+// data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
+// // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
+data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
+data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
+// data "DescriptionParams" "DealDamage(2d6,Fire);4" (Projectile_ScorchingRay_3)
+// data "TooltipDamageList" "DealDamage(8d6,Fire)" (Projectile_ScorchingRay_3)
+// data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
+data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:3" (Projectile_ScorchingRay_3)
+data "UseCosts" "ActionPoint:1;KiPoint:4"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(4)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ScorchingRay)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "PowerLevel" "3" (Projectile_ScorchingRay_3)
+// data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
+data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
+// data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)
+data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
+
+new entry "Goon_Projectile_ScorchingRay_Monk_4"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ScorchingRay_4"
+using "Projectile_ScorchingRay_4"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+data "SpellContainerID" "Projectile_ScorchingRay_Monk"
+// data "RootSpellID" "Projectile_ScorchingRay" (Projectile_ScorchingRay_4)
+data "RootSpellID" ""
+// data "AmountOfTargets" "5" (Projectile_ScorchingRay_4)
+// data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
+data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+// // Scorching Ray
+// data "DisplayName" "h0b8ccf68g4ea7g4d92g9c77g6ab716600ab0;1" (Projectile_ScorchingRay)
+// // Embrace of the Inferno
+data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+// // Hurl [2] rays of fire. Each ray deals [1].
+// data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
+// // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
+data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
+data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
+// data "DescriptionParams" "DealDamage(2d6,Fire);5" (Projectile_ScorchingRay_4)
+// data "TooltipDamageList" "DealDamage(10d6,Fire)" (Projectile_ScorchingRay_4)
+// data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
+data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:4" (Projectile_ScorchingRay_4)
+data "UseCosts" "ActionPoint:1;KiPoint:5"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(5)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ScorchingRay)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "PowerLevel" "4" (Projectile_ScorchingRay_4)
+// data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
+data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
+// data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)
+data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
+
+new entry "Goon_Projectile_ScorchingRay_Monk_5"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ScorchingRay_5"
+using "Projectile_ScorchingRay_5"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+data "SpellContainerID" "Projectile_ScorchingRay_Monk"
+// data "RootSpellID" "Projectile_ScorchingRay" (Projectile_ScorchingRay_5)
+data "RootSpellID" ""
+// data "AmountOfTargets" "6" (Projectile_ScorchingRay_5)
+// data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
+data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+// // Scorching Ray
+// data "DisplayName" "h0b8ccf68g4ea7g4d92g9c77g6ab716600ab0;1" (Projectile_ScorchingRay)
+// // Embrace of the Inferno
+data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+// // Hurl [2] rays of fire. Each ray deals [1].
+// data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
+// // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
+data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
+data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
+// data "DescriptionParams" "DealDamage(2d6,Fire);6" (Projectile_ScorchingRay_5)
+// data "TooltipDamageList" "DealDamage(12d6,Fire)" (Projectile_ScorchingRay_5)
+// data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
+data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:5" (Projectile_ScorchingRay_5)
+data "UseCosts" "ActionPoint:1;KiPoint:6"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(6)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ScorchingRay)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "PowerLevel" "5" (Projectile_ScorchingRay_5)
+// data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
+data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
+// data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)
+data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
+
+new entry "Goon_Projectile_ScorchingRay_Monk_6"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ScorchingRay_6"
+using "Projectile_ScorchingRay_6"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+data "SpellContainerID" "Projectile_ScorchingRay_Monk"
+// data "RootSpellID" "Projectile_ScorchingRay" (Projectile_ScorchingRay_6)
+data "RootSpellID" ""
+// data "AmountOfTargets" "7" (Projectile_ScorchingRay_6)
+// data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
+data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+// // Scorching Ray
+// data "DisplayName" "h0b8ccf68g4ea7g4d92g9c77g6ab716600ab0;1" (Projectile_ScorchingRay)
+// // Embrace of the Inferno
+data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+// // Hurl [2] rays of fire. Each ray deals [1].
+// data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
+// // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
+data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
+data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
+// data "DescriptionParams" "DealDamage(2d6,Fire);7" (Projectile_ScorchingRay_6)
+// data "TooltipDamageList" "DealDamage(14d6,Fire)" (Projectile_ScorchingRay_6)
+// data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
+data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:6" (Projectile_ScorchingRay_6)
+data "UseCosts" "ActionPoint:1;KiPoint:7"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(7)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ScorchingRay)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "PowerLevel" "6" (Projectile_ScorchingRay_6)
+// data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
+data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
+// data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)
+data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
+
+new entry "Goon_Projectile_ScorchingRay_Monk_7"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ScorchingRay_7"
+using "Projectile_ScorchingRay_7"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+data "SpellContainerID" "Projectile_ScorchingRay_Monk"
+// data "RootSpellID" "Projectile_ScorchingRay" (Projectile_ScorchingRay_7)
+data "RootSpellID" ""
+// data "AmountOfTargets" "8" (Projectile_ScorchingRay_7)
+// data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
+data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+// // Scorching Ray
+// data "DisplayName" "h0b8ccf68g4ea7g4d92g9c77g6ab716600ab0;1" (Projectile_ScorchingRay)
+// // Embrace of the Inferno
+data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+// // Hurl [2] rays of fire. Each ray deals [1].
+// data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
+// // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
+data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
+data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
+// data "DescriptionParams" "DealDamage(2d6,Fire);8" (Projectile_ScorchingRay_7)
+// data "TooltipDamageList" "DealDamage(16d6,Fire)" (Projectile_ScorchingRay_7)
+// data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
+data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:7" (Projectile_ScorchingRay_7)
+data "UseCosts" "ActionPoint:1;KiPoint:8"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(8)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ScorchingRay)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "PowerLevel" "7" (Projectile_ScorchingRay_7)
+// data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
+data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
+// data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)
+data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
+
+new entry "Goon_Projectile_ScorchingRay_Monk_8"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ScorchingRay_8"
+using "Projectile_ScorchingRay_8"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+data "SpellContainerID" "Projectile_ScorchingRay_Monk"
+// data "RootSpellID" "Projectile_ScorchingRay" (Projectile_ScorchingRay_8)
+data "RootSpellID" ""
+// data "AmountOfTargets" "9" (Projectile_ScorchingRay_8)
+// data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
+data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+// // Scorching Ray
+// data "DisplayName" "h0b8ccf68g4ea7g4d92g9c77g6ab716600ab0;1" (Projectile_ScorchingRay)
+// // Embrace of the Inferno
+data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+// // Hurl [2] rays of fire. Each ray deals [1].
+// data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
+// // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
+data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
+data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
+// data "DescriptionParams" "DealDamage(2d6,Fire);9" (Projectile_ScorchingRay_8)
+// data "TooltipDamageList" "DealDamage(18d6,Fire)" (Projectile_ScorchingRay_8)
+// data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
+data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:8" (Projectile_ScorchingRay_8)
+data "UseCosts" "ActionPoint:1;KiPoint:9"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(9)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ScorchingRay)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "PowerLevel" "8" (Projectile_ScorchingRay_8)
+// data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
+data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
+// data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)
+data "CastEffect" "04ced9a3-6eaa-49ad-9c99-cafaef061ed3"
+
+new entry "Goon_Projectile_ScorchingRay_Monk_9"
+type "SpellData"
+data "SpellType" "Projectile"
+// using "Projectile_ScorchingRay_9"
+using "Projectile_ScorchingRay_9"
+// data "Level" "2" (Projectile_ScorchingRay)
+// data "Level" "" (Projectile_ScorchingRay_Monk)
+data "SpellContainerID" "Projectile_ScorchingRay_Monk"
+// data "RootSpellID" "Projectile_ScorchingRay" (Projectile_ScorchingRay_9)
+data "RootSpellID" ""
+// data "AmountOfTargets" "10" (Projectile_ScorchingRay_9)
+// data "Trajectories" "76dc68a0-5bc5-4ffc-be02-547f690af36b" (Projectile_ScorchingRay)
+data "Trajectories" "a4512cd1-aa87-4cda-afca-fd354868d6ee"
+// // Scorching Ray
+// data "DisplayName" "h0b8ccf68g4ea7g4d92g9c77g6ab716600ab0;1" (Projectile_ScorchingRay)
+// // Embrace of the Inferno
+data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
+// // Hurl [2] rays of fire. Each ray deals [1].
+// data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
+// // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
+data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
+data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
+// data "DescriptionParams" "DealDamage(2d6,Fire);10" (Projectile_ScorchingRay_9)
+// data "TooltipDamageList" "DealDamage(20d6,Fire)" (Projectile_ScorchingRay_9)
+// data "PrepareSound" "Spell_Prepare_Damage_Fire_Gen_L1to3" (Projectile_ScorchingRay)
+data "PrepareSound" "Vocal_Component_Monk_Damage"
+// data "CastSound" "Spell_Cast_Damage_Fire_ScorchingRay_L0" (Projectile_ScorchingRay)
+data "CastSound" "Spell_Cast_Monk_EmbraceoftheInferno_L1to3"
+data "VocalComponentSound" "Vocal_Component_Stop"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:9" (Projectile_ScorchingRay_9)
+data "UseCosts" "ActionPoint:1;KiPoint:10"
+data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(10)"
+// data "SpellAnimation" "3ff87abf-1ea1-4c32-aadf-c822d74c7dc0,,;,,;cd5e5d4a-38e1-4d4d-b346-3fbc1e4c3c90,,;141f48d9-9615-496a-8737-9240f0dba60d,,;d8925ce4-d6d9-400c-92f5-ad772ef7f178,,;,,;eadedcce-d01b-4fbb-a1ae-d218f13aa5d6,,;,,;,," (Projectile_ScorchingRay)
+data "SpellAnimation" "ba181bb4-331a-4e69-92af-d09bde86d835,,;,,;8a8b04d4-101f-48bb-a7d2-5b3c613c76b0,,;82f88eb6-b71d-44da-9da9-48349e82ba63,,;a1c2c833-b2c8-465f-a902-b6ae38f6553d,,;,,;74dead2e-d842-4d29-976a-d1cb373f7f0e,,;,,;,,"
+data "SpellStyleGroup" "Class"
+// data "SpellFlags" "IsSpell;HasHighGroundRangeExtension;HasSomaticComponent;HasVerbalComponent;RangeIgnoreVerticalThreshold;IsHarmful" (Projectile_ScorchingRay)
+// data "PowerLevel" "9" (Projectile_ScorchingRay_9)
 // data "PrepareEffect" "c88e9cfa-df92-477a-ae75-cbfb932350b4" (Projectile_ScorchingRay)
 data "PrepareEffect" "836ddd4d-dd0d-42a2-876b-dc1034056903"
 // data "CastEffect" "4481fb37-77c2-4b70-8675-01638932c01b" (Projectile_ScorchingRay)

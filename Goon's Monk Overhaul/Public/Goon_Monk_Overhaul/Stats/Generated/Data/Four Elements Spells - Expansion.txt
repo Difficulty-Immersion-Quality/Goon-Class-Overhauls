@@ -127,6 +127,7 @@ data "RequirementConditions" "Goon_FourElementsKiUpcastCheck(10)"
 data "PowerLevel" "9"
 
 // ==================================== Eternal Mountain Defense ====================================
+// Bug Fix: Now a "Shout" instead of a "Target" spell, as is befitting spells that can only be used on the caster.
 // Bug Fix: Restored appropriate TargetSound.
 // Bug Fix: CycleConditions now at parity with TargetConditions.
 // Bug Fix: DualWieldingSpellAnimation no longer inherits Stoneskin's animation.
@@ -134,61 +135,76 @@ data "PowerLevel" "9"
 
 new entry "Target_Stoneskin_Monk"
 type "SpellData"
-data "SpellType" "Target"
+// data "SpellType" "Target" (Target_Stoneskin)
+data "SpellType" "Shout"
 // using "Target_Stoneskin"
-using "Target_Stoneskin"
 // data "Level" "4" (Target_Stoneskin)
 // data "Level" "" (Target_Stoneskin_Monk)
 data "Level" ""
 data "PowerLevel" ""
-data "ContainerSpells" "Goon_Target_Stoneskin_Monk"
+data "ContainerSpells" "Goon_Shout_Stoneskin_Monk"
+data "SpellSchool" "Abjuration"
 // data "SpellProperties" "ApplyStatus(STONESKIN,100,-1)" (Target_Stoneskin)
 // data "SpellProperties" "ApplyStatus(STONESKIN,100,-1);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+data "SpellProperties" "ApplyStatus(STONESKIN,100,-1)"
+// data "TargetRadius" "1.5" (Target_Stoneskin)
 // data "TargetConditions" "Character() and Ally()" (Target_Stoneskin)
 // data "TargetConditions" "Character() and Self()" (Target_Stoneskin_Monk)
 data "TargetConditions" "Self()"
+data "Icon" "Spell_Abjuration_Stoneskin"
 // // Stoneskin
 // data "DisplayName" "h942fc95bgcce4g4a58g8d6eg2af8037d7d9e;2"
 // // Eternal Mountain Defense
 data "DisplayName" "h1f31c024g90bfg404eg8a63gd8d646110b6a;1"
+// // Turn a creature's flesh hard as stone. It takes only &lt;LSTag Tooltip="Resistant"&gt;half the damage&lt;/LSTag&gt; of all non-magical Bludgeoning, Piercing, and Slashing damage.
+data "Description" "hd2a07b10g06e7g4fc2ga9adg1845a45f8d64;4"
+data "TooltipStatusApply" "ApplyStatus(STONESKIN,100,-1)"
 // data "PrepareSound" "Spell_Prepare_Buff_Gen_L1to3_01" (Target_Stoneskin)
 data "PrepareSound" "Vocal_Component_Monk_Utility"
+data "PrepareLoopSound" "Spell_Prepare_Buff_Gen_L1to3_01_Loop"
 // data "CastSound" "Spell_Cast_Buff_Stoneskin_L4to5" (Target_Stoneskin & Target_Stoneskin_Monk)
+data "CastSound" "Spell_Cast_Buff_Stoneskin_L4to5"
 // data "TargetSound" "Spell_Impact_Buff_Stoneskin_L4to5" (Target_Stoneskin)
 // data "TargetSound" "Vocal_Component_Stop" (Target_Stoneskin_Monk)
 data "TargetSound" "Spell_Impact_Buff_Stoneskin_L4to5"
 data "VocalComponentSound" "Vocal_Component_Stop"
-// data "CycleConditions" "Ally() and not Dead()" (Target_Stoneskin_Monk)
-data "CycleConditions" "Self()"
+data "CastTextEvent" "Cast"
+// data "CycleConditions" "Ally() and not Dead()" (Target_Stoneskin & Target_Stoneskin_Monk)
+// data "CycleConditions" "Self()"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:4" (Target_Stoneskin)
 data "UseCosts" "ActionPoint:1;KiPoint:5"
 // data "SpellAnimation" "03496c4a-49e0-4132-b585-3e5ecd1ad8e5,,;,,;a4da186a-0872-461e-ae5e-93d5b32b9bef,,;527ca082-4ffa-4edb-a23f-5e7fa798a6ce,,;a9682ef9-5d9e-4ac0-8144-2c7fe6eb868c,,;,,;32fb4d91-7fde-4b05-9144-ea87b9a4284a,,;dada6495-752c-4f30-a503-f05b8c811e2b,,;8ce53f9b-b559-49cd-9607-1991545060d7,," (Target_Stoneskin)
 data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;9dec9d1f-ac78-4e2d-9095-1e0c8351144c,,;bd7104f0-6bb8-413c-8a38-ca0b2072a624,,;1853afa3-d7c2-4957-a293-c32b6ec9a88a,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
 // data "DualWieldingSpellAnimation" "03496c4a-49e0-4132-b585-3e5ecd1ad8e5,,;,,;a4da186a-0872-461e-ae5e-93d5b32b9bef,,;,,;,,;,,;,,;,,;,," (Target_Stoneskin)
-data "DualWieldingSpellAnimation" ""
+data "VerbalIntent" "Buff"
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell;IsMelee" (Target_Stoneskin)
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsMelee" (Target_Stoneskin_Monk)
-data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsMelee;IsLinkedSpellContainer"
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsLinkedSpellContainer"
 data "SpellStyleGroup" "Class"
+data "HitAnimationType" "MagicalNonDamage"
 // data "MemoryCost" "1" (Target_Stoneskin)
 // data "MemoryCost" "" (Target_Stoneskin_Monk)
+data "MemoryCost" "1"
 // data "PrepareEffect" "33302a46-4a12-41dd-8845-6b7314d50022" (Target_Stoneskin & Target_Stoneskin_Monk)
+data "PrepareEffect" "33302a46-4a12-41dd-8845-6b7314d50022"
 // data "CastEffect" "bcd66fb0-b0bc-41d0-abba-ad443d63dd72" (Target_Stoneskin & Target_Stoneskin_Monk)
+data "CastEffect" "bcd66fb0-b0bc-41d0-abba-ad443d63dd72"
 // data "TargetEffect" "12949546-c92c-49ed-b25e-5ca41ef23268" (Target_Stoneskin & Target_Stoneskin_Monk)
+data "TargetEffect" "12949546-c92c-49ed-b25e-5ca41ef23268"
 
-new entry "Goon_Target_Stoneskin_Monk"
+new entry "Goon_Shout_Stoneskin_Monk"
 type "SpellData"
-data "SpellType" "Target"
+data "SpellType" "Shout"
 using "Target_Stoneskin_Monk"
 // data "Level" "4" (Target_Stoneskin)
 // data "Level" "" (Target_Stoneskin_Monk)
 data "Level" "4"
 data "SpellContainerID" "Target_Stoneskin_Monk"
-// data "ContainerSpells" "Goon_Target_Stoneskin_Monk" (Target_Stoneskin_Monk)
+// data "ContainerSpells" "Goon_Shout_Stoneskin_Monk" (Target_Stoneskin_Monk)
 data "ContainerSpells" ""
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell;IsMelee" (Target_Stoneskin)
-// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsMelee;IsLinkedSpellContainer" (Target_Stoneskin_Monk)
-data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell;IsMelee"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsLinkedSpellContainer" (Target_Stoneskin_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell"
 
 // ==================================== River of Hungry Flame ====================================
 // Changes: Now flagged as a spell.
@@ -238,6 +254,7 @@ using "Wall_WallOfFire_Monk"
 // data "Level" "" (Wall_WallOfFire_Monk)
 data "Level" "4"
 data "SpellContainerID" "Wall_WallOfFire_Monk"
+// data "ContainerSpells" "Goon_Wall_WallOfFire_Monk;Goon_Wall_WallOfFire_Monk_5;Goon_Wall_WallOfFire_Monk_6;Goon_Wall_WallOfFire_Monk_7;Goon_Wall_WallOfFire_Monk_8;Goon_Wall_WallOfFire_Monk_9" (Wall_WallOfFire_Monk)
 data "ContainerSpells" ""
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsLinkedSpellContainer" (Wall_WallOfFire_Monk)
 data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell"

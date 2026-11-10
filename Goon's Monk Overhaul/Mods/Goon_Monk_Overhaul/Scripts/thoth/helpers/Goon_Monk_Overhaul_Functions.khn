@@ -1,0 +1,50 @@
+-- ==================================== IsCantrip ====================================
+-- Changes: Removed blacklist on KiPoints so Chill of the Mountain (Ray of Frost) and Touch of the Storm (Shocking Graps) function with the function.
+-- Changes: Made more performant.
+
+-- function IsCantrip()
+--     return HasCantripSpellLevel() & 
+--     HasSpellFlag(SpellFlags.Spell) & 
+--     ~HasUseCosts('SpellSlot') & 
+--     ~HasUseCosts('KiPoint') & 
+--     ~HasUseCosts('WarlockSpellSlot') & 
+--     ~HasUseCosts('ArcaneRecoveryPoint') & 
+--     ~HasUseCosts('NaturalRecoveryPoint') & 
+--     ~HasUseCosts('WildShape')
+-- end
+
+-- function HasCantripSpellLevel()
+--     return IsSpellLevel(0)
+-- end
+
+function IsCantrip()
+    if not HasCantripSpellLevel().Result         then return ConditionResult(false) end
+    if not HasSpellFlag(SpellFlags.Spell).Result then return ConditionResult(false) end
+
+    if HasUseCosts('SpellSlot').Result
+        -- or HasUseCosts('KiPoint').Result
+        or HasUseCosts('WarlockSpellSlot').Result
+        or HasUseCosts('ArcaneRecoveryPoint').Result
+        or HasUseCosts('NaturalRecoveryPoint').Result
+        or HasUseCosts('WildShape').Result
+    then
+        return ConditionResult(false)
+    end
+
+    return ConditionResult(true)
+end
+
+-- ==================================== Upcast check ====================================
+-- Per RAW, from level 5 onwards the amount of ki that can be used to upcast increases by 1 every 4 levels. Level 5 → 3 ki; Level 9 → 4 ki; Level 13 → 5 ki; Level 17 → 6 ki...
+-- The minimum level required for upcasting [5] + (the ki cost of the upcast [X] - the amount of ki allowed at the minimum level [3]) x the levels between tiers that increase ki allowance [4] = level requirement for upcast [X].
+-- Math is yucky, imagine being a Neil deGrasse Tyson or some shit. Couldn't be me.
+-- TODO: Figure out if there's a way to get this ConditionError bussin fr. Currently aint populating the tooltip with jack shit despite being functional.
+
+function Goon_FourElementsKiUpcastCheck(kiCost, entity)
+    local entity = entity or context.Source
+
+    local requiredLevel = 5 + (kiCost - 3) * 4
+    local errorFalse = {ConditionError("Goon_CanNotSpendKiOnElementalDiscipline", {ConditionErrorData.MakeFromNumber(requiredLevel, EErrorDataType.SimpleNumber)})}
+
+    return ConditionResult(ClassLevelHigherOrEqualThan(requiredLevel, 'Monk', entity).Result, errorFalse)
+end

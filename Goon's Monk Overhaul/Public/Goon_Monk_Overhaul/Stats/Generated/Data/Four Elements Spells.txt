@@ -2118,84 +2118,177 @@ data "PositionEffect" "af4a94aa-0a09-492b-8268-ca250bb6f9b0"
 
 // ==================================== Mist Stance ====================================
 // Changes: Now flagged as a spell.
-// TODO: Upcasting.
-// TODO: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
+// Changes: Now flagged as having a verbal component.
+// Changes: Now has the base spell's PrepareLoopSound, TargetSound, HitAnimationType, TargetEffect and UnavailableInDialogs.
 
 new entry "Shout_GaseousForm_Monk"
 type "SpellData"
 data "SpellType" "Shout"
 using "Shout_GaseousForm_Monk"
+// data "Level" "3" (Target_GaseousForm)
 // data "Level" ""
+data "Level" ""
+data "ContainerSpells" "Goon_Shout_GaseousForm_Monk"
 // data "SpellSchool" "Transmutation"
+// data "SpellProperties" "ApplyStatus(GASEOUS_FORM,100,-1)" (Target_GaseousForm)
 // data "SpellProperties" "ApplyStatus(GASEOUS_FORM,100,-1);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+// data "TargetRadius" "1.5" (Target_GaseousForm)
+// data "TargetConditions" "Character() and Ally() and not Dead()" (Target_GaseousForm)
 // data "TargetConditions" "Self()"
 // data "Icon" "Spell_Transmutation_GaseousForm"
+// // Gaseous Form
+// data "DisplayName" "h44585d58gfba7g4acfgb5ffg76b55f7f155e;1" (Target_GaseousForm)
 // // Mist Stance
 // data "DisplayName" "h445ec992g45d2g4315gbf37g72f9a691fce5;2"
+// // Transform yourself or an ally into a tiny gas cloud. It can't fall, and fits through small openings. It is very hard to damage.
+// data "Description" "h0b98d9b2g9dd4g40b0g9cd7g3164e5903e24;3" (Target_GaseousForm)
 // // Transform into a tiny mist cloud. It can't fall, and fits through small openings. It is very hard to damage.
 // data "Description" "h1d96960fg2753g4db8ga3aag470b8fa7b6f9;3"
 // // The cloud has &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Constitution, Dexterity, and Strength &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+// data "ExtraDescription" "hc25d34c1gdffdg4c06g83a3gbc314db404c4;5" (Target_GaseousForm)
+// // The cloud has &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Constitution, Dexterity, and Strength &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
 // data "ExtraDescription" "he1c94924g15ccg411dg9f60g20f72e486944;2"
 // data "TooltipStatusApply" "ApplyStatus(GASEOUS_FORM,100,-1)"
+// data "TooltipUpcastDescription" "6ff1780a-855a-414c-a8bf-811251537206" (Target_GaseousForm)
+// data "TooltipPermanentWarnings" "bf3777a5-6a0c-4737-b0c7-ed878d3df950" (Target_GaseousForm)
 // // &lt;LSTag Type="Image" Info="SoftWarning"/&gt; While transformed, you won't be able to attack, cast spells, or talk. 
 // data "TooltipPermanentWarnings" "bfefd859-3cb5-488f-93f5-839bc03f7e59"
+// data "PrepareSound" "Spell_Prepare_Buff_Gen_L1to3" (Target_GaseousForm)
 // data "PrepareSound" "Vocal_Component_Monk_Utility"
+// data "PrepareLoopSound" "Spell_Prepare_Buff_Gen_L1to3_01_Loop" (Target_GaseousForm)
+data "PrepareLoopSound" "Spell_Prepare_Buff_Gen_L1to3_01_Loop"
+// data "CastSound" "Spell_Cast_Buff_GaseousForm_L1to3" (Target_GaseousForm)
 // data "CastSound" "Spell_Cast_Monk_MistStance_L1to3"
+// data "TargetSound" "Spell_Impact_Buff_GaseousForm_L1to3" (Target_GaseousForm)
+data "TargetSound" "Spell_Impact_Buff_GaseousForm_L1to3"
+// data "VocalComponentSound" "Vocal_Component_PolymorphGeneric" (Target_GaseousForm)
 // data "VocalComponentSound" "Vocal_Component_Stop"
 // data "PreviewCursor" "Cast"
 // data "CastTextEvent" "Cast"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:3" (Target_GaseousForm)
 // data "UseCosts" "ActionPoint:1;KiPoint:4"
+// data "SpellAnimation" "dd86aa43-8189-4d9f-9a5c-454b5fe4a197,,;,,;94ad1609-9862-499a-8337-5e6a7d9487f9,c8f325f3-9d7d-4387-af85-b3b4257e26cc,f4b7eabd-2875-46fa-bae3-9f4d0a51c955;8373f3da-2368-4a51-98b1-146ec3586660,12971987-e66c-45dd-9843-b4784c30d9a2,279cd9eb-1d9c-4e4c-a44e-e751ae0eae66;cc5b0caf-3ed1-4711-a50d-11dc3f1fdc6a,,;,,;1715b877-4512-472e-9bd0-fd568a112e90,,;236087a5-5597-4ee7-ab06-75b01147f596,,;ee0b6a78-c6b6-4852-aecb-d7c474a37d68,," (Target_GaseousForm)
 // data "SpellAnimation" "101629c4-d30c-4ae7-b316-9d6423e7298a,,;9dec9d1f-ac78-4e2d-9095-1e0c8351144c,,;bd7104f0-6bb8-413c-8a38-ca0b2072a624,,;1853afa3-d7c2-4957-a293-c32b6ec9a88a,,;9af429ab-54e8-455b-99d0-71c62e66ad64,,;,,;e550f983-faab-412b-a55d-237a1e17d4da,,;,,;,,"
 // data "VerbalIntent" "Utility"
 // data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;IsConcentration;IsMelee;UnavailableInDialogs" (Target_GaseousForm)
 // data "SpellFlags" "HasSomaticComponent;IsConcentration"
-data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
+// data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;UnavailableInDialogs;IsLinkedSpellContainer"
+// data "HitAnimationType" "None" (Target_GaseousForm)
+data "HitAnimationType" "None"
+// data "MaximumTargets" "1" (Target_GaseousForm)
+// data "MemoryCost" "1" (Target_GaseousForm)
 // data "MemoryCost" ""
 // data "PowerLevel" ""
+// data "PowerLevel" "3"
+data "PowerLevel" ""
+// data "PrepareEffect" "33302a46-4a12-41dd-8845-6b7314d50022" (Target_GaseousForm)
 // data "PrepareEffect" "1ed04632-bb63-4bae-9e59-9b4584b0d840"
+// data "CastEffect" "bcd66fb0-b0bc-41d0-abba-ad443d63dd72" (Target_GaseousForm)
 // data "CastEffect" "040020de-33d8-41ac-9f79-f255bb656814"
+// data "TargetEffect" "f2519a63-63bf-46c6-821a-c52a55815cd0" (Target_GaseousForm)
+data "TargetEffect" "f2519a63-63bf-46c6-821a-c52a55815cd0"
+
+new entry "Goon_Shout_GaseousForm_Monk"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_GaseousForm_Monk"
+// data "Level" "" (Shout_GaseousForm_Monk)
+data "Level" "3"
+data "SpellContainerID" "Shout_GaseousForm_Monk"
+// data "ContainerSpells" "Goon_Shout_GaseousForm_Monk" (Shout_GaseousForm_Monk)
+data "ContainerSpells" ""
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;UnavailableInDialogs;IsLinkedSpellContainer" (Shout_GaseousForm_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;UnavailableInDialogs;IsSpell"
 
 // ==================================== Ride the Wind ====================================
 // Bug Fix: Vocal_Compoenent_Stop typo corrected to Vocal_Component_Stop.
 // Bug Fix: Weird trailing whitespaces removed.
 // Changes: Now flagged as a spell.
-// TODO: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
+// Changes: Now flagged as having a verbal component.
+// Changes: Now has the base spell's PrepareLoopSound, TargetSound, HitAnimationType and TargetEffect, written out since a Shout can't inherit from Target_Fly.
 
 new entry "Shout_Fly_Monk"
 type "SpellData"
 data "SpellType" "Shout"
 using "Shout_Fly_Monk"
+// data "Level" "3" (Target_Fly)
 // data "Level" ""
+data "Level" ""
+data "ContainerSpells" "Goon_Shout_Fly_Monk"
 // data "SpellSchool" "Transmutation"
+// data "SpellProperties" "ApplyStatus(FLY,100,10)" (Target_Fly)
 // data "SpellProperties" "ApplyStatus(FLY_MONK,100,-1);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 data "SpellProperties" "ApplyStatus(FLY_MONK,100,-1)"
+// data "TargetRadius" "1.5" (Target_Fly)
+// data "TargetConditions" "Character() and Ally() and not Dead() and not Tagged('INNATE_FLYER')" (Target_Fly)
 // data "TargetConditions" "Self()	"
 data "TargetConditions" "Self()"
+// data "Icon" "Spell_Transmutation_Fly" (Target_Fly)
 // data "Icon" "Action_Fly"
+// // Grant Flight
+// data "DisplayName" "hdba1a68dgeb21g4c5dg8a21g64be6dfae0ea;2" (Target_Fly)
 // // Ride the Wind
 // data "DisplayName" "h52037116g1029g44f2ga259gfa173bc595fc;2"
+// // Bestow the ability to &lt;LSTag Type="Spell" Tooltip="Projectile_Fly"&gt;Fly&lt;/LSTag&gt; upon yourself or an ally.
+// data "Description" "hf13bcec1g58e0g4079g9d48g01f7c664db7e;3" (Target_Fly)
 // // Gain the ability to &lt;LSTag Type="Spell" Tooltip="Projectile_Fly"&gt;Fly&lt;/LSTag&gt;.
 // data "Description" "hfe7175fcg8de3g4f52g9386ge739232c0c59;4"
+// data "TooltipStatusApply" "ApplyStatus(FLY,100,10)" (Target_Fly)
 // data "TooltipStatusApply" "ApplyStatus(FLY_MONK,100,-1) "
 data "TooltipStatusApply" "ApplyStatus(FLY_MONK,100,-1)"
+// data "TooltipUpcastDescription" "04cc3403-f67a-4747-b49e-a1802cc7a6ad" (Target_Fly)
+// data "PrepareSound" "Spell_Prepare_Fly_L4to5_01" (Target_Fly)
 // data "PrepareSound" "Vocal_Component_Monk_Utility"
+// data "PrepareLoopSound" "Spell_Loop_Fly_L4to5" (Target_Fly)
+data "PrepareLoopSound" "Spell_Loop_Fly_L4to5"
+// data "CastSound" "Spell_Cast_Fly_L4to5" (Target_Fly)
 // data "CastSound" "Action_Cast_Monk_RidetheWind"
+// data "TargetSound" "Spell_Impact_Fly_L4to5" (Target_Fly)
+data "TargetSound" "Spell_Impact_Fly_L4to5"
+// data "VocalComponentSound" "Vocal_Component_GrantFly" (Target_Fly)
 // data "VocalComponentSound" "Vocal_Compoenent_Stop"
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "PreviewCursor" "Cast"
 // data "CastTextEvent" "Cast		"
 data "CastTextEvent" "Cast"
+// data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:3" (Target_Fly)
 // data "UseCosts" "ActionPoint:1;KiPoint:4	"
 data "UseCosts" "ActionPoint:1;KiPoint:4"
+// data "SpellAnimation" "dd86aa43-8189-4d9f-9a5c-454b5fe4a197,,;,,;af94aac1-d8eb-4ccb-9520-694ade11b61c,,;f5db4001-b136-4c48-9aa4-026c4a7dd3b7,,;cc5b0caf-3ed1-4711-a50d-11dc3f1fdc6a,,;,,;1715b877-4512-472e-9bd0-fd568a112e90,,;54ae8856-36b2-4f70-8bd3-c2a760f93fd5,,;8ce3e582-e8bb-4d2f-9c5c-46c70c9b87c0,," (Target_Fly)
 // data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;9dec9d1f-ac78-4e2d-9095-1e0c8351144c,,;bd7104f0-6bb8-413c-8a38-ca0b2072a624,,;1853afa3-d7c2-4957-a293-c32b6ec9a88a,,;36a98c4d-bab0-4302-ae78-d7a75c3bb9e4,,;,,;688653ba-7032-4d40-ac02-ce8b3af93516,,;,,;,,"
 // data "VerbalIntent" "Buff"
 // data "SpellStyleGroup" "Class"
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsMelee;IsSpell;IsConcentration" (Target_Fly)
 // data "SpellFlags" "HasSomaticComponent;IsConcentration"
-data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
+// data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsLinkedSpellContainer"
+// data "HitAnimationType" "MagicalNonDamage" (Target_Fly)
+data "HitAnimationType" "MagicalNonDamage"
+// data "MemoryCost" "1" (Target_Fly)
 // data "MemoryCost" ""
 // data "PowerLevel" ""
+// data "PowerLevel" "3"
+data "PowerLevel" ""
+// data "PrepareEffect" "f1ba15e1-93c4-4c94-a6d4-2b1b3934ce44" (Target_Fly)
 // data "PrepareEffect" "7bb2af21-e943-4e9e-92f0-ab5143c1a9d7"
+// data "CastEffect" "bcd66fb0-b0bc-41d0-abba-ad443d63dd72" (Target_Fly)
 // data "CastEffect" "31c7da90-3ba8-4579-a8b7-9610885604fb"
+// data "TargetEffect" "8cd6c669-ded1-476a-aa5e-d7dd055381d7" (Target_Fly)
+data "TargetEffect" "8cd6c669-ded1-476a-aa5e-d7dd055381d7"
+
+new entry "Goon_Shout_Fly_Monk"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_Fly_Monk"
+// data "Level" "" (Shout_Fly_Monk)
+data "Level" "3"
+data "SpellContainerID" "Shout_Fly_Monk"
+// data "ContainerSpells" "Goon_Shout_Fly_Monk" (Shout_Fly_Monk)
+data "ContainerSpells" ""
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsLinkedSpellContainer" (Shout_Fly_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell"
 
 // new entry "FLY_MONK"
 // type "StatusData"
@@ -2208,7 +2301,6 @@ data "SpellFlags" "HasSomaticComponent;IsConcentration;IsSpell"
 // Changes: Now only has minimal field overwrites, inheriting the rest from the base spell to reduce redundancy and maximise compatibility with mods that edit spells.
 // Changes: Now flagged as a spell.
 // Changes: Now flagged as having a verbal component.
-// TODO: Upcasting.
 
 new entry "Zone_GustOfWind_Monk"
 type "SpellData"
@@ -2217,6 +2309,9 @@ data "SpellType" "Zone"
 using "Zone_GustOfWind"
 // data "Level" "2" (Zone_GustOfWind)
 // data "Level" "" (Zone_GustOfWind_Monk)
+data "Level" ""
+data "PowerLevel" ""
+data "ContainerSpells" "Goon_Zone_GustOfWind_Monk"
 // data "SpellSchool" "Evocation" (Zone_GustOfWind)
 // data "SpellSchool" "" (Zone_GustOfWind_Monk)
 // data "SpellProperties" "GROUND:SurfaceClearLayer(Cloud); RemoveStatus(BURNING);" (Zone_GustOfWind)
@@ -2238,12 +2333,27 @@ data "SpellAnimation" "c7438204-9e84-4eee-91b4-c3289fbda0b7,,;,,;e9b5c08b-8db2-4
 data "SpellStyleGroup" "Class"
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand" (Zone_GustOfWind)
 // data "SpellFlags" "HasSomaticComponent;AddFallDamageOnLand" (Zone_GustOfWind_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;AddFallDamageOnLand;IsLinkedSpellContainer"
 // data "PrepareEffect" "2af907e1-127c-4c83-a117-af18f211c59d" (Zone_GustOfWind)
 data "PrepareEffect" "80ed9625-427d-40f5-8007-dab5f457546a"
 // data "CastEffect" "f0fc3adc-db50-4a8d-bd30-904902cbefbd" (Zone_GustOfWind)
 data "CastEffect" "eab6da86-6c7b-4c13-8d2b-011a61d34393"
 // data "TargetEffect" "766d4d52-d6a1-4efd-b37b-bd1496718e49" (Zone_GustOfWind)
 data "TargetEffect" "848e06e7-0156-47af-bcdb-13ec549d83d8"
+
+new entry "Goon_Zone_GustOfWind_Monk"
+type "SpellData"
+data "SpellType" "Zone"
+using "Zone_GustOfWind_Monk"
+// data "Level" "2" (Zone_GustOfWind)
+// data "Level" "" (Zone_GustOfWind_Monk)
+data "Level" "2"
+data "SpellContainerID" "Zone_GustOfWind_Monk"
+// data "ContainerSpells" "Goon_Zone_GustOfWind_Monk" (Zone_GustOfWind_Monk)
+data "ContainerSpells" ""
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand" (Zone_GustOfWind)
+// data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;AddFallDamageOnLand;IsLinkedSpellContainer" (Zone_GustOfWind_Monk)
+data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;AddFallDamageOnLand"
 
 // ==================================== Shaping of the Ice ====================================
 // Bug Fix: Now correctly triggers Martial Arts: Bonus Unarmed Strike.
@@ -4186,6 +4296,7 @@ data "TargetEffect" "15929690-0a9b-4f77-9c2c-6f7dda893aaf"
 // Bug Fix: Water Whip: Knock Prone no longer applies Prone until Long Rest, instead applying it for 1 turn. (1 turn is arbitrary from me, could be 2?)
 // Bug Fix: Water Whip: Pull can now cause fall damage to the target.
 // Changes: Water Whip: Pull can now slightly control the trajectory of the pull based on cursor position on the target entity.
+// TODO: RAW stuff.
 
 new entry "Target_WaterWhip"
 type "SpellData"

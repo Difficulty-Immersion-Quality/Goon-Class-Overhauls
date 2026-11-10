@@ -204,7 +204,7 @@ using "Wall_WallOfFire"
 // data "Level" "" (Wall_WallOfFire_Monk)
 data "Level" ""
 data "PowerLevel" ""
-data "ContainerSpells" "Goon_Wall_WallOfFire_Monk;Goon_Wall_WallOfFire_Monk_5;Goon_Wall_WallOfFire_Monk_6"
+data "ContainerSpells" "Goon_Wall_WallOfFire_Monk;Goon_Wall_WallOfFire_Monk_5;Goon_Wall_WallOfFire_Monk_6;Goon_Wall_WallOfFire_Monk_7;Goon_Wall_WallOfFire_Monk_8;Goon_Wall_WallOfFire_Monk_9"
 // data "SpellProperties" "ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 // // Wall of Fire
 // data "DisplayName" "h4797978cgd1aag4aaagbd42g133f998fc653;2"
@@ -238,7 +238,6 @@ using "Wall_WallOfFire_Monk"
 // data "Level" "" (Wall_WallOfFire_Monk)
 data "Level" "4"
 data "SpellContainerID" "Wall_WallOfFire_Monk"
-// data "ContainerSpells" "Goon_Wall_WallOfFire_Monk;Goon_Wall_WallOfFire_Monk_5;Goon_Wall_WallOfFire_Monk_6" (Wall_WallOfFire_Monk)
 data "ContainerSpells" ""
 // data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsLinkedSpellContainer" (Wall_WallOfFire_Monk)
 data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsConcentration;IsSpell"

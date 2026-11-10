@@ -14,6 +14,14 @@ data "StatsFunctorContext" "OnCastResolved"
 data "Conditions" "Goon_IsWayOfFourElementsSpell()"
 data "StatsFunctors" "ApplyStatus(MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
 
+// Osi.AddPassive(GetHostCharacter(), "Goon_Debug_UnlockWayOfFourElementsSpells")
+// Osi.RemovePassive(GetHostCharacter(), "Goon_Debug_UnlockWayOfFourElementsSpells")
+new entry "Goon_Debug_UnlockWayOfFourElementsSpells"
+type "PassiveData"
+data "Properties" "IsHidden"
+// UnlockSpell(Projectile_BladeOfTheRime,AddChildren);UnlockSpell(Projectile_RayOfFrost_Monk,AddChildren);UnlockSpell(Target_ShockingGrasp_Monk,AddChildren);UnlockSpell(Target_HoldPerson_Monk,AddChildren);UnlockSpell(Projectile_ScorchingRay_Monk,AddChildren);UnlockSpell(Target_FistOfUnbrokenAir,AddChildren)
+data "Boosts" "UnlockSpell(Projectile_FangsOfTheFireSnake,AddChildren);UnlockSpell(Zone_Thunderwave_Monk,AddChildren);UnlockSpell(Projectile_Fireball_Monk,AddChildren);UnlockSpell(Target_Shatter_Monk,AddChildren);UnlockSpell(Shout_GaseousForm_Monk,AddChildren);UnlockSpell(Shout_Fly_Monk,AddChildren);UnlockSpell(Zone_GustOfWind_Monk,AddChildren);UnlockSpell(Target_ShapeTheFlowingRiver_IceBlock,AddChildren);UnlockSpell(Projectile_ChromaticOrb_Monk,AddChildren);UnlockSpell(Zone_BurningHands_Monk,AddChildren);UnlockSpell(Target_WaterWhip,AddChildren);UnlockSpell(Zone_ConeOfCold_Monk,AddChildren);UnlockSpell(Target_Stoneskin_Monk,AddChildren);UnlockSpell(Wall_WallOfFire_Monk,AddChildren);UnlockSpell(Wall_WallOfStone_Monk,AddChildren);ActionResource(KiPoint,67,0)"
+
 // ==================================== Blade of Rime ====================================
 // Bug Fix: Now douses surfaces and removes Burning.
 // Bug Fix: Now has a somatic component.
@@ -783,7 +791,7 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // // Hurl [2] rays of fire. Each ray deals [1].
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
 data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);3" (Projectile_ScorchingRay)
@@ -844,7 +852,7 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // // Hurl [2] rays of fire. Each ray deals [1].
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
 data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);4" (Projectile_ScorchingRay_3)
@@ -887,7 +895,7 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // // Hurl [2] rays of fire. Each ray deals [1].
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
 data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);5" (Projectile_ScorchingRay_4)
@@ -930,7 +938,7 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // // Hurl [2] rays of fire. Each ray deals [1].
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
 data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);6" (Projectile_ScorchingRay_5)
@@ -973,7 +981,7 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // // Hurl [2] rays of fire. Each ray deals [1].
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
 data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);7" (Projectile_ScorchingRay_6)
@@ -1016,7 +1024,7 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // // Hurl [2] rays of fire. Each ray deals [1].
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
 data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);8" (Projectile_ScorchingRay_7)
@@ -1059,7 +1067,7 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // // Hurl [2] rays of fire. Each ray deals [1].
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
 data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);9" (Projectile_ScorchingRay_8)
@@ -1102,7 +1110,7 @@ data "DisplayName" "h42338406g6454g464fg8c44ge15979840d35;2"
 // // Hurl [2] rays of fire. Each ray deals [1].
 // data "Description" "h8683be5fg3434g4e62g8027g3275339e7735;4" (Projectile_ScorchingRay)
 // // Expel the fire burning through your veins as [1] flaming rays. Each ray deals [2].
-data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
+// data "Description" "h36263941g8082g484cgb72eg0d722cf34617;6"
 // // Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].
 data "Description" "hb0106d47g077eg4f46g8cb5g1b627700254b;1"
 // data "DescriptionParams" "DealDamage(2d6,Fire);10" (Projectile_ScorchingRay_9)
@@ -1137,6 +1145,7 @@ data "SpellType" "Projectile"
 // using "Projectile_MainHandAttack"
 using "Projectile_FangsOfTheFireSnake"
 // data "SpellProperties" "GROUND:DealDamage(1d10,Fire);IF(not Player(context.Source)):ApplyStatus(SELF,AI_HELPER_EXTRAATTACK,100,1);ApplyStatus(SELF,FANGS_OF_THE_FIRE_SNAKE,100,1);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+data "SpellProperties" "GROUND:DealDamage(1d10,Fire);IF(not Goon_IsPlayerInControl(context.Source)):ApplyStatus(SELF,AI_HELPER_EXTRAATTACK,100,1);ApplyStatus(SELF,FANGS_OF_THE_FIRE_SNAKE,100,1)"
 // data "TargetRadius" "6"
 // data "SpellRoll" "Attack(AttackType.MeleeUnarmedAttack)	"
 // data "SpellSuccess" "DealDamage(UnarmedDamage , Bludgeoning);DealDamage(1d10,Fire,Magical)"
@@ -1833,7 +1842,7 @@ data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
 data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Target_Shatter_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:2" (Target_Shatter)
 data "UseCosts" "ActionPoint:1;KiPoint:3"
@@ -1883,7 +1892,7 @@ data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
 data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Target_Shatter_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:3" (Target_Shatter_3)
 data "UseCosts" "ActionPoint:1;KiPoint:4"
@@ -1919,7 +1928,7 @@ data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
 data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Target_Shatter_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:4" (Target_Shatter_4)
 data "UseCosts" "ActionPoint:1;KiPoint:5"
@@ -1955,7 +1964,7 @@ data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
 data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Target_Shatter_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:5" (Target_Shatter_5)
 data "UseCosts" "ActionPoint:1;KiPoint:6"
@@ -1991,7 +2000,7 @@ data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
 data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Target_Shatter_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:6" (Target_Shatter_6)
 data "UseCosts" "ActionPoint:1;KiPoint:7"
@@ -2027,7 +2036,7 @@ data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
 data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Target_Shatter_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:7" (Target_Shatter_7)
 data "UseCosts" "ActionPoint:1;KiPoint:8"
@@ -2063,7 +2072,7 @@ data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
 data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Target_Shatter_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:8" (Target_Shatter_8)
 data "UseCosts" "ActionPoint:1;KiPoint:9"
@@ -2099,7 +2108,7 @@ data "PrepareSound" "Vocal_Component_Monk_Damage"
 // data "CastSound" "Spell_Cast_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
 data "CastSound" "Spell_Cast_Monk_GongoftheSummit_L1to3"
 // data "TargetSound" "Spell_Impact_Damage_Thunder_Shatter_L1to3" (Target_Shatter)
-data "TargetSound" "Vocal_Component_Stop"
+// data "TargetSound" "Vocal_Component_Stop" (Target_Shatter_Monk)
 data "VocalComponentSound" "Vocal_Component_Stop"
 // data "UseCosts" "ActionPoint:1;SpellSlotsGroup:1:1:9" (Target_Shatter_9)
 data "UseCosts" "ActionPoint:1;KiPoint:10"
@@ -2132,6 +2141,7 @@ data "ContainerSpells" "Goon_Shout_GaseousForm_Monk"
 // data "SpellSchool" "Transmutation"
 // data "SpellProperties" "ApplyStatus(GASEOUS_FORM,100,-1)" (Target_GaseousForm)
 // data "SpellProperties" "ApplyStatus(GASEOUS_FORM,100,-1);ApplyStatus(SELF,MARTIAL_ARTS_BONUS_UNARMED_STRIKE,100,1)"
+data "SpellProperties" "ApplyStatus(GASEOUS_FORM,100,-1)"
 // data "TargetRadius" "1.5" (Target_GaseousForm)
 // data "TargetConditions" "Character() and Ally() and not Dead()" (Target_GaseousForm)
 // data "TargetConditions" "Self()"

@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
-	<!-- "" --> <content contentuid="" version="1"></content>
+	<!-- "Projectile_ScorchingRay_Monk"... -->
+    <content contentuid="hb0106d47g077eg4f46g8cb5g1b627700254b" version="1">Expel the fire burning through your veins as [2] flaming rays. Each ray deals [1].</content>
+
+	<!-- "" -->
+    <content contentuid="" version="1"></content>
+	<!-- "" -->
+    <content contentuid="" version="1"></content>
+	<!-- "" -->
+    <content contentuid="" version="1"></content>
 </contentList>

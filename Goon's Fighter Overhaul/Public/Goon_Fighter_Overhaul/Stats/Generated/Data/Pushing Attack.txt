@@ -11,7 +11,7 @@ using "Target_PushingAttack"
 // data "TargetRadius" "MeleeMainWeaponRange"
 // data "SpellRoll" "Attack(AttackType.MeleeWeaponAttack)"
 // data "SpellSuccess" "IF(not SavingThrow(Ability.Strength, ManeuverSaveDC())):Force(5); DealDamage(MainMeleeWeapon + LevelMapValue(SuperiorityDie), MainMeleeWeaponDamageType); ExecuteWeaponFunctors(MainHand)"
-data "SpellSuccess" "IF(not SavingThrow(Ability.Strength, ManeuverSaveDC())):Force(5,OriginToTarget,Aggressive);DealDamage(MainRangedWeapon + LevelMapValue(SuperiorityDie), MainRangedWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
+data "SpellSuccess" "IF(not SavingThrow(Ability.Strength, ManeuverSaveDC())):Force(5,OriginToTarget,Aggressive);DealDamage(MainMeleeWeapon + LevelMapValue(SuperiorityDie), MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand)"
 // data "TargetConditions" "Character() and not Self()"
 // data "Icon" "Action_PushingAttack_Melee"
 // Pushing Attack (Melee)
